@@ -1,11 +1,15 @@
 pt-BR:
   activerecord:
     models:
+      author: 'Autor'
       blog: 'Blog'
       configuration: "Configuração"
       page: "Página"
       user: "Usuário"
     attributes:
+      author:
+        name: 'Nome'
+        description: 'Descrição'
       blog:
         name: 'Nome'
         description: 'Descrição'

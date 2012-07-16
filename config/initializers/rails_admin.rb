@@ -8,6 +8,17 @@ RailsAdmin.config do |config|
 
   config.authorize_with :cancan
 
+  config.model Author do
+    list do
+      field :name
+    end
+
+    edit do
+      field :name
+      field(:description) { ckeditor true }
+    end
+  end
+
   config.model Blog do
     list do
       field :name

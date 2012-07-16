@@ -33,6 +33,16 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Category do
+    list do
+      field :name
+    end
+
+    edit do
+      field :name
+    end
+  end
+
   # CKeditor models (begin)
   config.model Ckeditor::Asset do
     visible false

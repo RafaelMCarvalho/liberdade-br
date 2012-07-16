@@ -3,6 +3,7 @@ pt-BR:
     models:
       author: 'Autor'
       blog: 'Blog'
+      category: 'Categoria'
       configuration: "Configuração"
       page: "Página"
       user: "Usuário"
@@ -14,6 +15,8 @@ pt-BR:
         name: 'Nome'
         description: 'Descrição'
         rss: 'RSS'
+      category:
+        name: 'Nome'
       configuration:
         email: "E-mail"
         keywords: "Palavras-chave"

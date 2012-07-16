@@ -6,6 +6,8 @@ RailsAdmin.config do |config|
 
   config.current_user_method { current_user } #auto-generated
 
+    config.excluded_models = ['AuthorPost', 'CategoryPost']
+
   config.authorize_with :cancan
 
   config.model Author do
@@ -86,7 +88,7 @@ RailsAdmin.config do |config|
      field(:updated_at) { label 'Atualizado em' }
    end
  end
- # CKeditor models (end)  
+ # CKeditor models (end)
 
   config.model Configuration do
 
@@ -121,6 +123,23 @@ RailsAdmin.config do |config|
       field :title
       field(:content) { ckeditor true }
       field :published
+    end
+  end
+
+  config.model Post do
+    list do
+      field :title
+      field :blog
+      field :published_at
+    end
+
+    edit do
+      field :title
+      field :blog
+      field(:content) { ckeditor true }
+      field :published_at
+      field :authors
+      field :categories
     end
   end
 

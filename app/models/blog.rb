@@ -1,5 +1,7 @@
 class Blog < ActiveRecord::Base
-  attr_accessible :description, :link, :name, :rss
+  has_many :posts
+
+  attr_accessible :description, :link, :name, :rss, :posts, :post_ids
 
   validates_presence_of :name, :link
 end

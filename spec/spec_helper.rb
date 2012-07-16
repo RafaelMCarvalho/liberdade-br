@@ -10,6 +10,10 @@ Spork.prefork do
   require 'capybara/rspec'
   require 'valid_attribute'
   require 'cancan/matchers'
+  require 'paperclip/matchers'
+
+  IMAGE = File.expand_path("../data/image.jpg", __FILE__)
+  TEXT = File.expand_path("../data/text.txt", __FILE__)
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -17,7 +21,26 @@ Spork.prefork do
 
   RSpec.configure do |config|
     config.mock_with :rspec
-    config.use_transactional_fixtures = true
+    config.use_transactional_fixtures = false
+    config.include Paperclip::Shoulda::Matchers
+
+    config.before :each do
+      if example.metadata[:js]
+        Capybara.server_port = 33333
+        Capybara.current_driver = :selenium
+      end
+      if Capybara.current_driver == :rack_test
+        DatabaseCleaner.strategy = :transaction
+      else
+        DatabaseCleaner.strategy = :truncation
+      end
+      DatabaseCleaner.start
+    end
+
+    config.after do
+      DatabaseCleaner.clean
+      Capybara.use_default_driver if example.metadata[:js]
+    end
   end
 
   def login(email, password)

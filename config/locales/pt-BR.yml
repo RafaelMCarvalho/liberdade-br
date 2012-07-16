@@ -26,6 +26,12 @@ pt-BR:
         title: "Título"
         content: "Conteúdo"
         published: "Publicado"
+      post:
+        title: 'Título'
+        content: 'Conteúdo'
+        published_at: 'Publicado em'
+        authors: 'Autores'
+        caegories: 'Categorias'
       user:
         email: "E-mail"
         password: "Senha"

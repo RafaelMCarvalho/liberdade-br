@@ -14,6 +14,7 @@ gem 'ckeditor'
 gem 'paperclip', '2.7.0'
 
 group :development, :test do
+    gem 'database_cleaner', '0.7.1'
     gem 'rspec-rails', '2.10.1'
     gem 'capybara', '1.1.2'
     gem 'launchy', '2.1.0'

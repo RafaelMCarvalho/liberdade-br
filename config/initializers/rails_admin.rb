@@ -8,6 +8,20 @@ RailsAdmin.config do |config|
 
   config.authorize_with :cancan
 
+  config.model Blog do
+    list do
+      field :name
+      field :link
+    end
+
+    edit do
+      field :name
+      field :link
+      field :rss
+      field(:description) { ckeditor true }
+    end
+  end
+
   # CKeditor models (begin)
   config.model Ckeditor::Asset do
     visible false

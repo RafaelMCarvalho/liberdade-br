@@ -1,10 +1,15 @@
 pt-BR:
   activerecord:
     models:
+      blog: 'Blog'
       configuration: "Configuração"
       page: "Página"
       user: "Usuário"
     attributes:
+      blog:
+        name: 'Nome'
+        description: 'Descrição'
+        rss: 'RSS'
       configuration:
         email: "E-mail"
         keywords: "Palavras-chave"

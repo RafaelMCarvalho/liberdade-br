@@ -161,6 +161,7 @@ RailsAdmin.config do |config|
         label 'Confirme a senha'
         help 'Confirme a senha do novo usuário'
       end
+      field :role
     end
 
     edit do

@@ -31,7 +31,7 @@ pt-BR:
         content: 'Conteúdo'
         published_at: 'Publicado em'
         authors: 'Autores'
-        caegories: 'Categorias'
+        categories: 'Categorias'
       user:
         email: "E-mail"
         password: "Senha"

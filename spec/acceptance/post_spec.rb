@@ -9,6 +9,8 @@ feature 'manage posts' do
 
   context 'add a post' do
     background do
+      @category = FactoryGirl.create :category
+      @author = FactoryGirl.create :author
       @blog = FactoryGirl.create :blog
 
       visit '/admin/post/new'
@@ -17,8 +19,15 @@ feature 'manage posts' do
     it 'successfully' do
       fill_in 'Título', :with => 'Foo post'
       fill_in 'Conteúdo', :with => 'Foo content'
+      select @blog.name, :from => 'Blog'
+      select @category.name, :from => 'Categorias'
+      select @author.name, :from => 'Autores'
       click_button 'Salvar'
       page.should have_content 'Post criado(a) com sucesso'
+      post = Post.last
+      post.blog.should == @blog
+      post.authors.should include(@author)
+      post.categories.should include(@category)
     end
 
     it 'with errors' do
@@ -30,6 +39,9 @@ feature 'manage posts' do
 
   context 'edit a post' do
     background do
+      @category = FactoryGirl.create :category
+      @author = FactoryGirl.create :author
+      @blog = FactoryGirl.create :blog
       @post = FactoryGirl.create :post
 
       visit '/admin/post'
@@ -39,11 +51,17 @@ feature 'manage posts' do
     it 'successfully' do
       fill_in 'Título', :with => 'Foo post'
       fill_in 'Conteúdo', :with => 'Foo content'
+      select @blog.name, :from => 'Blog'
+      select @category.name, :from => 'Categorias'
+      select @author.name, :from => 'Autores'
       click_button 'Salvar'
       page.should have_content 'Post atualizado(a) com sucesso'
       @post.reload
       @post.title.should == 'Foo post'
       @post.content.should == 'Foo content'
+      @post.blog.should == @blog
+      @post.authors.should include(@author)
+      @post.categories.should include(@category)
     end
 
     it 'with errors' do

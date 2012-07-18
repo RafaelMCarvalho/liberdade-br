@@ -11,8 +11,10 @@ install:
 	@echo "=================================="
 	@echo "Instalando dependencias do sistema"
 	@echo "=================================="
-	@echo ""libmagickwand-dev
+	@echo ""
 	@sudo apt-get install imagemagick libmagickcore-dev libmagickwand-dev
+	@echo "Dependencias da gem curb que por sua vez é dependencia da gem feedzirra"
+	@sudo $ sudo apt-get install libcurl3 libcurl3-gnutls libcurl4-openssl-dev
 
 
 banco:

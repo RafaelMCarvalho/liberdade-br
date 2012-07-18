@@ -10,4 +10,7 @@ class Post < ActiveRecord::Base
      :author_ids, :category_ids, :blog_id
 
   validates_presence_of :title, :content
+
+  def self.create_from_feed(entry)
+  end
 end

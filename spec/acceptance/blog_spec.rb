@@ -59,16 +59,12 @@ feature 'manager blogs' do
 		end
 	end
 
-	context 'delete a blog' do
-		background do
-			@blog = FactoryGirl.create :blog
-			click_link 'Blog'
-			click_link 'Excluir'
-		end
-
-		it 'successfully' do
-			click_button 'Sim, eu tenho certeza'
-			page.should have_content 'Blog excluído(a) com sucesso'
-		end
+	it 'delete a blog successfully' do
+		FactoryGirl.create :blog
+		click_link 'Blog'
+		click_link 'Excluir'
+		click_button 'Sim, eu tenho certeza'
+		page.should have_content 'Blog excluído(a) com sucesso'
+		Blog.all.should be_empty
 	end
 end

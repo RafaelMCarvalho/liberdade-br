@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :blog do
       name "MyString"
-      link "MyString"
+      link "blog.com.br"
       rss "MyString"
       description "MyText"
     end

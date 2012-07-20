@@ -152,7 +152,13 @@ end
        end
      end
      field :published_at
-     field :blog
+     field :blog do
+       pretty_value do
+        if value
+         "<a href='#{value.link}' title='#{value.name}' target='_blank'>#{value.name}</a>".html_safe
+        end
+       end
+     end
      field :authors
      field :categories
    end

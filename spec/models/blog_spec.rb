@@ -9,7 +9,8 @@ describe Blog do
 
 		context 'link' do
 		  it { should have_valid(:link).when('http://blog.algorich.com.br') }
-		  it { should_not have_valid(:name).when('', nil) }
+		  it { should have_valid(:link).when('blog.algorich.com.br') }
+		  it { should_not have_valid(:link).when('', nil, 'foo') }
 		end
 	end
 end

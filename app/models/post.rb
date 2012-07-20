@@ -5,9 +5,12 @@ class Post < ActiveRecord::Base
   has_many :authors, :through => :author_posts
   has_many :category_posts
   has_many :categories, :through => :category_posts
+  has_many :post_evaluations
+  has_many :users, :through => :post_evaluations, :dependent => :destroy
 
   attr_accessible :title, :published_at, :content, :blog, :authors, :categories,
-     :author_ids, :category_ids, :blog_id
+     :author_ids, :category_ids, :blog_id, :evaluations, :evaluation_ids,
+     :post_evaluations, :post_evaluation_ids
 
   validates_presence_of :title, :content
 end

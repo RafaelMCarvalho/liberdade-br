@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
+  has_many :post_evaluations
+  has_many :posts, :through => :post_evaluations, :dependent => :destroy
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,

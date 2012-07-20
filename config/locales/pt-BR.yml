@@ -32,6 +32,9 @@ pt-BR:
         published_at: 'Publicado em'
         authors: 'Autores'
         categories: 'Categorias'
+        acceptances: 'Aceitações'
+        rejections: 'Rejeições'
+        evaluations_count: 'Avaliações'
       user:
         email: "E-mail"
         password: "Senha"

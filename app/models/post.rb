@@ -16,4 +16,16 @@ class Post < ActiveRecord::Base
 
   def self.create_from_feed(entry)
   end
+
+  def acceptances
+    PostEvaluation.where('post_id = ? and accept = ?', self.id, true).count
+  end
+
+  def rejections
+    PostEvaluation.where('post_id = ? and accept = ?', self.id, false).count
+  end
+
+  def evaluations_count
+    self.post_evaluations.count
+  end
 end

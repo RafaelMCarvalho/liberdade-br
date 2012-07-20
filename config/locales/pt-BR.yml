@@ -212,3 +212,13 @@ pt-BR:
             one: "quatrilhão"
             other: "quatrilhões"
 
+  # Usado no Array.to_sentence
+  support:
+    array:
+      words_connector: ', '
+      two_words_connector: ' e '
+      last_word_connector: ' e '
+
+  admin:
+    home:
+      name: "Site"

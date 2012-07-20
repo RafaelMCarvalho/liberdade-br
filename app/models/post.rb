@@ -13,4 +13,7 @@ class Post < ActiveRecord::Base
      :post_evaluations, :post_evaluation_ids
 
   validates_presence_of :title, :content
+
+  def self.create_from_feed(entry)
+  end
 end

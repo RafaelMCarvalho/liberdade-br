@@ -37,4 +37,15 @@ describe Blog do
       @blog.get_new_posts
     end
   end
+
+  context 'when deleted' do
+    it 'should destroy all your dependents' do
+      @blog = FactoryGirl.create :blog
+      post1 = FactoryGirl.create :post, :blog => @blog
+      post2 = FactoryGirl.create :post, :blog => @blog
+      @blog.posts.should == [post1, post2]
+      @blog.destroy
+      Post.all.length.should == 0
+    end
+  end
 end

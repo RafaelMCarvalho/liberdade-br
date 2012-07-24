@@ -17,6 +17,6 @@
             %dt.label{:class => "custom_type title_field"} Avaliação
             %dd
               - @evaluation = PostEvaluation.where('user_id = ? AND post_id = ?', current_user, @object.id).first
-              - accept = @evaluation.try(:accept)
-              %pre.prettyprint= link_to 'Aceitar', "/admin/post/#{@object.id}/accept/#{current_user.id}", :remote => true, :id => 'accept_post', :class => ('choosen' if accept == true)
-              %pre.prettyprint= link_to 'Recusar', "/admin/post/#{@object.id}/reject/#{current_user.id}", :remote => true, :id => 'reject_post', :class => ('choosen' if accept == false)
+              - approve = @evaluation.try(:approve)
+              %pre.prettyprint= link_to 'Aprovar', "/admin/post/#{@object.id}/approve/#{current_user.id}", :remote => true, :id => 'approve_post', :class => ('choosen' if approve == true)
+              %pre.prettyprint= link_to 'Reprovar', "/admin/post/#{@object.id}/reprove/#{current_user.id}", :remote => true, :id => 'reprove_post', :class => ('choosen' if approve == false)

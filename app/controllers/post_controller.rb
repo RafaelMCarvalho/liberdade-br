@@ -3,8 +3,8 @@ class PostController < ApplicationController
 
   before_filter :check_user
 
-  def accept
-    params[:accept] = true
+  def approve
+    params[:approve] = true
     @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', params[:user_id], params[:post_id]).first
     if @evaluation.nil?
       @evaluation = PostEvaluation.new(params)
@@ -14,8 +14,8 @@ class PostController < ApplicationController
     end
   end
 
-  def reject
-    params[:accept] = false
+  def reprove
+    params[:approve] = false
     @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', params[:user_id], params[:post_id]).first
     if @evaluation.nil?
       @evaluation = PostEvaluation.new(params)

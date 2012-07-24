@@ -8,50 +8,50 @@ feature 'manage posts' do
   end
 
   context 'evaluate a post', :js => true do
-    it 'accept/reject a post first time' do
+    it 'approve/reprove a post first time' do
       @post = FactoryGirl.create :post
       visit "/admin/post/#{@post.id}"
 
-      page.should_not have_xpath("//a[@id='accept_post'][@class='choosen']")
-      page.should_not have_xpath("//a[@id='reject_post'][@class='choosen']")
+      page.should_not have_xpath("//a[@id='approve_post'][@class='choosen']")
+      page.should_not have_xpath("//a[@id='reprove_post'][@class='choosen']")
       PostEvaluation.all.count.should == 0
 
-      click_link 'Aceitar'
-      page.should have_xpath("//a[@id='accept_post'][@class='choosen']")
-      page.should_not have_xpath("//a[@id='reject_post'][@class='choosen']")
+      click_link 'Aprovar'
+      page.should have_xpath("//a[@id='approve_post'][@class='choosen']")
+      page.should_not have_xpath("//a[@id='reprove_post'][@class='choosen']")
       @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', @user.id, @post.id).first
       @evaluation.should_not be_nil
-      @evaluation.accept.should be_true
+      @evaluation.approve.should be_true
 
-      click_link 'Recusar'
-      page.should_not have_xpath("//a[@id='accept_post'][@class='choosen']")
-      page.should have_xpath("//a[@id='reject_post'][@class='choosen']")
+      click_link 'Reprovar'
+      page.should_not have_xpath("//a[@id='approve_post'][@class='choosen']")
+      page.should have_xpath("//a[@id='reprove_post'][@class='choosen']")
       @evaluation.reload
-      @evaluation.accept.should be_false
+      @evaluation.approve.should be_false
     end
 
     it 'change evaluation' do
       @post = FactoryGirl.create :post
       @evaluation = FactoryGirl.create :post_evaluation, :user_id => @user.id,
-        :post_id => @post.id, :accept => true
+        :post_id => @post.id, :approve => true
       visit "/admin/post/#{@post.id}"
 
-      page.should have_xpath("//a[@id='accept_post'][@class='choosen']")
-      page.should_not have_xpath("//a[@id='reject_post'][@class='choosen']")
+      page.should have_xpath("//a[@id='approve_post'][@class='choosen']")
+      page.should_not have_xpath("//a[@id='reprove_post'][@class='choosen']")
       PostEvaluation.all.count.should == 1
       @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', @user.id, @post.id).first
 
-      click_link 'Aceitar'
-      page.should have_xpath("//a[@id='accept_post'][@class='choosen']")
-      page.should_not have_xpath("//a[@id='reject_post'][@class='choosen']")
+      click_link 'Aprovar'
+      page.should have_xpath("//a[@id='approve_post'][@class='choosen']")
+      page.should_not have_xpath("//a[@id='reprove_post'][@class='choosen']")
       @evaluation.reload
-      @evaluation.accept.should be_true
+      @evaluation.approve.should be_true
 
-      click_link 'Recusar'
-      page.should_not have_xpath("//a[@id='accept_post'][@class='choosen']")
-      page.should have_xpath("//a[@id='reject_post'][@class='choosen']")
+      click_link 'Reprovar'
+      page.should_not have_xpath("//a[@id='approve_post'][@class='choosen']")
+      page.should have_xpath("//a[@id='reprove_post'][@class='choosen']")
       @evaluation.reload
-      @evaluation.accept.should be_false
+      @evaluation.approve.should be_false
     end
 
     context 'cannot evaluate as another user' do
@@ -61,24 +61,24 @@ feature 'manage posts' do
       end
 
       it 'at first time' do
-        visit "/admin/post/#{@post.id}/accept/#{@another_user.id}"
+        visit "/admin/post/#{@post.id}/approve/#{@another_user.id}"
         PostEvaluation.all.count.should == 0
-        visit "/admin/post/#{@post.id}/reject/#{@another_user.id}"
+        visit "/admin/post/#{@post.id}/reprove/#{@another_user.id}"
         PostEvaluation.all.count.should == 0
       end
 
       it 'while updating' do
         @evaluation = FactoryGirl.create :post_evaluation, :user_id => @another_user.id,
-          :post_id => @post.id, :accept => true
+          :post_id => @post.id, :approve => true
 
-        visit "/admin/post/#{@post.id}/reject/#{@another_user.id}"
-        @evaluation.reload.accept.should be_true
+        visit "/admin/post/#{@post.id}/reprove/#{@another_user.id}"
+        @evaluation.reload.approve.should be_true
 
-        # Set accept value to false
-        @evaluation.update_attributes(:accept => false)
+        # Set approve value to false
+        @evaluation.update_attributes(:approve => false)
 
-        visit "/admin/post/#{@post.id}/accept/#{@another_user.id}"
-        @evaluation.reload.accept.should be_false
+        visit "/admin/post/#{@post.id}/approve/#{@another_user.id}"
+        @evaluation.reload.approve.should be_false
       end
     end
   end

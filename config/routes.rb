@@ -13,8 +13,8 @@ LiberdadeBr::Application.routes.draw do
   post "/contact" => "site#send_contact", :as => :send_contact
 
 #= 3. Post evaluation routes ===================================================
-  match "/admin/post/:post_id/accept/:user_id" => "post#accept", :as => :accept_post
-  match "/admin/post/:post_id/reject/:user_id" => "post#reject", :as => :reject_post
+  match "/admin/post/:post_id/approve/:user_id" => "post#approve", :as => :approve_post
+  match "/admin/post/:post_id/reprove/:user_id" => "post#reprove", :as => :reprove_post
 
   root :to => "site#index"
 end

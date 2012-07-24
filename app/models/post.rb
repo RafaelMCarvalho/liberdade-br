@@ -19,12 +19,15 @@ class Post < ActiveRecord::Base
 
   def approval_rate
     evaluations = self.post_evaluations
-    approvals = evaluations.select { |e| e.accept }
+    approvals = evaluations.select { |e| e.approve }
     if evaluations.count.zero?
       return 0
     else
       return approvals.count/evaluations.count
     end
+  end
+
+  def reproval_rate
   end
 
   def evaluations_count

@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :post_evaluation do
-      accept true
+      approve true
     end
 end

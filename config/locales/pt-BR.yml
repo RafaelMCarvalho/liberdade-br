@@ -32,8 +32,7 @@ pt-BR:
         published_at: 'Publicado em'
         authors: 'Autores'
         categories: 'Categorias'
-        acceptances: 'Aceitações'
-        rejections: 'Rejeições'
+        approval_rate: 'Taxa de aprovação'
         evaluations_count: 'Avaliações'
       user:
         email: "E-mail"

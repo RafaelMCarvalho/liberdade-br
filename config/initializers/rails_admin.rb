@@ -145,8 +145,11 @@ RailsAdmin.config do |config|
       field :title
       field :blog
       field :evaluations_count
-      field :acceptances
-      field :rejections
+      field :approval_rate do
+        pretty_value do
+          "#{value*100}%"
+        end
+      end
       field :categories
       field :authors
       field :published_at
@@ -220,7 +223,7 @@ RailsAdmin.config do |config|
       field :role do
         label 'Tipo de usuário'
         pretty_value do
-          value == :admin ? 'Administrador' : 'Comum'
+          value == :coordinator ? 'Coordenador' : 'Moderador'
         end
       end
     end

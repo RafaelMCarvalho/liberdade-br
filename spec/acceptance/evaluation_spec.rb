@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'manage posts' do
   background do
     FactoryGirl.create :configuration
-    @user = FactoryGirl.create :user, :role => :common
+    @user = FactoryGirl.create :user, :role => :moderator
     login(@user.email, '123456')
   end
 

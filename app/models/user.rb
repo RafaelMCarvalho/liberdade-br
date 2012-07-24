@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role
 
   def role_enum
-    %w[admin common]
+    {'Coordenador' => :coordinator, 'Moderador' => :moderator}
   end
 
   def role?(role)

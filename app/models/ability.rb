@@ -7,11 +7,11 @@ class Ability
   def initialize(user)
     if user
       can :access, :rails_admin
-      if user.role? :common
+      if user.role? :moderator
         can :dashboard
         can :read, Post
-        can :update, User, :id => user.id #common can update own user details
-      elsif user.role? :admin
+        can :update, User, :id => user.id #moderator can update own user details
+      elsif user.role? :coordinator
         can :access, :rails_admin
         can :manage, :all
         cannot [:destroy, :create], Page

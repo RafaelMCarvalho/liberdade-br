@@ -4,8 +4,9 @@ class CreatePosts < ActiveRecord::Migration
       t.references :blog
 
       t.string :title
-      t.date :published_at
+      t.string :url
       t.text :content
+      t.date :published_at
 
       t.timestamps
     end

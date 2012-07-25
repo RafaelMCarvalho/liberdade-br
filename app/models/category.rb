@@ -8,6 +8,11 @@ class Category < ActiveRecord::Base
 
   before_save :downcase_name
 
+  def self.get_or_create_by_name(name)
+    category = Category.where(:name => name).first
+    category ? category : self.create(:name => name)
+  end
+
   private
   def downcase_name
     self.name = name.downcase

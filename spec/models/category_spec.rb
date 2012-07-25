@@ -22,4 +22,18 @@ describe Category do
     c.update_attribute(:name, 'Liberalismo')
     c.name.should == 'liberalismo'
   end
+
+  it 'should get or create a new one' do
+    c = Category.get_or_create_by_name('liberalismo')
+    c.name == 'liberalismo'
+    Category.all.should have(1).category
+
+    c = Category.get_or_create_by_name('economia')
+    c.name == 'economia'
+    Category.all.should have(2).category
+
+    c = Category.get_or_create_by_name('liberalismo')
+    c.name == 'liberalismo'
+    Category.all.should have(2).category
+  end
 end

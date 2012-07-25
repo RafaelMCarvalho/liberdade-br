@@ -14,4 +14,12 @@ describe Category do
       end
 		end
 	end
+
+  it 'name should be downcased' do
+    c = Category.create(:name => 'LIBERALISMO')
+    c.name.should == 'liberalismo'
+
+    c.update_attribute(:name, 'Liberalismo')
+    c.name.should == 'liberalismo'
+  end
 end

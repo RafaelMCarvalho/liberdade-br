@@ -8,13 +8,31 @@ class Post < ActiveRecord::Base
   has_many :post_evaluations
   has_many :users, :through => :post_evaluations, :dependent => :destroy
 
-  attr_accessible :title, :published_at, :content, :blog, :authors, :categories,
-     :author_ids, :category_ids, :blog_id, :evaluations, :evaluation_ids,
-     :post_evaluations, :post_evaluation_ids
+  attr_accessible :title, :url, :content, :published_at, :blog, :authors,
+     :author_ids, :categories,:category_ids, :blog_id,
+     :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids
 
   validates_presence_of :title, :content
 
   def self.create_from_feed_entry(entry)
+    categories = []
+    entry.categories.each do |name|
+      categories << Category.get_or_create_by_name(name)
+    end
+
+    authors = []
+    entry.author.split(',').each do |name|
+      authors << Author.get_or_create_by_name(name.strip)
+    end
+
+    Post.create(
+      :title => entry.title,
+      :url => entry.url,
+      :content => entry.content,
+      :published_at => entry.published,
+      :categories => categories,
+      :authors => authors
+    )
   end
 
   def approval_rate

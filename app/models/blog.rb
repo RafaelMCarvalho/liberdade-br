@@ -19,7 +19,7 @@ class Blog < ActiveRecord::Base
     feed = Feedzirra::Feed.fetch_and_parse(self.rss)
     feed.entries.select do |entry|
       if entry.published.strftime('%d/%m/%Y') == Date.today.strftime('%d/%m/%Y')
-        Post.create_from_feed(entry)
+        Post.create_from_feed_entry(entry)
       end
     end
   end

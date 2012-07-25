@@ -22,15 +22,5 @@ class Blog < ActiveRecord::Base
         Post.create_from_feed(entry)
       end
     end
-    #
-    # TODO: verify what is the best option. Do it whith .select or all in the .each
-    #
-    # new_posts = fedd.entries.select do |entry|
-    #   entry.published.strftime('%d/%m/%Y') == Date.today.strftime('%d/%m/%Y')
-    # end
-    #
-    # new_posts.each do |post|
-    #   Post.create_from_feed(post)
-    # end
   end
 end

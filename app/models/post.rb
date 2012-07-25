@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :title, :content
 
-  def self.create_from_feed(entry)
+  def self.create_from_feed_entry(entry)
   end
 
   def approval_rate

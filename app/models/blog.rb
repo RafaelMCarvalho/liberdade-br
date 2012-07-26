@@ -15,11 +15,13 @@ class Blog < ActiveRecord::Base
     end
   end
 
-  def get_new_posts
-    feed = Feedzirra::Feed.fetch_and_parse(self.rss)
-    feed.entries.select do |entry|
-      if entry.published.strftime('%d/%m/%Y') == Date.today.strftime('%d/%m/%Y')
-        Post.create_from_feed_entry(entry)
+  def self.get_new_posts
+    all.each do |blog|
+      feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
+      feed.entries.select do |entry|
+        if entry.published.strftime('%d/%m/%Y') == Date.today.strftime('%d/%m/%Y')
+          Post.create_from_feed_entry(entry)
+        end
       end
     end
   end

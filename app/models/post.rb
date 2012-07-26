@@ -8,17 +8,36 @@ class Post < ActiveRecord::Base
   has_many :post_evaluations, :dependent => :destroy
   has_many :users, :through => :post_evaluations
 
-  attr_accessible :title, :published_at, :content, :blog, :authors, :categories,
-     :author_ids, :category_ids, :blog_id, :evaluations, :evaluation_ids,
-     :post_evaluations, :post_evaluation_ids, :approval_rate, :reproval_rate
-
   validates_presence_of :title, :content
 
   after_validation :check_rates_to_publish, :if => lambda {
     self.approval_rate_changed? or self.reproval_rate_changed?
   }
 
-  def self.create_from_feed(entry)
+  attr_accessible :title, :url, :content, :published_at, :blog, :authors,
+     :author_ids, :categories,:category_ids, :blog_id,
+     :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids,
+     :approval_rate, :reproval_rate
+
+  def self.create_from_feed_entry(entry)
+    categories = []
+    entry.categories.each do |name|
+      categories << Category.get_or_create_by_name(name)
+    end
+
+    authors = []
+    entry.author.split(',').each do |name|
+      authors << Author.get_or_create_by_name(name.strip)
+    end
+
+    Post.create(
+      :title => entry.title,
+      :url => entry.url,
+      :content => entry.content,
+      :published_at => entry.published,
+      :categories => categories,
+      :authors => authors
+    )
   end
 
   def evaluations_count

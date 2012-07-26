@@ -4,11 +4,12 @@ class CreatePosts < ActiveRecord::Migration
       t.references :blog
 
       t.string :title
-      t.date :published_at
+      t.string :url
       t.text :content
       t.float :approval_rate, :default => 0.0
       t.float :reproval_rate, :default => 0.0
       t.boolean :published
+      t.date :published_at
 
       t.timestamps
     end

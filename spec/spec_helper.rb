@@ -53,5 +53,14 @@ end
 
 Spork.each_run do
   require File.expand_path("../../config/routes", __FILE__)
-end
 
+  # Reload all models and controllers files when run each spec
+  # otherwise there might be out-of-date testing
+  Dir["#{Rails.root}/app/controllers/*.rb"].each do |controller|
+    load controller
+  end
+
+  Dir["#{Rails.root}/app/models/*.rb"].each do |model|
+    load model
+  end
+end

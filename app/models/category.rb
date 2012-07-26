@@ -4,5 +4,17 @@ class Category < ActiveRecord::Base
 
   attr_accessible :name, :posts, :post_ids
 
-  validates_presence_of :name
+  validates :name, :presence => true, :uniqueness => true
+
+  before_save :downcase_name
+
+  def self.get_or_create_by_name(name)
+    category = Category.where(:name => name).first
+    category ? category : self.create(:name => name)
+  end
+
+  private
+  def downcase_name
+    self.name = name.downcase
+  end
 end

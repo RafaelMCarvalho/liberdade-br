@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   after_create :call_to_update_evaluation_rates
   after_destroy :call_to_update_evaluation_rates
 
+  validates_presence_of :role
+
   def call_to_update_evaluation_rates
     Post.all.each do |p|
       p.update_evaluation_rates

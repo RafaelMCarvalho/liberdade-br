@@ -6,6 +6,9 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.date :published_at
       t.text :content
+      t.float :approval_rate, :default => 0.0
+      t.float :reproval_rate, :default => 0.0
+      t.boolean :published
 
       t.timestamps
     end

@@ -3,7 +3,13 @@
 User.create!(
   :email => 'admin@base.com',
   :password => '123456',
-  :role => :admin
+  :role => :coordinator
+)
+
+User.create!(
+  :email => 'moderator@base.com',
+  :password => '123456',
+  :role => :moderator
 )
 
 Configuration.create!(

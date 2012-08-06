@@ -105,6 +105,22 @@ config.model Ckeditor::AttachmentFile do
 end
 # CKeditor models (end)
 
+config.model Banner do
+    list do
+      field :image
+      field :title
+      field :published
+    end
+
+    edit do
+      field :title
+      field :link
+      field :open_in_new_tab
+      field :published
+      field :image
+    end
+end
+
 config.model Configuration do
 
   edit do
@@ -238,4 +254,3 @@ config.model User do
   end
 end
 end
-

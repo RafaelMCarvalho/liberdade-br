@@ -40,6 +40,12 @@ pt-BR:
         password: "Senha"
         password_confirmation: "Confirmação da senha"
         current_password: 'Senha atual'
+      banner:
+        title: "Título"
+        link: "Link"
+        open_in_new_tab: "Abrir em uma nova aba"
+        published: "Publicado"
+        image: "Imagem"
     errors:
       messages:
         inclusion: "não está incluído na lista."

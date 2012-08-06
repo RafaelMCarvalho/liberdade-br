@@ -1,10 +1,18 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-  <title>Liberdade.br</title>
-  <meta content="<%= configuration.keywords %>" name="keywords" />
-  <meta content="<%= configuration.description %>" name="description" />
+  <title>Liberdade.br - <%= yield :page_title %></title>
+
   <meta content='http://algorich.com.br' name='author' />
+
+  <% if configuration.keywords %>
+    <meta content="<%= configuration.keywords %>" name="keywords" />
+  <% end %>
+
+  <% if configuration.description %>
+    <meta content="<%= configuration.description %>" name="description" />
+  <% end %>
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -12,14 +20,170 @@
   <%= stylesheet_link_tag 'application.css' %>
   <%= javascript_include_tag 'application.js' %>
   <%= csrf_meta_tag %>
+
+  <% if configuration.google_analytics %>
+    <script type="text/javascript">
+      <%= configuration.google_analytics.html_safe %>
+    </script>
+  <% end %>
 </head>
-<body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<body id="<%= yield :page_id %>">
+<div id="wrapper">
 
-<%= yield %>
+  <!-- HEADER BEGIN -->
+  <div id="header_wrapper">
+    <div id="header">
+      <h1><%= link_to image_tag('/assets/logo.png', :alt => 'Liberdade.br',
+        :size => '300x105'), root_path %></h1>
 
+      <p id="partners_page_link">Veja a lista completa das pessoas que
+        financiaram esta iniciativa</p>
+    </div>
+  </div>
+  <!-- HEADER END -->
+
+  <!-- MAIN NAVIGATION BEGIN -->
+  <div id="main_navigation_wrapper">
+    <ul id="main_navigation">
+      <li class="active home_item">
+        <%= link_to '<strong><span>Principal</span></strong>'.html_safe, root_path %>
+      </li>
+
+      <li class="info_item">
+        <%= link_to '<strong><span>Sobre o Liberdade.br</span></strong>'.html_safe, '#' %>
+      </li>
+
+      <li class="faq_item">
+        <%= link_to '<strong><span>Perguntas frequêntes</span></strong>'.html_safe, '#' %>
+      </li>
+
+      <li class="events_item">
+        <%= link_to '<strong><span>Eventos e oportunidades</span></strong>'.html_safe, '#' %>
+      </li>
+
+      <li class="share_item">
+        <%= link_to '<strong><span>Divulgue</span></strong>'.html_safe, '#' %>
+
+        <div class="navigation_box_wrapper">
+          <div class="navigation_box">
+            <div class="content">
+              <!-- AddThis Button BEGIN -->
+              <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+              </div>
+              <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-501fc6f92d416cf0"></script>
+              <!-- AddThis Button END -->
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="donate_item">
+        <%= link_to '<strong><span>Faça uma doação</span></strong>'.html_safe, '#' %>
+
+        <div class="navigation_box_wrapper">
+          <div class="navigation_box">
+            <div class="content">
+              <p>O <strong>Liberdade.br</strong> é um projeto sem fins lucrativos
+                que se mantem graças as doações de pessoas que compartilham de seus
+                ideais. Faça sua contribuição e nos ajude também.</p>
+
+              <hr />
+
+              <div class="progress_bar">
+                <p class="bar"><span>233</span></p>
+                <p class="goal">
+                  <span>R$ 20.000,00</span>
+                </p>
+                <p class="collected"><span>R$ 12.250,10</span></p>
+              </div>
+
+              <hr />
+
+              <p class="buttom">
+                <a href="#">Faça uma doação</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="contact_item">
+        <%= link_to '<strong><span>Contato</span></strong>'.html_safe, '#' %>
+      </li>
+
+      <li class="social_item">
+        <ul>
+          <li class="facebook_item">
+            <%= link_to 'Facebook', '#' %>
+          </li>
+          <li class="twitter_item">
+            <%= link_to 'Facebook', '#' %>
+          </li>
+          <li class="rss_item">
+            <%= link_to 'RSS', '#' %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <!-- MAIN NAVIGATION END -->
+
+  <%= yield :content %>
+
+  <!-- FOOTER BEGIN -->
+  <div id="footer_wrapper">
+    <div id="footer">
+      <div id="footer_info">
+        <p>Esta obra é licenciada sob uma licença
+          <a href="http://creativecommons.org/licenses/by/3.0/br/" targeft="_blank">
+            Creative Commons Atribuição 3.0 Brasil</a>.
+        </p>
+      </div>
+
+      <ul id="footer_sections">
+        <li id="partners_list">
+          <h3>Parceiros</h3>
+
+          <ul>
+            <% 20.times do %>
+              <li><%= link_to 'Lorem ipsum dolor sit amet', '#' %></li>
+            <% end %>
+          </ul>
+        </li>
+
+        <li id="sponsors_list">
+          <h3>Patrocinadores</h3>
+
+          <ul>
+            <% 4.times do %>
+              <li><%= link_to image_tag('/assets/sponsor.png', :alt => 'Name',
+                :size => '200x50'), '#' %></li>
+            <% end %>
+          </ul>
+        </li>
+
+        <li id="implementation">
+          <h3>Realização</h3>
+
+          <ul>
+            <li><%= link_to image_tag('/assets/sponsor.png', :alt => 'Name',
+              :size => '200x50'), '#' %></li>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- FOOTER END -->
+
+</div>
 </body>
-</html>
 
+</html>

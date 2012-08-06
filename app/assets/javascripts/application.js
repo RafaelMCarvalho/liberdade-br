@@ -24,7 +24,11 @@ var banner_image_sld, banner_info_sld;
 
 $(function () {
     banner_image_sld = $("#banner ul.images").bxSlider({
-        auto: true, controls: false, pause: 6000
+        auto: true, controls: false, pause: 6000,
+        onBeforeSlide: function (curr_sld_num, slt_qty, curr_html) {
+            $("#banner .controls > span").removeClass("active");
+            $($("#banner .controls > span")[curr_sld_num]).addClass("active");
+        }
     });
 });
 

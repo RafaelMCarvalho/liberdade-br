@@ -4,7 +4,7 @@ class CreateBanners < ActiveRecord::Migration
       t.string :title
       t.string :link
       t.boolean :open_in_new_tab
-      t.boolean :published, :defalt => true
+      t.boolean :published, :default => true
 
       t.string :image_file_name
       t.string :image_content_type

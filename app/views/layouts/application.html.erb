@@ -28,7 +28,7 @@
   <% end %>
 </head>
 
-<body id="<%= yield :page_id %>">
+<body id="<%= yield :page_id %>_page">
 <div id="wrapper">
 
   <!-- HEADER BEGIN -->
@@ -63,7 +63,7 @@
       </li>
 
       <li class="share_item">
-        <%= link_to '<strong><span>Divulgue</span></strong>'.html_safe, '#' %>
+        <%= link_to '<strong><span>Divulgue</span></strong>'.html_safe, 'javascript:void(0);' %>
 
         <div class="navigation_box_wrapper">
           <div class="navigation_box">
@@ -85,7 +85,7 @@
       </li>
 
       <li class="donate_item">
-        <%= link_to '<strong><span>Faça uma doação</span></strong>'.html_safe, '#' %>
+        <%= link_to '<strong><span>Faça uma doação</span></strong>'.html_safe, 'javascript:void(0);' %>
 
         <div class="navigation_box_wrapper">
           <div class="navigation_box">

@@ -4,54 +4,96 @@
 
 <%= content_for :content do %>
 
-  <!-- BANNER BEGIN -->
-  <div id="banner_wrapper">
-    <div id="banner">
+  <% unless @banners.empty? %>
+    <!-- BANNER BEGIN -->
 
-      <ul class="images">
-        <li style="background: red;"></li>
-        <li style="background: green;"></li>
-        <li style="background: yellow;"></li>
-      </ul>
+    <style>
+      <% @banners.each_with_index do |b, i| %>
+        #banner_<%= i %> {
+          background-image: url("<%= b.image.url %>");
+        }
+      <% end %>
+    </style>
 
-      <div class="infos_wrapper">
-        <div class="infos">
-          <ul>
-            <li>
-              <h3><a href="#">
-                Lorem ipsum dolor sit amet consectetur
-              </a></h3>
+    <div id="banner_wrapper">
+      <div id="banner">
 
-              <p class="buttom"><a href="#">Leia mais</a></p>
-            </li>
+        <ul class="images">
+          <% @banners.each_with_index do |b, i| %>
+            <li id="banner_<%= i %>"></li>
+          <% end %>
+        </ul>
 
-            <li>
-              <h3><a href="#">
-                Lorem ipsum dolor amet consectetur
-              </a></h3>
+        <div class="infos_wrapper">
+          <div class="infos">
+            <ul>
+              <% @banners.each do |b| %>
+                <li>
+                  <% if b.link.blank? %>
+                    <h3><%= b.title %></h3>
+                  <% else %>
+                    <% if b.open_in_new_tab %>
+                      <h3><%= link_to b.title, b.link, :target => '_blanck' %></h3>
 
-              <p class="buttom"><a href="#">Leia mais</a></p>
-            </li>
+                      <p class="buttom"><%= link_to 'Leia mais', b.link, :target => '_blanck'  %></p>
+                    <% else %>
+                      <h3><%= link_to b.title, b.link %></h3>
 
-            <li>
-              <h3><a href="#">
-                Lorem ipsum dolor sit amet
-              </a></h3>
+                      <p class="buttom"><%= link_to 'Leia mais', b.link %></p>
+                    <% end %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
 
-              <p class="buttom"><a href="#">Leia mais</a></p>
-            </li>
-          </ul>
-
-          <p class="controls">
-            <span class="active">1</span>
-            <span>2</span>
-            <span>3</span>
-          </p>
+            <p class="controls">
+              <% @banners.length.times do |i| %>
+                <span <%= 'class="active"'.html_safe if i == 0 %>><%= i %></span>
+              <% end %>
+            </p>
+          </div>
         </div>
+
+      </div>
+    </div>
+    <!-- BANNER END -->
+  <% end %>
+
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+
+      <div id="main_contet">
+        <form class="search_form">
+          <div class="fields">
+            <div class="input">
+              <label for="search_text">Buscar</label>
+
+              <input type="text" placeholder="Busque por blog, autor, título do post ou conteúdo" id="search_text" />
+            </div>
+          </div>
+
+          <div class="actions">
+            <input type="submit" value="Buscar" />
+          </div>
+        </form>
+
+        <%= render :partial => 'posts', :locals => { :posts => @posts } %>
+
+        <hr />
+
+        <p class="buttom"><a href="#">Mais postagens</a></p>
+      </div>
+
+      <div id="sidebar">
+        <%= render :partial => 'index_sidebar' %>
       </div>
 
     </div>
   </div>
-  <!-- BANNER END -->
+  <!-- CONTENT END -->
 
 <% end %>

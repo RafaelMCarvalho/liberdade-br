@@ -2,6 +2,7 @@
 class SiteController < ApplicationController
 
   def index
+    @banners = Banner.where('published = ?', true)
   end
 
   # CONTACT BEGIN
@@ -26,4 +27,3 @@ class SiteController < ApplicationController
 
   # CONTACT END
 end
-

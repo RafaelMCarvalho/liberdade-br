@@ -805,6 +805,8 @@ ul#main_navigation > li.social_item li.rss_item a {
     text-align: center;
     text-shadow: 0 -1px 0 #455a7a;
     background: url("/assets/facebook_box_progress_bar_detail.png") repeat-x left center;
+    box-shadow: inset 0 2px 1px rgb(85,153,255),
+        inset 0 2px 2px rgba(255, 255, 255, 0.8);
 }
 
 #facebook_box .facebook_like_iframe {

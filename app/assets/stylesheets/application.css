@@ -197,6 +197,7 @@ ul#main_navigation > li > a:hover strong {
     display: block;
     position: absolute;
     width: 180px;
+    z-index: 1000;
 
     background: url("/assets/main_navigation_legend_detail.png") no-repeat left center;
 }

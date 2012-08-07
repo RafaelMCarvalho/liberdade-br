@@ -135,53 +135,57 @@
   </div>
   <!-- MAIN NAVIGATION END -->
 
-  <%= yield :content %>
+  <%= yield :banner %>
 
-  <!-- FOOTER BEGIN -->
-  <div id="footer_wrapper">
-    <div id="footer">
-      <div id="footer_info">
-        <p>Esta obra é licenciada sob uma licença
-          <a href="http://creativecommons.org/licenses/by/3.0/br/" targeft="_blank">
-            Creative Commons Atribuição 3.0 Brasil</a>.
-        </p>
+  <div id="big_content">
+    <%= yield :content %>
+
+    <!-- FOOTER BEGIN -->
+    <div id="footer_wrapper">
+      <div id="footer">
+        <div id="footer_info">
+          <p>Esta obra é licenciada sob uma licença
+            <a href="http://creativecommons.org/licenses/by/3.0/br/" targeft="_blank">
+              Creative Commons Atribuição 3.0 Brasil</a>.
+          </p>
+        </div>
+
+        <ul id="footer_sections">
+          <li id="partners_list">
+            <h3>Parceiros</h3>
+
+            <ul>
+              <% 40.times do %>
+                <li><%= link_to 'Lorem ipsum dolor', '#' %></li>
+              <% end %>
+            </ul>
+          </li>
+
+          <li id="sponsors_list">
+            <h3>Patrocinadores</h3>
+
+            <ul>
+              <% 4.times do %>
+                <li><%= link_to image_tag('/assets/sponsor.png', :alt => 'Name',
+                  :size => '250x100'), '#' %></li>
+              <% end %>
+            </ul>
+          </li>
+
+          <li id="implementation">
+            <h3>Realização</h3>
+
+            <ul>
+              <li><%= link_to image_tag('/assets/ideias.png', :alt => 'Name',
+                :size => '333x74'), '#' %></li>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
-
-      <ul id="footer_sections">
-        <li id="partners_list">
-          <h3>Parceiros</h3>
-
-          <ul>
-            <% 20.times do %>
-              <li><%= link_to 'Lorem ipsum dolor sit amet', '#' %></li>
-            <% end %>
-          </ul>
-        </li>
-
-        <li id="sponsors_list">
-          <h3>Patrocinadores</h3>
-
-          <ul>
-            <% 4.times do %>
-              <li><%= link_to image_tag('/assets/sponsor.png', :alt => 'Name',
-                :size => '200x50'), '#' %></li>
-            <% end %>
-          </ul>
-        </li>
-
-        <li id="implementation">
-          <h3>Realização</h3>
-
-          <ul>
-            <li><%= link_to image_tag('/assets/sponsor.png', :alt => 'Name',
-              :size => '200x50'), '#' %></li>
-            </li>
-          </ul>
-        </li>
-      </ul>
     </div>
+    <!-- FOOTER END -->
   </div>
-  <!-- FOOTER END -->
 
 </div>
 </body>

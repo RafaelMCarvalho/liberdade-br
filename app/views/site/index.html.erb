@@ -2,7 +2,7 @@
 
 <%= content_for :page_id do 'index' end %>
 
-<%= content_for :content do %>
+<%= content_for :banner do %>
 
   <% unless @banners.empty? %>
     <!-- BANNER BEGIN -->
@@ -59,6 +59,9 @@
     <!-- BANNER END -->
   <% end %>
 
+<% end %>
+
+<%= content_for :content do %>
   <!-- CONTENT BEGIN -->
   <div id="content_wrapper">
     <div id="content_shadow"></div>

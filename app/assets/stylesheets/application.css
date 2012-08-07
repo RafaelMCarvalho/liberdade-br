@@ -903,7 +903,7 @@ ul#main_navigation > li.social_item li.rss_item a {
     width: 900px;
 
     color: #665200;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 #footer a {
@@ -939,12 +939,17 @@ ul#main_navigation > li.social_item li.rss_item a {
 #footer #partners_list {
     margin-right: 10px;
     float: left;
-    width: 295px;
+    width: 380px;
 }
 
 #footer #partners_list li {
+    margin: 0 10px 5px 0;
     float: left;
-    width: 145px;
+    width: 180px;
+
+    font-size: 12px;
+    list-style-type: square;
+    list-style-position: inside;
 }
 
 #footer #sponsors_list {
@@ -963,5 +968,5 @@ ul#main_navigation > li.social_item li.rss_item a {
 
 #footer #implementation {
     float: right;
-    width: 335px;
+    width: 250px;
 }

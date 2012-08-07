@@ -155,8 +155,8 @@
             <h3>Parceiros</h3>
 
             <ul>
-              <% 40.times do %>
-                <li><%= link_to 'Lorem ipsum dolor', '#' %></li>
+              <% Blog.all.each do |b| %>
+                <li><%= link_to b.name, '#' %></li>
               <% end %>
             </ul>
           </li>
@@ -177,7 +177,7 @@
 
             <ul>
               <li><%= link_to image_tag('/assets/ideias.png', :alt => 'Name',
-                :size => '333x74'), '#' %></li>
+                :size => '250x56'), '#' %></li>
               </li>
             </ul>
           </li>

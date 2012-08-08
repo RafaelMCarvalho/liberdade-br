@@ -161,16 +161,33 @@
             </ul>
           </li>
 
-          <li id="sponsors_list">
-            <h3>Patrocinadores</h3>
+          <% unless (sponsors = Sponsor.all).empty? %>
+            <li id="sponsors_list">
+              <h3>Patrocinadores</h3>
 
-            <ul>
-              <% 4.times do %>
-                <li><%= link_to image_tag('/assets/sponsor.png', :alt => 'Name',
-                  :size => '250x100'), '#' %></li>
-              <% end %>
-            </ul>
-          </li>
+              <ul>
+                <% sponsors.each do |s| %>
+                  <li>
+                    <% if s.link %>
+                      <a href="<%= s.link %>" target="_blank">
+                        <% if s.image.exists? %>
+                          <%= image_tag s.image.url(:small), :alt => s.name %>
+                        <% else %>
+                          <%= s.name %>
+                        <% end %>
+                      </a>
+                    <% else %>
+                      <% if s.image.exists? %>
+                        <%= image_tag s.image.url(:small), :alt => s.name %>
+                      <% else %>
+                        <%= s.name %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+          <% end %>
 
           <li id="implementation">
             <h3>Realização</h3>

@@ -157,3 +157,24 @@ Blog.create!(
   :link => 'http://coyoteonline.wordpress.com/',
   :rss => 'http://coyoteonline.wordpress.com/feed/'
 )
+
+# Sponsors
+
+Sponsor.delete_all
+
+Sponsor.create!(
+  :name => 'Instituto Mises Brasil',
+  :link => 'http://www.mises.org.br/',
+  :image => File.open('public/seeds/sponsor.png')
+)
+
+Sponsor.create!(
+  :name => 'Ordem Livre',
+  :link => 'http://www.ordemlivre.com/',
+  :image => File.open('public/seeds/sponsor.png')
+)
+
+Sponsor.create!(
+  :name => 'IDEAS',
+  :link => 'http://www.ideas.org.br/'
+)

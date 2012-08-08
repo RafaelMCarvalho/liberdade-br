@@ -3,6 +3,8 @@ class SiteController < ApplicationController
 
   def index
     @banners = Banner.where('published = ?', true)
+    @events = Event.where('published = ? AND date >= ?', true, Date.today).
+      order('date').limit(6)
   end
 
   # CONTACT BEGIN

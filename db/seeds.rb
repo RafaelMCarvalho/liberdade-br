@@ -178,3 +178,23 @@ Sponsor.create!(
   :name => 'IDEAS',
   :link => 'http://www.ideas.org.br/'
 )
+
+# Events
+
+Event.delete_all
+
+names = [
+  'Lorem ipsum dolor sit amet',
+  'Sed quam elit',
+  'Curabitur venenatis',
+  'Nullam at felis eu neque tempor sed'
+]
+
+10.times do |i|
+  Event.create!(
+    :name => names[i % names.length],
+    :link => 'http://www.algorich.com.br/',
+    :date => Date.today + i.days,
+    :published => true
+  )
+end

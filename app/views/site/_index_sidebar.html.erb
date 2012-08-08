@@ -33,18 +33,20 @@
   </div>
 </div>
 
-<div class="sidebar_panel" id="events_panel">
-  <h3><a href="#">Eventos</a></h3>
+<% unless @events.empty? %>
+  <div class="sidebar_panel" id="events_panel">
+    <h3><a href="#">Eventos</a></h3>
 
-  <ul>
-    <% 3.times do %>
-    <li>
-      <span class="date">7/07</span>
-      <a href="#">Lorem ipsum dolor sit amet consectetur</a>
-    </li>
-    <% end %>
-  </ul>
-</div>
+    <ul>
+      <% @events.each do |e| %>
+        <li>
+          <span class="date"><%= e.date.strftime('%d/%m') %></span>
+          <%= link_to e.name, '#' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="sidebar_panel" id="opportunities_panel">
   <h3><a href="#">Oportunidades</a></h3>

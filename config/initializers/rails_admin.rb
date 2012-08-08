@@ -170,7 +170,6 @@ RailsAdmin.config do |config|
     end
   end
 
-
 config.model Configuration do
 
   edit do
@@ -192,7 +191,6 @@ config.model Configuration do
     end
   end
 end
-
 
 config.model User do
   object_label_method { :email }
@@ -283,5 +281,4 @@ end
     end
   end
   # CKeditor models (end)
-
 end

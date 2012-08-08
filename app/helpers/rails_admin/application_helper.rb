@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'rails_admin/i18n_support'
 
 module RailsAdmin

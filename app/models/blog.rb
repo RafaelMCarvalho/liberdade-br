@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Blog < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
 

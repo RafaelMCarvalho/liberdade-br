@@ -1,29 +1,39 @@
-<ul class="posts">
+<% unless posts.empty? %>
+  <ul class="posts">
+    <% posts.each do |p| %>
+      <li>
+        <div class="thumb">
+          <a href="<%= post_path(p.id) %>">
+            <% if (not p.blog.nil? and p.blog.image.exist?) %>
+              <%= image_tag p.blog.image.url(:thumb), :alt => p.title,
+                :size => '150x150' %>
+            <% else %>
+              <%= image_tag '/assets/liberdadebr_blog_thumb.png',
+                :alt => p.title, :size => '150x150' %>
+            <% end %>
+          </a>
+        </div>
 
-  <% 6.times do %>
-  <li>
-    <div class="thumb">
-      <a href="#"><img src="/assets/thumb.png" width="150" height="150" alt="image" /></a>
-    </div>
+        <div class="post_info">
+          <h3><%= link_to p.title, post_path(p.id) %></h3>
 
-    <div class="post_info">
-      <h3><a href="#">Lorem ipsum dolor sit amet consectetur</a></h3>
+          <p class="info">
+            <% "#{p.blog} | " if p.blog %>
+            <%= p.published_at.strftime('pblicado %d de %B de %Y') %>.
+          </p>
 
-      <p class="info">Libertarianismo.org | publicado 7 de Julho de 2012.</p>
+          <div class="resume">
+            <%= smart_truncate(p.content, 200) %>
+          </div>
 
-      <div class="resume">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi suscipit
-        faucibus neque, eget mollis odio aliquet non.</p>
-      </div>
-
-      <p class="links">
-        <a href="#" class="blog_link">Ir para o blog</a> |
-        <a href="#" class="posts_link"> Mais posts deste blog</a>
-      </p>
-    </div>
-  </li>
-
-  <% end %>
-
-
-</ul>
+          <% if p.blog %>
+            <p class="links">
+              <%= link_to'Visitar o blog', p.blog.link, :target => '_blank' %> |
+              <%= link_to'Mais posts deste blog', '#' %>
+            </p>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -86,13 +86,15 @@
 
         <%= render :partial => 'posts', :locals => { :posts => @posts } %>
 
-        <hr />
+        <% unless @posts.empty? %>
+          <hr />
 
-        <p class="buttom"><a href="#">Mais postagens</a></p>
+          <p class="buttom"><%= link_to 'Mais postagens', '#' %></a></p>
+        <% end %>
       </div>
 
       <div id="sidebar">
-        <%= render :partial => 'index_sidebar' %>
+        <%= render :partial => 'index_sidebar', :locals => { :posts => @posts } %>
       </div>
 
     </div>

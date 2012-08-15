@@ -10,6 +10,12 @@ class CreateConfigurations < ActiveRecord::Migration
       t.text :footer
       t.text :google_analytics
 
+      # Donation attributes
+      t.text :donation_text
+      t.string :donation_link
+      t.float :donation_goal
+      t.float :donation_collected
+
       t.timestamps
     end
   end

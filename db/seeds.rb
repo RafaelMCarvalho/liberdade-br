@@ -21,7 +21,11 @@ User.create!(
 Configuration.delete_all
 
 Configuration.create!(
-  :email => 'base@project.com.br'
+  :email => 'base@project.com.br',
+  :donation_text => 'Descrição sobre a campanha de arrecadação.',
+  :donation_link => 'http://google.com',
+  :donation_goal => '10000.00',
+  :donation_collected => '4000.00'
 )
 
 # Pages

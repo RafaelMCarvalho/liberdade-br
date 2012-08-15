@@ -199,6 +199,14 @@ config.model Configuration do
       field :facebook
     end
 
+    group :donation do
+      label 'Doação'
+      field(:donation_text) { ckeditor false }
+      field :donation_link
+      field :donation_goal
+      field :donation_collected
+    end
+
     group :email do
       label 'Configurações de email'
       field :email

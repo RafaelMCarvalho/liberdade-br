@@ -28,6 +28,10 @@ pt-BR:
         description: "Descrição"
         google_analytics: 'Google Analytics'
         footer: 'Rodapé'
+        donation_text: 'Texto'
+        donation_link: 'Link'
+        donation_collected: 'Angariado (R$)'
+        donation_goal: 'Objetivo (R$)'
       opportunity:
         title: "Título"
         content: "Conteúdo"

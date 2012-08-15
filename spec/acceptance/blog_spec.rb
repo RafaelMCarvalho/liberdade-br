@@ -19,6 +19,7 @@ feature 'manager blogs' do
 			fill_in 'Descrição', :with => 'Blog da empresa'
 			fill_in 'Link', :with => 'http://blog.algorich.com.br'
 			fill_in 'RSS', :with => 'http://blog.algorich.com.br/rss.xml'
+			attach_file 'Imagem', IMAGE
 			click_button 'Salvar'
 			page.should have_content 'Blog criado(a) com sucesso'
 		end
@@ -42,6 +43,7 @@ feature 'manager blogs' do
 			fill_in 'Link', :with => 'http://blog.meuevento.com'
 			fill_in 'RSS', :with => 'http://blog.meuevento.com/rss.xml'
 			fill_in 'Descrição', :with => 'MeuEvento.com é um sistema de gerenciamento de evento'
+			attach_file 'Imagem', IMAGE
 			click_button 'Salvar'
 			page.should have_content 'Blog atualizado(a) com sucesso'
 			@blog.reload

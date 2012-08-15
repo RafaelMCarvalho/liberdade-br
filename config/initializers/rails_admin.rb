@@ -14,6 +14,7 @@ RailsAdmin.config do |config|
     navigation_label 'Postagens'
 
     list do
+      field :image
       field :name
       field :link do
         formatted_value do
@@ -27,9 +28,11 @@ RailsAdmin.config do |config|
       field :link
       field :rss
       field(:description) { ckeditor true }
+      field :image
     end
 
     show do
+      field :image
       field :name
       field :link
       field :rss

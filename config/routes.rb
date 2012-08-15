@@ -16,6 +16,10 @@ LiberdadeBr::Application.routes.draw do
   match "/admin/post/:post_id/approve/:user_id" => "post#approve", :as => :approve_post
   match "/admin/post/:post_id/reprove/:user_id" => "post#reprove", :as => :reprove_post
 
+#= 4. Post =====================================================================
+  get "/post/:id" => "site#post", :as => :post
+  match "/posts" => "site#posts", :as => :posts
+
   root :to => "site#index"
 end
 

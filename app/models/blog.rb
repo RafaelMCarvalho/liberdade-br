@@ -2,7 +2,21 @@
 class Blog < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
 
-  attr_accessible :description, :link, :name, :rss, :posts, :post_ids
+  has_attached_file :image,
+    :path => ":rails_root/public/system/blogs/:id/:style/:filename",
+    :url => "/system/blogs/:id/:style/:filename",
+    :styles => {
+      :small => '250x100#', :thumb => '125x50#'
+    }
+
+  validates_attachment_content_type :image,
+    :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/,
+    :message => 'com formato inválido'
+
+  attr_accessible :description, :link, :name, :rss, :posts, :post_ids, :image
+  attr_accessor :delete_image
+
+  before_validation { self.image.clear if self.delete_image == '1' }
 
   validates_presence_of :name, :link
 
@@ -21,7 +35,7 @@ class Blog < ActiveRecord::Base
       feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
       feed.entries.select do |entry|
         if entry.published.strftime('%d/%m/%Y') == Date.today.strftime('%d/%m/%Y')
-          Post.create_from_feed_entry(entry)
+          Post.create_from_feed_entry(entry, blog)
         end
       end
     end

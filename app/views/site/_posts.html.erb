@@ -4,7 +4,7 @@
       <li>
         <div class="thumb">
           <a href="<%= post_path(p.id) %>">
-            <% if (not p.blog.nil? and p.blog.image.exist?) %>
+            <% if (not p.blog.nil? and p.blog.image?) %>
               <%= image_tag p.blog.image.url(:thumb), :alt => p.title,
                 :size => '150x150' %>
             <% else %>

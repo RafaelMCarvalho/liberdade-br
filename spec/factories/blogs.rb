@@ -3,9 +3,10 @@
 
 FactoryGirl.define do
   factory :blog do
-      name "MyString"
-      link "blog.com.br"
-      rss "MyString"
-      description "MyText"
-    end
+    name "MyString"
+    link "blog.com.br"
+    rss "MyString"
+    description "MyText"
+    image_file_name 'spec/acceptance/data/image.jpg'
+  end
 end

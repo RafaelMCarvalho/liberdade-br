@@ -76,7 +76,7 @@ describe Post do
         :categories => ['LIBERALISMO', 'RESPONSABILIDADE LIMITADA'],
         :author => 'Richard  , Leonard   '
       )
-      Post.create_from_feed_entry(@entry)
+      Post.create_from_feed_entry(@entry, (FactoryGirl.create :blog))
       @post = Post.last
     end
 

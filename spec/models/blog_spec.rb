@@ -33,8 +33,8 @@ describe Blog do
       all_entries = [@past_entry1, @past_entry2, @today_entry1, @today_entry2]
       parser = stub(:entries => all_entries)
       Feedzirra::Feed.stub(:fetch_and_parse).with(@blog.rss).and_return(parser)
-      Post.should_receive(:create_from_feed_entry).with(@today_entry1)
-      Post.should_receive(:create_from_feed_entry).with(@today_entry2)
+      Post.should_receive(:create_from_feed_entry).with(@today_entry1, @blog)
+      Post.should_receive(:create_from_feed_entry).with(@today_entry2, @blog)
       Blog.get_new_posts
     end
 

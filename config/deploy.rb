@@ -1,6 +1,13 @@
 # -*- encoding : utf-8 -*-
 default_run_options[:pty] = true
-##### BELLES KINGHOST #####
+
+set :env, "production"
+
+## Whenever options
+set :whenever_environment, defer { env }
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 set :user, 'web'
 
 set :user_path, "/home/#{user}" #apenas uma variavel auxiliar
@@ -172,6 +179,8 @@ else
 end
 
 ENV['bundle'] == 'update' ? (tasks << 'bundle:update') : ''
+
+# tasks << 'whenever:'
 
 after *tasks
 

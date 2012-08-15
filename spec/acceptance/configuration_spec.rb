@@ -12,8 +12,11 @@ feature 'Manupulate configurations' do
   context 'edit' do
     scenario 'successfully' do
       fill_in 'E-mail', :with => 'email@qualquer.com'
+      fill_in 'Facebook', :with => 'qualquer.com'
+      fill_in 'Twitter', :with => 'qualquer.com'
       fill_in 'Palavras-chave', :with => 'project, base'
       fill_in 'Descrição', :with => 'This is the project base'
+      fill_in 'Rodapé', :with => 'Footer'
       fill_in 'Google Analytics', :with => '<script>my_script_here</script>'
       click_button 'Salvar'
       page.should have_content 'Configuração atualizado(a) com sucesso.'

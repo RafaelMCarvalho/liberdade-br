@@ -22,6 +22,7 @@ pt-BR:
         keywords: "Palavras-chave"
         description: "Descrição"
         google_analytics: 'Google Analytics'
+        footer: 'Rodapé'
       page:
         title: "Título"
         content: "Conteúdo"

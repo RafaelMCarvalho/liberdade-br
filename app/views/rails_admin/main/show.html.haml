@@ -18,5 +18,5 @@
             %dd
               - @evaluation = PostEvaluation.where('user_id = ? AND post_id = ?', current_user, @object.id).first
               - approve = @evaluation.try(:approve)
-              %pre.prettyprint= link_to 'Aprovar', "/admin/post/#{@object.id}/approve/#{current_user.id}", :remote => true, :id => 'approve_post', :class => ('choosen' if approve == true)
-              %pre.prettyprint= link_to 'Reprovar', "/admin/post/#{@object.id}/reprove/#{current_user.id}", :remote => true, :id => 'reprove_post', :class => ('choosen' if approve == false)
+              %pre.prettyprint= link_to 'Aprovar', "/admin/post/#{@object.id}/approve/#{current_user.id}", :remote => true, :method => :post, :id => 'approve_post', :class => ('choosen' if approve == true)
+              %pre.prettyprint= link_to 'Reprovar', "/admin/post/#{@object.id}/reprove/#{current_user.id}", :remote => true, :method => :post, :id => 'reprove_post', :class => ('choosen' if approve == false)

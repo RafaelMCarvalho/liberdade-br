@@ -5,6 +5,7 @@ pt-BR:
       blog: 'Blog'
       category: 'Categoria'
       configuration: "Configuração"
+      opportunity: 'Oportunidade'
       page: "Página"
       user: "Usuário"
       banner: "Banner"
@@ -27,6 +28,10 @@ pt-BR:
         description: "Descrição"
         google_analytics: 'Google Analytics'
         footer: 'Rodapé'
+      opportunity:
+        title: "Título"
+        content: "Conteúdo"
+        published: "Publicado"
       page:
         title: "Título"
         content: "Conteúdo"

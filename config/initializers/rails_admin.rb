@@ -144,6 +144,23 @@ RailsAdmin.config do |config|
     end
   end
 
+
+  config.model Opportunity do
+    navigation_label 'Conteúdos'
+
+    list do
+      field :title
+      field :published
+    end
+
+    edit do
+      field :title
+      field(:content) { ckeditor true }
+      field :published
+    end
+  end
+
+
   config.model Page do
     navigation_label 'Conteúdos'
 

@@ -6,7 +6,6 @@ class SiteController < ApplicationController
     @events = Event.where('published = ? AND date >= ?', true, Date.today).
       order('date').limit(6)
 
-
     @search = Post.where('published = ?', true).order('published_at DESC').search(params[:q])
     @posts = @search.result
     @posts = @posts.uniq

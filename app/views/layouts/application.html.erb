@@ -15,6 +15,25 @@
   <% end %>
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <meta content='http://algorich.com.br' name='author' />
+
+  <% if params[:action] == 'post' and params[:controller] == 'site'  %>
+    <%= yield :og %>
+  <% else %>
+    <% if configuration.site_title %>
+      <meta property="og:title" content="<%= configuration.site_title %>" />
+    <% end %>
+    <% if configuration.description %>
+      <meta property="og:description" content="<%= configuration.description %>" />
+    <% end %>
+    <% if configuration.site_url %>
+    <meta property="og:url" content="<%= request.url %>" />
+    <% end %>
+    <% if configuration.site_url %>
+    <meta property="og:image" content="<%= configuration.site_url + '/assets/facebook_size_logo.jpg' %>" />
+    <% end %>
+  <% end %>
+
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
   <%= stylesheet_link_tag 'application.css' %>
@@ -79,11 +98,10 @@
           <div class="navigation_box">
             <div class="content">
               <!-- AddThis Button BEGIN -->
-              <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-                <a class="addthis_button_preferred_1"></a>
-                <a class="addthis_button_preferred_2"></a>
-                <a class="addthis_button_preferred_3"></a>
-                <a class="addthis_button_preferred_4"></a>
+              <div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="<%= configuration.site_url %>" addthis:title="<%= configuration.site_title %>">
+                <a class="addthis_button_facebook"></a>
+                <a class="addthis_button_twitter"></a>
+                <a class="addthis_button_email"></a>
                 <a class="addthis_button_compact"></a>
                 <a class="addthis_counter addthis_bubble_style"></a>
               </div>
@@ -129,10 +147,10 @@
       <li class="social_item">
         <ul>
           <li class="facebook_item">
-            <%= link_to 'Facebook', '#' %>
+            <%= link_to 'Facebook', configuration.facebook %>
           </li>
           <li class="twitter_item">
-            <%= link_to 'Facebook', '#' %>
+            <%= link_to 'Twitter', configuration.twitter %>
           </li>
           <li class="rss_item">
             <%= link_to 'RSS', '#' %>

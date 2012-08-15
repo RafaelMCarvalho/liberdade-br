@@ -213,7 +213,7 @@ config.model Configuration do
     end
 
     group :info_search do
-      label 'Informações para buscadores'
+      label 'Informações para buscadores e redes sociais'
 
       field :keywords do
          help 'Separadas por vírgula. Recomendável no máximo 10 palavras chave.'
@@ -221,6 +221,8 @@ config.model Configuration do
       field :description do
         help 'Descrição utilizada pelos buscadores. Recomendável até 160 caracteres.'
       end
+      field :site_url
+      field :site_title
       field :google_analytics
     end
     field :footer

@@ -6,13 +6,13 @@
 /* Main navigation */
 
 $(function () {
-    $("#main_navigation .donate_item, #main_navigation .share_item").click(
+    $("#main_navigation .donate_item > a, #main_navigation .share_item > a").click(
         function () {
-            if ($(this).hasClass("active")) {
-                $(this).removeClass("active");
+            if ($(this).parent().hasClass("active")) {
+                $(this).parent().removeClass("active");
             } else {
                 $("#main_navigation > li").removeClass("active");
-                $(this).addClass("active");
+                $(this).parent().addClass("active");
             }
         }
     );

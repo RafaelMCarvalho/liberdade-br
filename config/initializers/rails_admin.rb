@@ -173,6 +173,12 @@ RailsAdmin.config do |config|
 config.model Configuration do
 
   edit do
+    group :social do
+      label 'Redes sociais'
+      field :twitter
+      field :facebook
+    end
+
     group :email do
       label 'Configurações de email'
       field :email
@@ -189,6 +195,7 @@ config.model Configuration do
       end
       field :google_analytics
     end
+    field :footer
   end
 end
 

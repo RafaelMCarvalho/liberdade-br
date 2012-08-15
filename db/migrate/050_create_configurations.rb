@@ -4,7 +4,10 @@ class CreateConfigurations < ActiveRecord::Migration
     create_table :configurations do |t|
       t.string :email
       t.string :keywords
+      t.string :twitter
+      t.string :facebook
       t.text :description
+      t.text :footer
       t.text :google_analytics
 
       t.timestamps

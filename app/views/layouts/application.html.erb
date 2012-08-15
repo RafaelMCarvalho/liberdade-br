@@ -6,11 +6,11 @@
 
   <meta content='http://algorich.com.br' name='author' />
 
-  <% if configuration.keywords %>
+  <% unless configuration.keywords.blank? %>
     <meta content="<%= configuration.keywords %>" name="keywords" />
   <% end %>
 
-  <% if configuration.description %>
+  <% unless configuration.description.blank? %>
     <meta content="<%= configuration.description %>" name="description" />
   <% end %>
 
@@ -20,16 +20,14 @@
   <% if params[:action] == 'post' and params[:controller] == 'site'  %>
     <%= yield :og %>
   <% else %>
-    <% if configuration.site_title %>
+    <% unless configuration.site_title.blank? %>
       <meta property="og:title" content="<%= configuration.site_title %>" />
     <% end %>
-    <% if configuration.description %>
+    <% unless configuration.description.blank? %>
       <meta property="og:description" content="<%= configuration.description %>" />
     <% end %>
-    <% if configuration.site_url %>
+    <% unless configuration.site_url.blank? %>
     <meta property="og:url" content="<%= request.url %>" />
-    <% end %>
-    <% if configuration.site_url %>
     <meta property="og:image" content="<%= configuration.site_url + '/assets/facebook_size_logo.jpg' %>" />
     <% end %>
   <% end %>
@@ -146,12 +144,16 @@
 
       <li class="social_item">
         <ul>
-          <li class="facebook_item">
-            <%= link_to 'Facebook', configuration.facebook %>
-          </li>
-          <li class="twitter_item">
-            <%= link_to 'Twitter', configuration.twitter %>
-          </li>
+          <% unless configuration.facebook.blank? %>
+            <li class="facebook_item">
+              <%= link_to 'Facebook', configuration.facebook, :target => '_blank' %>
+            </li>
+          <% end %>
+          <% unless configuration.twitter.blank? %>
+            <li class="twitter_item">
+              <%= link_to 'Twitter', configuration.twitter, :target => '_blank' %>
+            </li>
+          <% end %>
           <li class="rss_item">
             <%= link_to 'RSS', '#' %>
           </li>

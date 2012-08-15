@@ -28,7 +28,6 @@ class Post < ActiveRecord::Base
 
     authors = []
     entry.author.split(',').each do |name|
-      p name
       authors << Author.get_or_create_by_name(name.strip)
     end
 

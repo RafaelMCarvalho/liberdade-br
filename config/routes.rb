@@ -16,9 +16,13 @@ LiberdadeBr::Application.routes.draw do
   post "/admin/post/:post_id/approve/:user_id" => "posts#approve", :as => :approve_post
   post "/admin/post/:post_id/reprove/:user_id" => "posts#reprove", :as => :reprove_post
 
-#= 4. Post =====================================================================
+#= 4. Author ===================================================================
+  get '/posts/author/:id' => 'posts#per_author', :as => :posts_author
+
+#= 5. Post =====================================================================
   resources :posts, :only => [:index, :show]
   post "/posts" => "posts#index", :as => :posts
+
 
   root :to => "site#index"
 end

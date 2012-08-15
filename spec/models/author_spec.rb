@@ -2,6 +2,13 @@
 require 'spec_helper'
 
 describe Author do
+  it 'should return only published posts' do
+    published_post = FactoryGirl.create :post, :published => true    
+    unpublished_post = FactoryGirl.create :post, :published => false
+    author = FactoryGirl.create :author, :posts => [published_post, unpublished_post]
+    author.published_posts.should == [published_post]
+  end
+
   context 'validations' do
     context 'name' do
       it { should have_valid(:name).when('Zé do post') }

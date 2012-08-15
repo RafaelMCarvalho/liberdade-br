@@ -70,26 +70,14 @@
     <div id="content">
 
       <div id="main_contet">
-        <form class="search_form">
-          <div class="fields">
-            <div class="input">
-              <label for="search_text">Buscar</label>
-
-              <input type="text" placeholder="Busque por blog, autor, título do post ou conteúdo" id="search_text" />
-            </div>
-          </div>
-
-          <div class="actions">
-            <input type="submit" value="Buscar" />
-          </div>
-        </form>
+        <%= render :partial => 'search_form', :locals => { :search => @search } %>
 
         <%= render :partial => 'posts', :locals => { :posts => @posts } %>
 
         <% unless @posts.empty? %>
           <hr />
 
-          <p class="buttom"><%= link_to 'Mais postagens', '#' %></a></p>
+          <p class="buttom"><%= link_to 'Mais postagens', posts_path %></a></p>
         <% end %>
       </div>
 

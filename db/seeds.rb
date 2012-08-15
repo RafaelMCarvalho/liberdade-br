@@ -70,7 +70,7 @@ Blog.delete_all
 Blog.create!(
   :name => 'Ad Hominen',
   :link => 'http://www.adhominem.com.br/',
-  :rss => 'http://www.adhominem.com.br/',
+  :rss => 'http://www.adhominem.com.br/feeds/posts/default',
   :description => 'Humanidades e outras Falácias.'
 )
 
@@ -197,4 +197,14 @@ names = [
     :date => Date.today + i.days,
     :published => true
   )
+end
+
+# Posts
+
+Post.delete_all
+Blog.all.each do |blog|
+  feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
+  feed.entries.select do |entry|
+    Post.create_from_feed_entry(entry, blog)
+  end
 end

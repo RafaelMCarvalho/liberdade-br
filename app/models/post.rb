@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
      :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids,
      :approval_rate, :reproval_rate
 
-  def self.create_from_feed_entry(entry)
+  def self.create_from_feed_entry(entry, blog)
     categories = []
     entry.categories.each do |name|
       categories << Category.get_or_create_by_name(name)
@@ -37,7 +37,8 @@ class Post < ActiveRecord::Base
       :content => entry.content,
       :published_at => entry.published,
       :categories => categories,
-      :authors => authors
+      :authors => authors,
+      :blog => blog
     )
   end
 

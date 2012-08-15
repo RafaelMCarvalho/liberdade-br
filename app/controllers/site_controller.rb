@@ -5,11 +5,33 @@ class SiteController < ApplicationController
     @banners = Banner.where('published = ?', true)
     @events = Event.where('published = ? AND date >= ?', true, Date.today).
       order('date').limit(6)
-    @posts = []
+
+    @search = Post.where('published = ?', true).order('published_at DESC').search(params[:q])
+    @posts = @search.result
+    @posts = @posts.uniq
   end
 
+  # POST BEGIN
+
   def post
+    @post = Post.find(params[:id])
+
+    if !@post.published
+      if current_user
+        flash[:info] = 'Este post não está publicado. Isto é apenas uma pré-visualização.'
+      else
+        raise ActionController::RoutingError.new('Not Found')
+      end
+    end
   end
+
+  def posts
+    @search = Post.where('published = ?', true).order('published_at DESC').search(params[:q])
+    @posts = @search.result
+    @posts = @posts.uniq
+  end
+
+  # POST END
 
   # CONTACT BEGIN
 

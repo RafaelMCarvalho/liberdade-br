@@ -1,0 +1,27 @@
+<%= content_for :page_title do 'Posts' end %>
+
+<%= content_for :page_id do 'posts' end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+
+      <div id="main_contet">
+        <%= render :partial => 'search_form', :locals => { :search => @search } %>
+
+        <%= render :partial => 'posts', :locals => { :posts => @posts } %>
+
+        <% unless @posts.empty? %>
+          <hr />
+
+          <p class="buttom"><%= link_to 'Mais postagens', '#' %></a></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- CONTENT END -->
+<% end %>

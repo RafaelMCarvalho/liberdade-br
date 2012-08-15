@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   has_many :post_evaluations, :dependent => :destroy
   has_many :users, :through => :post_evaluations
 
-  validates_presence_of :title, :content
+  validates_presence_of :title
 
   after_validation :check_rates_to_publish, :if => lambda {
     self.approval_rate_changed? or self.reproval_rate_changed?
@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
   attr_accessible :title, :url, :content, :published_at, :blog, :authors,
      :author_ids, :categories,:category_ids, :blog_id,
      :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids,
-     :approval_rate, :reproval_rate
+     :approval_rate, :reproval_rate, :hilight
 
   def self.create_from_feed_entry(entry, blog)
     categories = []
@@ -28,10 +28,11 @@ class Post < ActiveRecord::Base
 
     authors = []
     entry.author.split(',').each do |name|
+      p name
       authors << Author.get_or_create_by_name(name.strip)
     end
 
-    Post.create(
+    Post.create!(
       :title => entry.title,
       :url => entry.url,
       :content => entry.content,

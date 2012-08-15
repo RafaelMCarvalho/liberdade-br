@@ -1,13 +1,16 @@
-<div class="sidebar_box_wrapper">
-  <div class="sidebar_box">
-    <h3>Autores deste post</h3>
+<% unless (authors = post.authors).empty? %>
+  <div class="sidebar_box_wrapper">
+    <div class="sidebar_box">
+      <h3><%= authors.length == 1 ? 'Autor' : 'Autores' %> deste post</h3>
 
-    <ul>
-      <li><a href="#">Juliano Torres</a></li>
-      <li><a href="#">Flávio Morgenstern</a></li>
-    </ul>
+      <ul>
+        <% authors.each do |a| %>
+          <li><%= link_to a.name, '#' %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="sidebar_box_wrapper">
   <div class="sidebar_box">
@@ -24,23 +27,25 @@
   </div>
 </div>
 
-<div class="sidebar_box_wrapper">
-  <div class="sidebar_box">
-    <h3>O Implicante</h3>
+<% if not (blog = post.blog).nil? and not blog.description.blank? %>
+  <div class="sidebar_box_wrapper">
+    <div class="sidebar_box">
+      <h3><%= blog.name %></h3>
 
-    <p>
-      <img src="/assets/blog.png" alt="Post" width="150" height="150" class="image_box" />
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras neque
-      sapien, lobortis id interdum quis, pellentesque ac erat. Ut a elit
-      magna, non rutrum purus. Nullam faucibus erat quis leo semper sodales
-      pulvinar elit tempus.
-    </p>
+      <p>
+        <% if blog.image.exist? %>
+          <%= image_tag blog.image.url(:thumb), :alt => blog.name,
+            :size => '150x150', :class => 'image_box' %>
+        <% end %>
+        <%= blog.description %>
+      </p>
 
-    <p class="buttom">
-      <a href="#">Veja mais posts deste blog</a>
-    </p>
+      <p class="buttom">
+        <%= link_to 'Veja mais posts deste blog', '#' %>
+      </p>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="sidebar_box_wrapper">
   <div class="sidebar_box">

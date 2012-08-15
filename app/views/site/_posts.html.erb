@@ -19,12 +19,12 @@
 
           <p class="info">
             <% "#{p.blog} | " if p.blog %>
-            <%= p.published_at.strftime('pblicado %d de %B de %Y') %>.
+            <%= p.published_at.strftime('publicado %d de %B de %Y') %>.
           </p>
 
-          <div class="resume">
-            <%= smart_truncate(p.content, 200) %>
-          </div>
+          <% if p.content %>
+            <div class="resume"><%= smart_truncate(p.content, 200) %></div>
+          <% end %>
 
           <% if p.blog %>
             <p class="links">

@@ -1,4 +1,4 @@
-<%= content_for :page_title do 'Principal' end %>
+<%= content_for :page_title do @post.title end %>
 
 <%= content_for :page_id do 'post' end %>
 
@@ -12,19 +12,24 @@
       <div id="content_header">
         <ul class="breadcrumbs">
           <li><%= link_to 'Início', root_path %></li>
-          <li><%= link_to 'Postagens', '#' %></li>
-          <li><%= link_to 'O Implicante', '#' %></li>
-          <li><span>Lorem ipsum dolor sit amet consectetur</span></li>
+          <li><%= link_to 'Posts', posts_path %></li>
+          <% if @post.blog %>
+            <li><%= link_to @post.blog.name, '#' %></li>
+          <% end %>
+          <li><span><%= @post.title %></span></li>
         </ul>
 
         <hr />
 
         <div class="header">
-          <h2>Lorem ipsum dolor sit amet consectetur</h2>
+          <h2><%= @post.title %></h2>
 
           <p class="info">
-            Publicado originalmente em: <%= link_to 'O Implicante' %> |
-            27 de Julho de 2012.
+            Publicado originalmente em:
+            <% if @post.blog %>
+              <%= link_to @post.blog.name, @post.blog.link, :target => '_blank' %> |
+            <% end %>
+            <%= @post.published_at.strftime('%d de %B de %Y') %>.
           </p>
 
           <!-- AddThis Button BEGIN -->
@@ -40,81 +45,26 @@
       </div>
 
       <div id="main_contet">
-
         <div class="post">
+          <% if @post.hilight %>
             <div class="hilight_wrapper">
-              <p class="hilight">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras neque
-                sapien, lobortis id interdum quis, pellentesque ac erat. Ut a elit
-                magna, non rutrum purus.
-              </p>
+              <p class="hilight"><%= @post.hilight %></p>
             </div>
+          <% end %>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras neque
-            sapien, lobortis id interdum quis, pellentesque ac erat. Ut a elit
-            magna, non rutrum purus. Nullam faucibus erat quis leo semper sodales
-            pulvinar elit tempus. Aenean ligula lorem, elementum eu vulputate
-            molestie, rhoncus sit amet felis. In sed libero et mi hendrerit
-            condimentum vitae ut erat. Vestibulum consequat ligula vel ante
-            faucibus ut ultrices ipsum semper. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Aliquam vitae tortor eget ante sodales
-            cursus in ut risus.</p>
-
-            <p>Quisque a turpis mi. Pellentesque erat felis, malesuada ut
-            imperdiet sit amet, ornare ac ipsum. Quisque sed pretium mauris. Donec
-            ipsum velit, lobortis at volutpat eu, convallis in leo. Duis sed
-            gravida libero. Phasellus luctus porttitor varius. Aenean eget massa
-            et neque ultrices pretium. Quisque dapibus molestie semper. Duis
-            faucibus, mi ut aliquam placerat, sem nulla aliquam libero, a
-            tincidunt justo arcu non purus. Aliquam eget ipsum quam, in tempus
-            justo. Praesent sodales euismod leo, eu consectetur metus vestibulum
-            a. Aliquam vitae facilisis augue. Quisque quam erat, fermentum in
-            mollis et, porttitor nec sapien. Fusce euismod aliquet urna at
-            tincidunt. Suspendisse et sem id nisi egestas posuere vestibulum sit
-            amet mauris. Aliquam mollis mattis tellus, eget volutpat nunc
-            pretium sed.</p>
-
-            <p>Suspendisse molestie elementum nibh et adipiscing. Vestibulum at
-            eros justo. Phasellus sapien magna, adipiscing vel iaculis eget,
-            dapibus ac justo. Maecenas eget neque nunc. Cras congue mi at massa
-            tempus et tristique odio commodo. Quisque metus eros, lacinia tempor
-            consectetur vitae, feugiat in risus. Aliquam mollis lobortis dolor in
-            laoreet. Integer sit amet ullamcorper lacus. Maecenas scelerisque,
-            lectus id blandit viverra, magna metus sollicitudin sapien, ut
-            porttitor dolor libero ut velit. Morbi vel justo nec ligula
-            condimentum pharetra. Proin luctus, velit eget suscipit tristique,
-            turpis justo tempor leo, vel bibendum dolor lacus eget libero. Proin
-            cursus tortor non justo tempus at varius turpis fringilla. Etiam
-            pellentesque, diam vitae eleifend condimentum, mi nisl rhoncus velit,
-            et vestibulum dui tortor sit amet metus. Donec eros arcu, convallis
-            quis ullamcorper vitae, scelerisque eget augue. In semper, sapien in
-            vulputate euismod, elit risus porta ipsum, sit amet placerat augue
-            magna vel odio. Integer dictum convallis lacus nec dapibus.</p>
-
-            <p>Quisque a turpis mi. Pellentesque erat felis, malesuada ut
-            imperdiet sit amet, ornare ac ipsum. Quisque sed pretium mauris. Donec
-            ipsum velit, lobortis at volutpat eu, convallis in leo. Duis sed
-            gravida libero. Phasellus luctus porttitor varius. Aenean eget massa
-            et neque ultrices pretium. Quisque dapibus molestie semper. Duis
-            faucibus, mi ut aliquam placerat, sem nulla aliquam libero, a
-            tincidunt justo arcu non purus. Aliquam eget ipsum quam, in tempus
-            justo. Praesent sodales euismod leo, eu consectetur metus vestibulum
-            a. Aliquam vitae facilisis augue. Quisque quam erat, fermentum in
-            mollis et, porttitor nec sapien. Fusce euismod aliquet urna at
-            tincidunt. Suspendisse et sem id nisi egestas posuere vestibulum sit
-            amet mauris. Aliquam mollis mattis tellus, eget volutpat nunc
-            pretium sed.</p>
+          <%= @post.content.html_safe if @post.content %>
         </div>
 
-        <p class="post_categories">
-          <a href="#">Economia</a>, <a href="#">Escola Austŕiaca</a> e
-          <a href="#">Ciclos Econômicos</a>
-        </p>
-
+        <% unless @post.categories.empty? %>
+          <p class="post_categories">
+            <%= (@post.categories.collect { |c| link_to(c.name, '#') }).
+              to_sentence.html_safe %>
+          </p>
+        <% end %>
       </div>
 
       <div id="sidebar">
-        <%= render :partial => 'post_sidebar' %>
+        <%= render :partial => 'post_sidebar', :locals => { :post => @post } %>
       </div>
 
     </div>

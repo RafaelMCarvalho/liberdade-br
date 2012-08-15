@@ -8,7 +8,7 @@ class Author < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
 
   def self.get_or_create_by_name(name)
-    category = Category.where(:name => name).first
-    category ? category : self.create(:name => name)
+    author = Author.where(:name => name).first
+    author ? author : self.create!(:name => name)
   end
 end

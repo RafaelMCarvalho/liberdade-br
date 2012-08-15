@@ -16,8 +16,11 @@ feature 'Manupulate configurations' do
       fill_in 'Twitter', :with => 'qualquer.com'
       fill_in 'Palavras-chave', :with => 'project, base'
       fill_in 'Descrição', :with => 'This is the project base'
-      fill_in 'Rodapé', :with => 'Footer'
       fill_in 'Google Analytics', :with => '<script>my_script_here</script>'
+      fill_in 'Texto', :with => 'Footer'
+      fill_in 'Link', :with => 'Footer'
+      fill_in 'Objetivo (R$)', :with => '1000.00'
+      fill_in 'Angariado (R$)', :with => '600.00'
       click_button 'Salvar'
       page.should have_content 'Configuração atualizado(a) com sucesso.'
 

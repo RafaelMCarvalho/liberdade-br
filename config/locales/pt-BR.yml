@@ -5,6 +5,7 @@ pt-BR:
       blog: 'Blog'
       category: 'Categoria'
       configuration: "Configuração"
+      opportunity: 'Oportunidade'
       page: "Página"
       user: "Usuário"
       banner: "Banner"
@@ -27,6 +28,14 @@ pt-BR:
         description: "Descrição"
         google_analytics: 'Google Analytics'
         footer: 'Rodapé'
+        donation_text: 'Texto'
+        donation_link: 'Link'
+        donation_collected: 'Angariado (R$)'
+        donation_goal: 'Objetivo (R$)'
+      opportunity:
+        title: "Título"
+        content: "Conteúdo"
+        published: "Publicado"
       page:
         title: "Título"
         content: "Conteúdo"
@@ -45,6 +54,7 @@ pt-BR:
         password: "Senha"
         password_confirmation: "Confirmação da senha"
         current_password: 'Senha atual'
+        role: 'Permissão'
       banner:
         title: "Título"
         link: "Link"

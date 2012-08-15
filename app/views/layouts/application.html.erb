@@ -100,24 +100,22 @@
         <div class="navigation_box_wrapper">
           <div class="navigation_box">
             <div class="content">
-              <p>O <strong>Liberdade.br</strong> é um projeto sem fins lucrativos
-                que se mantem graças as doações de pessoas que compartilham de seus
-                ideais. Faça sua contribuição e nos ajude também.</p>
+              <%= configuration.donation_text.html_safe %>
 
               <hr />
 
               <div class="progress_bar">
-                <p class="bar"><span>233</span></p>
+                <p class="bar"><span></span></p>
                 <p class="goal">
-                  <span>R$ 20.000,00</span>
+                  <span><%= number_to_currency(configuration.donation_goal) %></span>
                 </p>
-                <p class="collected"><span>R$ 12.250,10</span></p>
+                <p class="collected"><span><%= number_to_currency(configuration.donation_collected) %></span></p>
               </div>
 
               <hr />
 
               <p class="buttom">
-                <a href="#">Faça uma doação</a>
+                <a href="<%= configuration.donation_link %>">Faça uma doação</a>
               </p>
             </div>
           </div>

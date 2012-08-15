@@ -21,7 +21,13 @@ User.create!(
 Configuration.delete_all
 
 Configuration.create!(
-  :email => 'base@project.com.br'
+  :email => 'base@project.com.br',
+  :donation_text => '<p>O <strong>Liberdade.br</strong> é um projeto sem fins lucrativos
+                que se mantem graças as doações de pessoas que compartilham de seus
+                ideais. Faça sua contribuição e nos ajude também.</p>',
+  :donation_link => 'http://google.com',
+  :donation_goal => '10000.00',
+  :donation_collected => '4000.00'
 )
 
 # Pages

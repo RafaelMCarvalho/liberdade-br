@@ -1,6 +1,13 @@
 # -*- encoding : utf-8 -*-
 default_run_options[:pty] = true
-##### BELLES KINGHOST #####
+
+set :env, "production"
+
+## Whenever options
+set :whenever_environment, defer { env }
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 set :user, 'web'
 
 set :user_path, "/home/#{user}" #apenas uma variavel auxiliar
@@ -94,7 +101,8 @@ namespace :deploy do
      ln -s #{shared_path}/log #{latest_release}/log &&
      ln -s #{shared_path}/system #{latest_release}/public/system &&
      ln -s #{shared_path}/pids #{latest_release}/tmp/pids &&
-     ln -sf #{shared_path}/database.yml #{latest_release}/config/database.yml
+     ln -sf #{shared_path}/database.yml #{latest_release}/config/database.yml &&
+     ln -sf #{shared_path}/setup_load_paths.rb #{latest_release}/config/
    CMD
 
    if fetch(:normalize_asset_timestamps, true)
@@ -132,9 +140,7 @@ end
 namespace :db do
  task :migrate do
   run 'sed -i s/^/\#/ ' + latest_release + '/config/initializers/rails_admin.rb'
-  run "cd #{latest_release}; bundle exec rake db:create RAILS_ENV=production"
   run "cd #{latest_release}; bundle exec rake db:migrate RAILS_ENV=production"
-  run "cd #{latest_release}; bundle exec rake db:seed RAILS_ENV=production"
   run 'sed -i s/^\#// '+ latest_release + '/config/initializers/rails_admin.rb'
  end
 end
@@ -173,6 +179,8 @@ else
 end
 
 ENV['bundle'] == 'update' ? (tasks << 'bundle:update') : ''
+
+# tasks << 'whenever:'
 
 after *tasks
 

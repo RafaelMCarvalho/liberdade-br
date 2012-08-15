@@ -15,8 +15,8 @@ gem 'paperclip', '2.7.0'
 gem 'feedzirra', '0.2.0.rc2'
 gem 'whenever', '0.7.3', :require => false
 gem 'capistrano'
-gem 'ransack'
-gem 'kaminari'
+gem 'ransack', '0.7.0'
+gem 'kaminari', '0.13.0'
 
 group :development, :test do
     gem 'database_cleaner', '0.7.1'

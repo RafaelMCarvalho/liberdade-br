@@ -1,3 +1,12 @@
+<%= content_for :og do %>
+  <meta property="og:title" content="<%= @post.title %>" />
+  <meta property="og:site_name" content="<%= configuration.site_title %>" />
+  <meta property="og:description" content="<%= @post.hilight %>" />
+  <meta property="og:url" content="<%= request.url %>" />
+  <meta property="og:image" content="<%= configuration.site_url + '/assets/facebook_size_logo.jpg' %>" />
+<% end %>
+
+
 <%= content_for :page_title do @post.title end %>
 
 <%= content_for :page_id do 'post' end %>
@@ -33,13 +42,13 @@
           </p>
 
           <!-- AddThis Button BEGIN -->
-          <div class="addthis_toolbox addthis_default_style ">
+          <div class="addthis_toolbox addthis_default_style " addthis:url="<%= request.url %>" addthis:title="<%= @post.title %>">
             <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
             <a class="addthis_button_tweet"></a>
-            <a class="addthis_button_pinterest_pinit"></a>
             <a class="addthis_counter addthis_pill_style"></a>
           </div>
-          <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-502bce3730e2d045"></script>
+          <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+          <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-502149e70cee4a2b"></script>
           <!-- AddThis Button END -->
         </div>
       </div>

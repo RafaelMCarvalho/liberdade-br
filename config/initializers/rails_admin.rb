@@ -208,7 +208,7 @@ RailsAdmin.config do |config|
       end
 
       group :info_search do
-        label 'Informações para buscadores'
+        label 'Informações para buscadores e redes sociais'
 
         field :keywords do
            help 'Separadas por vírgula. Recomendável no máximo 10 palavras chave.'
@@ -217,6 +217,8 @@ RailsAdmin.config do |config|
           help 'Descrição utilizada pelos buscadores. Recomendável até 160 caracteres.'
         end
         field :google_analytics
+        field :site_url
+        field :site_title
       end
       field :footer
     end

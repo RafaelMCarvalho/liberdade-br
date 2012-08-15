@@ -70,9 +70,9 @@
     <div id="content">
 
       <div id="main_contet">
-        <%= render :partial => 'search_form', :locals => { :search => @search } %>
+        <%= render :partial => 'posts/search_form', :locals => { :search => @search } %>
 
-        <%= render :partial => 'posts', :locals => { :posts => @posts } %>
+        <%= render :partial => 'posts/posts', :locals => { :posts => @posts } %>
 
         <% unless @posts.empty? %>
           <hr />

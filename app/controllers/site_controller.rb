@@ -13,28 +13,6 @@ class SiteController < ApplicationController
     @posts = @posts.uniq
   end
 
-  # POST BEGIN
-
-  def post
-    @post = Post.find(params[:id])
-
-    if !@post.published
-      if current_user
-        flash[:info] = 'Este post não está publicado. Isto é apenas uma pré-visualização.'
-      else
-        raise ActionController::RoutingError.new('Not Found')
-      end
-    end
-  end
-
-  def posts
-    @search = Post.where('published = ?', true).order('published_at DESC').search(params[:q])
-    @posts = @search.result
-    @posts = @posts.uniq.page(params[:page]).per(6)
-  end
-
-  # POST END
-
   # CONTACT BEGIN
 
   def contact

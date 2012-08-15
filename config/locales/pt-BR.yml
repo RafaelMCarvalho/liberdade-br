@@ -32,6 +32,8 @@ pt-BR:
         donation_link: 'Link'
         donation_collected: 'Angariado (R$)'
         donation_goal: 'Objetivo (R$)'
+        site_url: 'URL do site'
+        site_title: 'Título do site'
       opportunity:
         title: "Título"
         content: "Conteúdo"

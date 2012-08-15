@@ -5,7 +5,7 @@
 
       <ul>
         <% authors.each do |a| %>
-          <li><%= link_to a.name, '#' %></li>
+          <li><%= link_to a.name, posts_author_path(a) %></li>
         <% end %>
       </ul>
     </div>
@@ -33,15 +33,15 @@
       <h3><%= blog.name %></h3>
 
       <p>
-        <% if blog.image.exist? %>
+        <% if blog.image.exists? %>
           <%= image_tag blog.image.url(:thumb), :alt => blog.name,
             :size => '150x150', :class => 'image_box' %>
         <% end %>
-        <%= blog.description %>
+        <%= blog.description.html_safe %>
       </p>
 
       <p class="buttom">
-        <%= link_to 'Veja mais posts deste blog', '#' %>
+        <%= link_to 'Veja mais posts deste blog', posts_blog_path(blog) %>
       </p>
     </div>
   </div>

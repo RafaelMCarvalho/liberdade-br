@@ -15,11 +15,7 @@
 
         <%= render :partial => 'posts', :locals => { :posts => @posts } %>
 
-        <% unless @posts.empty? %>
-          <hr />
-
-          <p class="buttom"><%= link_to 'Mais postagens', '#' %></a></p>
-        <% end %>
+        <%= paginate @posts %>
       </div>
     </div>
   </div>

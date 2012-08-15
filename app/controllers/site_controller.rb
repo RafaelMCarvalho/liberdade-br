@@ -29,7 +29,7 @@ class SiteController < ApplicationController
   def posts
     @search = Post.where('published = ?', true).order('published_at DESC').search(params[:q])
     @posts = @search.result
-    @posts = @posts.uniq
+    @posts = @posts.uniq.page(params[:page]).per(1)
   end
 
   # POST END

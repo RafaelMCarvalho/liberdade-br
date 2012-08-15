@@ -5,7 +5,7 @@
 
       <ul>
         <% authors.each do |a| %>
-          <li><%= link_to a.name, '#' %></li>
+          <li><%= link_to a.name, posts_author_path(a) %></li>
         <% end %>
       </ul>
     </div>

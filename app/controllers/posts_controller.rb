@@ -21,6 +21,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def per_author
+    @author = Author.find(params[:id])
+    @posts = @author.published_posts.page(params[:page])
+    @search = @posts.search(params[:q])
+    render :index
+  end
+
   def approve
     params[:approve] = true
     @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', params[:user_id], params[:post_id]).first

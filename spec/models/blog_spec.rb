@@ -2,6 +2,13 @@
 require 'spec_helper'
 
 describe Blog do
+  it 'should return only published posts' do
+    blog = FactoryGirl.create :blog
+    published_post = FactoryGirl.create :post, :published => true, :blog => blog
+    unpublished_post = FactoryGirl.create :post, :published => false, :blog => blog
+    blog.published_posts.should == [published_post]
+  end
+
 	context 'validations' do
 		context 'name' do
 		  it { should have_valid(:name).when('blog da algorich') }

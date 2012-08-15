@@ -19,7 +19,10 @@ LiberdadeBr::Application.routes.draw do
 #= 4. Author ===================================================================
   get '/posts/author/:id' => 'posts#per_author', :as => :posts_author
 
-#= 5. Post =====================================================================
+#= 5. Blog =====================================================================
+  get '/posts/blog/:id' => 'posts#per_blog', :as => :posts_blog
+
+#= 6. Post =====================================================================
   resources :posts, :only => [:index, :show]
   post "/posts" => "posts#index", :as => :posts
 

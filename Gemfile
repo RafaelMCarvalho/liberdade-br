@@ -26,7 +26,7 @@ group :development, :test do
     gem 'factory_girl_rails', '1.6.0'
     gem 'valid_attribute', '1.2.0'
     gem 'spork', '0.9.2'
-    gem 'selenium-webdriver', '2.24.0'
+    gem 'capybara-webkit'
 end
 
 group :assets do

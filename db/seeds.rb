@@ -22,9 +22,9 @@ Configuration.delete_all
 
 Configuration.create!(
   :email => 'base@project.com.br',
-  :donation_text => '<p>O <strong>Liberdade.br</strong> é um projeto sem fins lucrativos
-                que se mantem graças as doações de pessoas que compartilham de seus
-                ideais. Faça sua contribuição e nos ajude também.</p>',
+  :donation_text => 'Liberdade.br é um projeto sem fins lucrativos
+    que se mantem graças as doações de pessoas que compartilham de seus
+    ideais. Faça sua contribuição e nos ajude também.',
   :donation_link => 'http://google.com',
   :donation_goal => '10000.00',
   :donation_collected => '4000.00'
@@ -201,6 +201,22 @@ names = [
     :name => names[i % names.length],
     :link => 'http://www.algorich.com.br/',
     :date => Date.today + i.days,
+    :published => true
+  )
+end
+
+# Opportunities
+
+names = [
+  'Lorem ipsum dolor sit amet',
+  'Sed quam elit',
+  'Curabitur venenatis',
+  'Nullam at felis eu neque tempor sed'
+]
+
+10.times do |i|
+  Opportunity.create!(
+    :title => names[i % names.length],
     :published => true
   )
 end

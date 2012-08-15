@@ -303,6 +303,7 @@ ul#main_navigation .navigation_box .content p {
 ul#main_navigation .navigation_box .progress_bar .bar {
     padding: 5px;
     float: left;
+    width: 200px;
 
     border-radius: 3px 0 0 3px;
     border: 1px solid #000;
@@ -368,7 +369,7 @@ ul#main_navigation .navigation_box .progress_bar .collected span {
 }
 
 ul#main_navigation > li.donate_item .navigation_box_wrapper {
-    margin-top: -145px;
+    margin-top: -144px;
 }
 
 ul#main_navigation > li.donate_item .buttom a {
@@ -561,7 +562,7 @@ ul#main_navigation > li.social_item li.rss_item a {
     margin: 0 auto;
     padding: 10px;
     width: 880px;
-    min-height: 900px;
+    min-height: 1100px;
 
     border-radius: 10px 10px 0 0;
     background: #fff;

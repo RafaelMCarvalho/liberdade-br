@@ -15,7 +15,7 @@ describe SiteController do
   end
 
   it 'post page' do
-    { :get => '/post/1' }.should route_to(:controller => 'site', :action => 'post', :id => '1')
+    { :get => '/posts/1' }.should route_to(:controller => 'site', :action => 'post', :id => '1')
   end
 
   it 'send contact message action' do

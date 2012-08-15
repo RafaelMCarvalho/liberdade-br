@@ -34,7 +34,6 @@ feature 'manage posts' do
     it 'with errors' do
       click_button 'Salvar'
       page.should have_content 'Título não pode ser vazio'
-      page.should have_content 'Conteúdo não pode ser vazio'
     end
   end
 
@@ -67,10 +66,8 @@ feature 'manage posts' do
 
     it 'with errors' do
       fill_in 'Título', :with => ''
-      fill_in 'Conteúdo', :with => ''
       click_button 'Salvar'
       page.should have_content 'Título não pode ser vazio'
-      page.should have_content 'Conteúdo não pode ser vazio'
     end
   end
 

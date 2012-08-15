@@ -1,0 +1,16 @@
+<%= search_form_for search,:html => {
+  :class => 'simple_form search_form' } do |f| %>
+  <div class="fields">
+    <div class="input">
+      <%= f.label :title_or_content_or_blog_name_or_authors_name_cont,
+        'Buscar' %>
+      <%= f.text_field :title_or_content_or_blog_name_or_authors_name_cont,
+        :placeholder => 'Busque por blog, autor, título do post ou conteúdo',
+        :id => 'search_text' %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Buscar' %>
+  </div>
+<% end %>

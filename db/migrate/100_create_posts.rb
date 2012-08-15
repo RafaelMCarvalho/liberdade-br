@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.string :url
       t.text :content
+      t.text :hilight
       t.float :approval_rate, :default => 0.0
       t.float :reproval_rate, :default => 0.0
       t.boolean :published

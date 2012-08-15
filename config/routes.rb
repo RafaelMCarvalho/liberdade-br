@@ -10,6 +10,7 @@ LiberdadeBr::Application.routes.draw do
 
 #= 2. posts routes =============================================================
   get '/posts/:id' => 'site#post', :as => :post
+  match '/posts' => 'site#posts', :as => :posts
 
 #= 3. contact routes ===========================================================
   get "/contact" => "site#contact", :as => :contact
@@ -18,10 +19,6 @@ LiberdadeBr::Application.routes.draw do
 #= 4. Post evaluation routes ===================================================
   match "/admin/post/:post_id/approve/:user_id" => "post#approve", :as => :approve_post
   match "/admin/post/:post_id/reprove/:user_id" => "post#reprove", :as => :reprove_post
-
-#= 4. Post =====================================================================
-  get "/post/:id" => "site#post", :as => :post
-  match "/posts" => "site#posts", :as => :posts
 
   root :to => "site#index"
 end

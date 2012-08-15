@@ -27,7 +27,7 @@ Spork.prefork do
     config.before :each do
       if example.metadata[:js]
         Capybara.server_port = 33333
-        Capybara.current_driver = :selenium
+        Capybara.current_driver = :webkit
       end
       if Capybara.current_driver == :rack_test
         DatabaseCleaner.strategy = :transaction

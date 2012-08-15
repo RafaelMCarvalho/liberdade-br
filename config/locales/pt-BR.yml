@@ -56,6 +56,7 @@ pt-BR:
         password: "Senha"
         password_confirmation: "Confirmação da senha"
         current_password: 'Senha atual'
+        role: 'Permissão'
       banner:
         title: "Título"
         link: "Link"

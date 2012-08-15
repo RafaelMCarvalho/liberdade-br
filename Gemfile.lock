@@ -52,6 +52,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    capybara-webkit (0.12.1)
+      capybara (>= 1.0.0, < 1.2)
+      json
     childprocess (0.3.2)
       ffi (~> 1.0.6)
     chronic (0.6.7)
@@ -261,6 +264,7 @@ DEPENDENCIES
   cancan (= 1.6.7)
   capistrano
   capybara (= 1.1.2)
+  capybara-webkit
   ckeditor
   database_cleaner (= 0.7.1)
   devise (= 2.1.2)
@@ -277,7 +281,6 @@ DEPENDENCIES
   rails_admin (= 0.0.5)
   ransack (= 0.7.0)
   rspec-rails (= 2.10.1)
-  selenium-webdriver (= 2.24.0)
   simple_form (= 2.0.2)
   slim (= 1.2.2)
   slim-rails (= 1.0.3)

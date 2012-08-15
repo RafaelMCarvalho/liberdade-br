@@ -8,6 +8,9 @@ class SiteController < ApplicationController
     @posts = []
   end
 
+  def post
+  end
+
   # CONTACT BEGIN
 
   def contact

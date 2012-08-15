@@ -8,17 +8,17 @@ LiberdadeBr::Application.routes.draw do
 #= 1. user routes ==============================================================
   devise_for :users
 
-#= 2. posts routes =============================================================
-  get '/posts/:id' => 'site#post', :as => :post
-  match '/posts' => 'site#posts', :as => :posts
-
-#= 3. contact routes ===========================================================
+#= 2. contact routes ===========================================================
   get "/contact" => "site#contact", :as => :contact
   post "/contact" => "site#send_contact", :as => :send_contact
 
-#= 4. Post evaluation routes ===================================================
-  match "/admin/post/:post_id/approve/:user_id" => "post#approve", :as => :approve_post
-  match "/admin/post/:post_id/reprove/:user_id" => "post#reprove", :as => :reprove_post
+#= 3. Post evaluation routes ===================================================
+  post "/admin/post/:post_id/approve/:user_id" => "posts#approve", :as => :approve_post
+  post "/admin/post/:post_id/reprove/:user_id" => "posts#reprove", :as => :reprove_post
+
+#= 4. Post =====================================================================
+  resources :posts, :only => [:index, :show]
+  post "/posts" => "posts#index", :as => :posts
 
   root :to => "site#index"
 end

@@ -7,6 +7,9 @@ pt-BR:
       configuration: "Configuração"
       page: "Página"
       user: "Usuário"
+      banner: "Banner"
+      sponsor: "Patrocinador"
+      event: "Evento"
     attributes:
       author:
         name: 'Nome'
@@ -41,6 +44,23 @@ pt-BR:
         password: "Senha"
         password_confirmation: "Confirmação da senha"
         current_password: 'Senha atual'
+      banner:
+        title: "Título"
+        link: "Link"
+        open_in_new_tab: "Abrir em uma nova aba"
+        published: "Publicado"
+        image: "Imagem"
+      sponsor:
+        name: "Nome"
+        link: "site"
+        image: "Logotipo"
+      event:
+        name: "Nome"
+        link: "Site"
+        date: "data de início"
+        description: "Descrição"
+        published: "Publicado"
+        image: "Imagem de divulgação"
     errors:
       messages:
         inclusion: "não está incluído na lista."
@@ -94,7 +114,10 @@ pt-BR:
     abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
     month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
     abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
-    order: [:day, :month, :year]
+    order: 
+      - day
+      - month
+      - year
 
   time:
     formats:

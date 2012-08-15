@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateAuthorPosts < ActiveRecord::Migration
   def change
     create_table :author_posts do |t|

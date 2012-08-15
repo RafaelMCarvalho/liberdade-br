@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CategoryPost < ActiveRecord::Base
   belongs_to :category
   belongs_to :post

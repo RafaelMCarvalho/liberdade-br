@@ -29,4 +29,3 @@ banco:
 	@rake db:test:prepare
 	@rake db:seed
 	@sed -i s/^\#// config/initializers/rails_admin.rb
-

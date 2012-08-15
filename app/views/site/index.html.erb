@@ -1,0 +1,104 @@
+<%= content_for :page_title do 'Principal' end %>
+
+<%= content_for :page_id do 'index' end %>
+
+<%= content_for :banner do %>
+
+  <% unless @banners.empty? %>
+    <!-- BANNER BEGIN -->
+
+    <style>
+      <% @banners.each_with_index do |b, i| %>
+        #banner_<%= i %> {
+          background-image: url("<%= b.image.url %>");
+        }
+      <% end %>
+    </style>
+
+    <div id="banner_wrapper">
+      <div id="banner">
+
+        <ul class="images">
+          <% @banners.each_with_index do |b, i| %>
+            <li id="banner_<%= i %>"></li>
+          <% end %>
+        </ul>
+
+        <div class="infos_wrapper">
+          <div class="infos">
+            <ul>
+              <% @banners.each do |b| %>
+                <li>
+                  <% if b.link.blank? %>
+                    <h3><%= b.title %></h3>
+                  <% else %>
+                    <% if b.open_in_new_tab %>
+                      <h3><%= link_to b.title, b.link, :target => '_blanck' %></h3>
+
+                      <p class="buttom"><%= link_to 'Leia mais', b.link, :target => '_blanck'  %></p>
+                    <% else %>
+                      <h3><%= link_to b.title, b.link %></h3>
+
+                      <p class="buttom"><%= link_to 'Leia mais', b.link %></p>
+                    <% end %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+
+            <p class="controls">
+              <% @banners.length.times do |i| %>
+                <span <%= 'class="active"'.html_safe if i == 0 %>><%= i %></span>
+              <% end %>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- BANNER END -->
+  <% end %>
+
+<% end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+
+      <div id="main_contet">
+        <form class="search_form">
+          <div class="fields">
+            <div class="input">
+              <label for="search_text">Buscar</label>
+
+              <input type="text" placeholder="Busque por blog, autor, título do post ou conteúdo" id="search_text" />
+            </div>
+          </div>
+
+          <div class="actions">
+            <input type="submit" value="Buscar" />
+          </div>
+        </form>
+
+        <%= render :partial => 'posts', :locals => { :posts => @posts } %>
+
+        <% unless @posts.empty? %>
+          <hr />
+
+          <p class="buttom"><%= link_to 'Mais postagens', '#' %></a></p>
+        <% end %>
+      </div>
+
+      <div id="sidebar">
+        <%= render :partial => 'index_sidebar', :locals => { :posts => @posts } %>
+      </div>
+
+    </div>
+  </div>
+  <!-- CONTENT END -->
+
+<% end %>

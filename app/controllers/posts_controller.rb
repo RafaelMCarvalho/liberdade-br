@@ -28,6 +28,13 @@ class PostsController < ApplicationController
     render :index
   end
 
+  def per_blog
+    @blog = Blog.find(params[:id])
+    @posts = @blog.published_posts.page(params[:page])
+    @search = @posts.search(params[:q])
+    render :index    
+  end
+
   def approve
     params[:approve] = true
     @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', params[:user_id], params[:post_id]).first

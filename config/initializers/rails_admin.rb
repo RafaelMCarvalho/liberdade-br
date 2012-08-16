@@ -192,6 +192,7 @@ RailsAdmin.config do |config|
         label 'Redes sociais'
         field :twitter
         field :facebook
+        field :facebook_like_goal
       end
 
       group :donation do

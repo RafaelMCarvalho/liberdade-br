@@ -8,6 +8,7 @@ class CreateConfigurations < ActiveRecord::Migration
       # Social attributes
       t.string :twitter
       t.string :facebook
+      t.integer :facebook_like_goal
 
       # Site attributes
       t.text :description

@@ -19,19 +19,21 @@
   </div>
 </div>
 
-<div class="sidebar_box_wrapper" id="facebook_box">
-  <div class="sidebar_box">
-    <h3>Ajude-nos a conseguir 50000 fãns no Facebook</h3>
+<% unless configuration.facebook_like_goal.blank? or configuration.facebook.blank? %>
+  <div class="sidebar_box_wrapper" id="facebook_box">
+    <div class="sidebar_box">
+      <h3>Ajude-nos a conseguir <%= configuration.facebook_like_goal %> fãns no Facebook</h3>
 
-    <div class="facebook_progress_bar">
-      <p><span>4200</span></p>
-    </div>
+      <div class="facebook_progress_bar">
+        <p><span><%= @fb_likes %></span></p>
+      </div>
 
-    <div class="facebook_like_iframe">
-      <iframe src="https://www.facebook.com/plugins/like.php?href=YOUR_URL" scrolling="no" frameborder="0" style="border:none; width:300px; height:80px"></iframe>
+      <div class="facebook_like_iframe">
+        <iframe src="https://www.facebook.com/plugins/like.php?href=YOUR_URL" scrolling="no" frameborder="0" style="border:none; width:300px; height:80px"></iframe>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <% unless @events.empty? %>
   <div class="sidebar_panel" id="events_panel">
@@ -48,14 +50,14 @@
   </div>
 <% end %>
 
-<div class="sidebar_panel" id="opportunities_panel">
-  <h3><a href="#">Oportunidades</a></h3>
+<% unless @opportunities.empty? %>
+  <div class="sidebar_panel" id="opportunities_panel">
+    <h3><a href="#">Oportunidades</a></h3>
 
-  <ul>
-    <% 3.times do %>
-    <li>
-      <a href="#">Lorem ipsum dolor sit amet consectetur</a>
-    </li>
-    <% end %>
-  </ul>
-</div>
+    <ul>
+      <% @opportunities.each do |o| %>
+        <li><%= link_to o.title, '#' %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

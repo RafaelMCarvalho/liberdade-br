@@ -2,6 +2,11 @@
 class SiteController < ApplicationController
 
   def index
+    fb_page = ::Configuration.first.facebook
+    unless fb_page.blank? || Rails.env.test?
+      id = fb_page.split('/').last
+      @fb_likes = JSON.parse(open("http://graph.facebook.com/?id=#{id}").read)['likes']
+    end
     @banners = Banner.where('published = ?', true)
     @events = Event.where('published = ? AND date >= ?', true, Date.today).
       order('date').limit(5)

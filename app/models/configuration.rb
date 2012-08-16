@@ -3,7 +3,7 @@ class Configuration < ActiveRecord::Base
 
 	attr_accessible :email, :keywords, :description, :google_analytics, :facebook,
     :twitter, :footer, :donation_text, :donation_link, :donation_goal,
-    :donation_collected, :site_title, :site_url
+    :donation_collected, :site_title, :site_url, :facebook_like_goal
 
   validates_presence_of :email
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i

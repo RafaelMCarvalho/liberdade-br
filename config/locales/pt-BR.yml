@@ -28,6 +28,7 @@ pt-BR:
         description: "Descrição"
         google_analytics: 'Google Analytics'
         footer: 'Rodapé'
+        facebook_like_goal: 'Objetivo de Facebook likes'
         donation_text: 'Texto'
         donation_link: 'Link'
         donation_collected: 'Angariado (R$)'

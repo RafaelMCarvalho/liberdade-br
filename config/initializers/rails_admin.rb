@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 RailsAdmin.config do |config|
 
   config.main_app_name = ['Liberdade.br', 'Administração']

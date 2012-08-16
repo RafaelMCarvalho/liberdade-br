@@ -1,0 +1,74 @@
+<%= content_for :page_title do @post.title end %>
+
+<%= content_for :page_id do 'post' end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+      <div id="content_header">
+        <ul class="breadcrumbs">
+          <li><%= link_to 'Início', root_path %></li>
+          <li><%= link_to 'Posts', posts_path %></li>
+          <% if @post.blog %>
+            <li><%= link_to @post.blog.name, '#' %></li>
+          <% end %>
+          <li><span><%= @post.title %></span></li>
+        </ul>
+
+        <hr />
+
+        <div class="header">
+          <h2><%= @post.title %></h2>
+
+          <p class="info">
+            Publicado originalmente em:
+            <% if @post.blog %>
+              <%= link_to @post.blog.name, @post.blog.link, :target => '_blank' %> |
+            <% end %>
+            <%= @post.published_at.strftime('%d de %B de %Y') %>.
+          </p>
+
+          <!-- AddThis Button BEGIN -->
+          <div class="addthis_toolbox addthis_default_style ">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_pinterest_pinit"></a>
+            <a class="addthis_counter addthis_pill_style"></a>
+          </div>
+          <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-502bce3730e2d045"></script>
+          <!-- AddThis Button END -->
+        </div>
+      </div>
+
+      <div id="main_contet">
+        <div class="post">
+          <% if @post.hilight %>
+            <div class="hilight_wrapper">
+              <p class="hilight"><%= @post.hilight %></p>
+            </div>
+          <% end %>
+
+          <%= @post.content.html_safe if @post.content %>
+        </div>
+
+        <% unless @post.categories.empty? %>
+          <p class="post_categories">
+            <%= (@post.categories.collect { |c| link_to(c.name, '#') }).
+              to_sentence.html_safe %>
+          </p>
+        <% end %>
+      </div>
+
+      <div id="sidebar">
+        <%= render :partial => 'post_sidebar', :locals => { :post => @post } %>
+      </div>
+
+    </div>
+  </div>
+  <!-- CONTENT END -->
+
+<% end %>

@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def smart_truncate string, length
-    truncate(sanitize(string, :tags => %w(p)), :length => length,
+    truncate(sanitize(string), :length => length,
       :separator => ' ').html_safe
   end
 end

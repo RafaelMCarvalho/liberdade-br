@@ -26,6 +26,8 @@ LiberdadeBr::Application.routes.draw do
   resources :posts, :only => [:index, :show]
   post "/posts" => "posts#index", :as => :posts
 
+#= 7. Events and Opportunities =================================================
+  get '/eventos-e-oportunidades' => 'site#events_and_opportunities', :as => :events_and_opportunities
 
   root :to => "site#index"
 end

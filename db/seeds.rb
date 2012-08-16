@@ -203,7 +203,19 @@ names = [
     :name => names[i % names.length],
     :link => 'http://www.algorich.com.br/',
     :date => Date.today + i.days,
-    :published => true
+    :published => true,
+    :description => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Proin ipsum dui, bibendum non dignissim ac, auctor in mauris. Integer
+      condimentum rutrum mauris et mattis. Nullam suscipit mollis mi vitae
+      semper. Nam commodo, erat vel bibendum pharetra, velit nisl lacinia diam,
+      in consectetur quam augue luctus velit. Etiam nec nisl dui, ut scelerisque
+      dui. In fringilla, nunc in consectetur feugiat, ipsum mauris dignissim
+      eros, in bibendum ipsum risus quis turpis. Fusce placerat suscipit
+      placerat. Pellentesque elementum fermentum mi, vitae mollis mauris
+      laoreet ut. Donec varius lobortis vehicula. Donec id elementum mauris.
+      Duis id nulla a est volutpat semper. Donec vitae porta est. Proin velit
+      mi, facilisis a placerat ac, adipiscing sed nibh. Sed eu sapien est. Sed
+      aliquam leo quis eros varius vitae accumsan ligula consectetur.</p>'
   )
 end
 
@@ -219,16 +231,28 @@ names = [
 10.times do |i|
   Opportunity.create!(
     :title => names[i % names.length],
-    :published => true
+    :published => true,
+    :content => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Proin ipsum dui, bibendum non dignissim ac, auctor in mauris. Integer
+      condimentum rutrum mauris et mattis. Nullam suscipit mollis mi vitae
+      semper. Nam commodo, erat vel bibendum pharetra, velit nisl lacinia diam,
+      in consectetur quam augue luctus velit. Etiam nec nisl dui, ut scelerisque
+      dui. In fringilla, nunc in consectetur feugiat, ipsum mauris dignissim
+      eros, in bibendum ipsum risus quis turpis. Fusce placerat suscipit
+      placerat. Pellentesque elementum fermentum mi, vitae mollis mauris
+      laoreet ut. Donec varius lobortis vehicula. Donec id elementum mauris.
+      Duis id nulla a est volutpat semper. Donec vitae porta est. Proin velit
+      mi, facilisis a placerat ac, adipiscing sed nibh. Sed eu sapien est. Sed
+      aliquam leo quis eros varius vitae accumsan ligula consectetur.</p>'
   )
 end
 
 # Posts
 
-Post.delete_all
-Blog.all.each do |blog|
-  feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
-  feed.entries.select do |entry|
-    Post.create_from_feed_entry(entry, blog)
-  end
-end
+#Post.delete_all
+#Blog.all.each do |blog|
+#  feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
+#  feed.entries.select do |entry|
+#    Post.create_from_feed_entry(entry, blog)
+#  end
+#end

@@ -13,6 +13,13 @@ class SiteController < ApplicationController
     @posts = @posts.uniq
   end
 
+  def events_and_opportunities
+    @events = Event.where('published = ? AND date >= ?', true, Date.today).
+      order('date').limit(6)
+    @opportunities = Opportunity.where('published = ?', true).
+      order('created_at').limit(6)
+  end
+
   # CONTACT BEGIN
 
   def contact

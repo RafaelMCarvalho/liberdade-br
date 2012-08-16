@@ -113,10 +113,16 @@
       <li class="donate_item">
         <%= link_to '<strong><span>Faça uma doação</span></strong>'.html_safe, 'javascript:void(0);' %>
 
+        <style type="text/css">
+          ul#main_navigation .navigation_box .progress_bar .bar span {
+            width: <%= (configuration.donation_collected * 200 / configuration.donation_goal).to_i %>px
+          }
+        </style>
+
         <div class="navigation_box_wrapper">
           <div class="navigation_box">
             <div class="content">
-              <%= configuration.donation_text.html_safe %>
+              <p><%= configuration.donation_text %></p>
 
               <hr />
 

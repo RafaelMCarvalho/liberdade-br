@@ -50,14 +50,14 @@
   </div>
 <% end %>
 
-<div class="sidebar_panel" id="opportunities_panel">
-  <h3><a href="#">Oportunidades</a></h3>
+<% unless @opportunities.empty? %>
+  <div class="sidebar_panel" id="opportunities_panel">
+    <h3><a href="#">Oportunidades</a></h3>
 
-  <ul>
-    <% 3.times do %>
-    <li>
-      <a href="#">Lorem ipsum dolor sit amet consectetur</a>
-    </li>
-    <% end %>
-  </ul>
-</div>
+    <ul>
+      <% @opportunities.each do |o| %>
+        <li><%= link_to o.title, '#' %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

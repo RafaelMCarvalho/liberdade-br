@@ -140,10 +140,7 @@ end
 namespace :db do
  task :migrate do
   run 'sed -i s/^/\#/ ' + latest_release + '/config/initializers/rails_admin.rb'
-  run "cd #{latest_release}; bundle exec rake db:drop RAILS_ENV=production"
-  run "cd #{latest_release}; bundle exec rake db:create RAILS_ENV=production"
   run "cd #{latest_release}; bundle exec rake db:migrate RAILS_ENV=production"
-  run "cd #{latest_release}; bundle exec rake db:seed RAILS_ENV=production"
   run 'sed -i s/^\#// '+ latest_release + '/config/initializers/rails_admin.rb'
  end
 end

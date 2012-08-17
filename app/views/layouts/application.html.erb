@@ -83,9 +83,12 @@
         </li>
       <% end %>
 
-      <li class="faq_item">
-        <%= link_to '<strong><span>Perguntas frequêntes</span></strong>'.html_safe, '#' %>
-      </li>
+      <% faq_page = Page.get_page(:faq) %>
+      <% if faq_page and faq_page.published? %>      
+        <li class="faq_item">
+          <%= link_to '<strong><span>Perguntas frequentes</span></strong>'.html_safe, faq_path %>
+        </li>
+      <% end %>
 
       <li class="events_item">
         <%= link_to '<strong><span>Eventos e oportunidades</span></strong>'.html_safe, '#' %>

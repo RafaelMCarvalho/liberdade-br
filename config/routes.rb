@@ -12,6 +12,7 @@ LiberdadeBr::Application.routes.draw do
   get "/contact" => "site#contact", :as => :contact
   post "/contact" => "site#send_contact", :as => :send_contact
   get '/about' => 'site#about', :as => :about
+  get '/faq' => 'site#faq', :as => :faq
 
 #= 3. Post evaluation routes ===================================================
   post "/admin/post/:post_id/approve/:user_id" => "posts#approve", :as => :approve_post

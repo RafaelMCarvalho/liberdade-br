@@ -36,12 +36,29 @@ Configuration.create!(
 
 Page.delete_all
 
-Page.create!(
-  :indicator => Page::PAGES[:contact],
+page = Page.create!(
   :title => 'Contato',
   :content => 'Conteúdo da página de contato',
   :published => true
 )
+page.indicator = Page::PAGES[:contact]
+page.save
+
+page = Page.create!(
+  :title => 'Sobre o Liberdade.br',
+  :content => 'Conteúdo da página sobre o Liberdade.br',
+  :published => true
+)
+page.indicator = Page::PAGES[:about]
+page.save
+
+page = Page.create!(
+  :title => 'Perguntas frequentes sobre o Liberdade.br',
+  :content => 'Conteúdo da página Perguntas frequentes',
+  :published => true
+)
+page.indicator = Page::PAGES[:faq]
+page.save
 
 # Banner
 

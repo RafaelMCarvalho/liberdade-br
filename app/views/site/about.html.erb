@@ -1,0 +1,5 @@
+<%= content_for :content do %>
+  <h3><%= @about.title %></h3>
+
+  <%= @about.content.html_safe %>
+<% end %>

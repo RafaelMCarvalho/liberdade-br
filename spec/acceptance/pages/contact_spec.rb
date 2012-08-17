@@ -8,7 +8,8 @@ feature 'Send a contact message' do
 
   scenario 'successfully' do
     Factory.create :page, :indicator => Page::PAGES[:contact]
-    visit contact_path
+    visit '/'
+    click_link 'Contato'
     fill_in 'Nome', :with => 'Fulano'
     fill_in 'E-mail', :with => 'fulano@gmail.com'
     fill_in 'Mensagem', :with => 'Mensagem qualquer'

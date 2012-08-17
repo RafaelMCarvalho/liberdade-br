@@ -53,6 +53,14 @@ page.indicator = Page::PAGES[:about]
 page.save
 
 page = Page.create!(
+  :title => 'Financiadores do Liberdade.br',
+  :content => 'Conteúdo da página Financiadores do Liberdade.br',
+  :published => true
+)
+page.indicator = Page::PAGES[:financers]
+page.save
+
+page = Page.create!(
   :title => 'Perguntas frequentes sobre o Liberdade.br',
   :content => 'Conteúdo da página Perguntas frequentes',
   :published => true

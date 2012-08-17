@@ -58,4 +58,10 @@ class SiteController < ApplicationController
     
     raise ActionController::RoutingError.new('Not Found') unless @faq.published
   end
+
+  def financers
+    @financers = Page.where("indicator = ?", Page::PAGES[:financers]).first
+    
+    raise ActionController::RoutingError.new('Not Found') unless @financers.published
+  end
 end

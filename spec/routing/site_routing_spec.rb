@@ -10,6 +10,10 @@ describe SiteController do
     { :get => '/contact' }.should route_to(:controller => 'site', :action => 'contact')
   end
 
+  it 'about page' do
+    { :get => '/about' }.should route_to(:controller => 'site', :action => 'about')
+  end
+
   it 'posts page' do
     { :get => '/posts' }.should route_to(:controller => 'posts', :action => 'index')
   end

@@ -46,4 +46,10 @@ class SiteController < ApplicationController
   end
 
   # CONTACT END
+
+  def about
+    @about = Page.where("indicator = ?", Page::PAGES[:about]).first
+    
+    raise ActionController::RoutingError.new('Not Found') unless @about.published
+  end
 end

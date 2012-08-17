@@ -76,10 +76,12 @@
       <li class="active home_item">
         <%= link_to '<strong><span>Principal</span></strong>'.html_safe, root_path %>
       </li>
-
-      <li class="info_item">
-        <%= link_to '<strong><span>Sobre o Liberdade.br</span></strong>'.html_safe, '#' %>
-      </li>
+      <% about_page = Page.get_page(:about) %>
+      <% if about_page and about_page.published? %>
+        <li class="info_item">
+          <%= link_to '<strong><span>Sobre o Liberdade.br</span></strong>'.html_safe, about_path %>
+        </li>
+      <% end %>
 
       <li class="faq_item">
         <%= link_to '<strong><span>Perguntas frequêntes</span></strong>'.html_safe, '#' %>
@@ -145,7 +147,7 @@
       </li>
 
       <li class="contact_item">
-        <%= link_to '<strong><span>Contato</span></strong>'.html_safe, '#' %>
+        <%= link_to '<strong><span>Contato</span></strong>'.html_safe, contact_path %>
       </li>
 
       <li class="social_item">

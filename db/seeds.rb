@@ -36,12 +36,13 @@ Configuration.create!(
 
 Page.delete_all
 
-Page.create!(
-  :indicator => Page::PAGES[:contact],
+page = Page.create!(
   :title => 'Contato',
   :content => 'Conteúdo da página de contato',
   :published => true
 )
+page.indicator = Page::PAGES[:contact]
+page.save
 
 # Banner
 

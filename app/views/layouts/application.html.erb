@@ -196,7 +196,7 @@
 
             <ul>
               <% Blog.all.each do |b| %>
-                <li><%= link_to b.name, '#' %></li>
+                <li><%= link_to b.name, posts_blog_path(b) %></li>
               <% end %>
             </ul>
           </li>

@@ -7,6 +7,16 @@ describe Post do
       it { should have_valid(:title).when('Foo post') }
       it { should_not have_valid(:title).when('', nil) }
     end
+    context 'when someone send a post through post#send (blog is nil)' do
+      it 'authors cant be blank' do
+        post = FactoryGirl.build :post, :blog => nil, :authors => []
+        post.save.should be_false
+      end
+      it 'content cant be blank' do
+        post = FactoryGirl.build :post, :blog => nil, :content => ''
+        post.save.should be_false
+      end
+    end
   end
 
   context 'should be published' do
@@ -81,6 +91,43 @@ describe Post do
       @post.url.should == @entry.url
       @post.content.should == @entry.content
       @post.published_at.should == Date.parse(@entry.published.to_s)
+    end
+
+    it 'with the rigth categories (creating the nonexistent ones)' do
+      Category.create(:name => 'liberalismo')
+      categories = Category.all
+      categories.should have(2).categories
+      categories.collect(&:name).should include('liberalismo', 'responsabilidade limitada')
+      @post.categories.should include(*categories)
+    end
+
+    it 'with the rigth authors (creating the nonexistent ones)' do
+      Author.create(:name => 'Leonard')
+      authors = Author.all
+      authors.should have(2).authors
+      authors.collect(&:name).should include('Richard', 'Leonard')
+      @post.authors.should include(*authors)
+    end
+  end
+
+  context 'should create a post from a new post page' do
+    # I'm using before(:each) because stub isn't supported on before(:create)
+    # more info on https://github.com/rspec/rspec-mocks/issues/92#issuecomment-3178470
+    before(:each) do
+      @params = {
+        :title => 'Sobre corporações e leis de responsabilidade limitada',
+        :url => 'http://depositode.blogspot.com/2012/06/sobre-corporacoes-e-leis-de.html',
+        :content => 'Some text very big'*500,
+        :categories => 'LIBERALISMO  , RESPONSABILIDADE LIMITADA  ',
+        :authors => 'Richard  , Leonard   '
+      }
+      @post = Post.build_from_new_post_page(@params)
+      @post.save
+    end
+
+    it 'with the right title and content' do
+      @post.title.should == @params[:title]
+      @post.content.should == @params[:content]
     end
 
     it 'with the rigth categories (creating the nonexistent ones)' do

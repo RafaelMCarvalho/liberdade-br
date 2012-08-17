@@ -41,7 +41,7 @@ feature 'manage posts' do
     background do
       @category = FactoryGirl.create :category
       @author = FactoryGirl.create :author
-      @blog = FactoryGirl.create :blog
+      @blog = FactoryGirl.create :blog, :name => 'Foo random blog'
       @post = FactoryGirl.create :post
 
       visit '/admin/post'

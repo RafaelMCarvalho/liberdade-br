@@ -1,0 +1,43 @@
+<%= content_for :page_title do @post.title end %>
+
+<%= content_for :page_id do 'post' end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+      <div id="content_header">
+        <ul class="breadcrumbs">
+          <li><%= link_to 'Início', root_path %></li>
+          <li><span>Enviar artigo</span></li>
+        </ul>
+
+        <hr />
+
+        <div class="header">
+          <h2>Enviar artigo</h2>
+        </div>
+      </div>
+      <div id="main_contet">
+        <%= content_tag(:p, notice, :class => 'notice') if notice %>
+
+        <%= simple_form_for(@post, :url => send_post_path) do |f| %>
+          <div class="inputs">
+            <%= f.input :title %>
+            <%= f.input :content, :as => :text %>
+            <%= f.input :authors, :label => 'Nomes dos autores', :hint => 'Separados por vírgula', :input_html => { :value => @authors_input_value } %>
+            <%= f.input :categories, :label => 'Categorias', :hint => 'Separadas por vírgula', :input_html => { :value => @categories_input_value } %>
+          </div>
+          <div class="actions">
+            <%= f.button :submit, 'Enviar' %>
+          </div>
+        <% end %>
+      </div>
+      <div id="sidebar">
+      </div>
+    </div>
+  </div>
+<% end %>

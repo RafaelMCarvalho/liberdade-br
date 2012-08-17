@@ -9,6 +9,22 @@ class PostsController < ApplicationController
     @posts = @posts.uniq.page(params[:page]).per(6)
   end
 
+  def new
+    @post = Post.new
+  end
+
+  def send_post
+    @post = Post.build_from_new_post_page(params[:post])
+    @authors_input_value = @post.authors.map(&:name).join(', ')
+    @categories_input_value = @post.categories.map(&:name).join(', ')
+    if @post.save
+      flash[:notice] = 'Post enviado com sucesso. Ele será avaliado pelos moderadores antes de ser exibido no site.'
+      redirect_to :action => 'new'
+    else
+      render :action => 'new'
+    end
+  end
+
   def show
     @post = Post.find(params[:id])
 
@@ -32,8 +48,9 @@ class PostsController < ApplicationController
     @blog = Blog.find(params[:id])
     @posts = @blog.published_posts.page(params[:page])
     @search = @posts.search(params[:q])
-    render :index    
+    render :index
   end
+
 
   def approve
     params[:approve] = true

@@ -10,6 +10,8 @@ class Post < ActiveRecord::Base
   has_many :users, :through => :post_evaluations
 
   validates_presence_of :title
+  validates_presence_of :authors, :if => lambda { self.blog.nil? }
+  validates_presence_of :content, :if => lambda { self.blog.nil? }
 
   after_validation :check_rates_to_publish, :if => lambda {
     self.approval_rate_changed? or self.reproval_rate_changed?
@@ -40,6 +42,30 @@ class Post < ActiveRecord::Base
       :authors => authors,
       :blog => blog
     )
+  end
+
+  def self.build_from_new_post_page(params)
+    categories = []
+    unless params[:categories].nil?
+      params[:categories].split(',').each do |name|
+        categories << Category.get_or_create_by_name(name.strip)
+      end
+    end
+
+    authors = []
+    unless params[:authors].nil?
+      params[:authors].split(',').each do |name|
+        authors << Author.get_or_create_by_name(name.strip)
+      end
+    end
+
+    post = Post.new(
+      :title => params[:title],
+      :content => params[:content],
+      :categories => categories,
+      :authors => authors
+    )
+    return post
   end
 
   def evaluations_count

@@ -247,12 +247,12 @@ names = [
   )
 end
 
-# Posts
+# # Posts
 
-#Post.delete_all
-#Blog.all.each do |blog|
+# Post.delete_all
+# Blog.all.each do |blog|
 #  feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
 #  feed.entries.select do |entry|
 #    Post.create_from_feed_entry(entry, blog)
 #  end
-#end
+# end

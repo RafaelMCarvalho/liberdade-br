@@ -18,6 +18,10 @@ describe SiteController do
     { :get => '/faq' }.should route_to(:controller => 'site', :action => 'faq')
   end
 
+  it 'financers page' do
+    { :get => '/financers' }.should route_to(:controller => 'site', :action => 'financers')
+  end
+
   it 'posts page' do
     { :get => '/posts' }.should route_to(:controller => 'posts', :action => 'index')
   end

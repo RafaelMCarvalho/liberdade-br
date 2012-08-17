@@ -6,6 +6,14 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, :at => '5:30 pm' do
+every 1.day, :at => '12:00 pm' do
+  runner 'Blog.get_new_posts'
+end
+
+every 1.day, :at => '18:00 pm' do
+  runner 'Blog.get_new_posts'
+end
+
+every 1.day, :at => '23:59 pm' do
   runner 'Blog.get_new_posts'
 end

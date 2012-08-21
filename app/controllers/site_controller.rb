@@ -22,7 +22,7 @@ class SiteController < ApplicationController
     @events = Event.where('published = ? AND date >= ?', true, Date.today).
       order('date')
     @opportunities = Opportunity.where('published = ?', true).
-      order('created_at').limit(6)
+      order('created_at')
   end
 
   # CONTACT BEGIN

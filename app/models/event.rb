@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
     :path => ":rails_root/public/system/sponsors/:id/:style/:filename",
     :url => "/system/sponsors/:id/:style/:filename",
     :styles => {
+      :event_list_image => '120x120#',
       :small => '250x100#', :thumb => '125x50#'
     }
 

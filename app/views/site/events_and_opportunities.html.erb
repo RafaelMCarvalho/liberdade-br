@@ -11,16 +11,16 @@
     <div id="content">
 
       <div id="main_contet">
-        <% unless @events.empty? %>
+        <% unless @events.limit(6).empty? %>
           <h2>Eventos em destaque</h2>
 
-          <ul class="events">
-            <% @events.each do |e| %>
+          <ul class="events_list">
+            <% @events.limit(6).each do |e| %>
               <li>
                 <div class="date">
                   <p>
-                    <span class="month"><%= e.date.strftime("%b") %></span>
-                    <span class="day"><%= e.date.strftime("%d") %></span>
+                    <span class="day"><%= e.date.strftime('%d') %></span>
+                    <span class="month"><%= e.date.strftime('%b') %></span>
                   </p>
                 </div>
 
@@ -32,10 +32,18 @@
                       <%= smart_truncate(e.description, 200) %>
                     </p>
                   <% end %>
+
+                  <p class="more"><%= link_to 'Mais informações', '#' %></p>
                 </div>
               </li>
             <% end %>
           </ul>
+        <% end %>
+
+        <% unless @events.length > 6 %>
+          <hr />
+
+          <p class="buttom"><%= link_to 'Mais eventos', '#' %></a></p>
         <% end %>
       </div>
 

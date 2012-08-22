@@ -23,13 +23,13 @@
 
 <% unless @events.empty? %>
   <div class="sidebar_panel" id="events_panel">
-    <h3><a href="#">Eventos</a></h3>
+    <h3><%= link_to 'Eventos', events_path %></h3>
 
     <ul>
       <% @events.each do |e| %>
         <li>
           <span class="date"><%= e.date.strftime('%d/%m') %></span>
-          <%= link_to e.name, '#' %>
+          <%= link_to e.name, event_path(e) %>
         </li>
       <% end %>
     </ul>
@@ -38,11 +38,11 @@
 
 <% unless @opportunities.empty? %>
   <div class="sidebar_panel" id="opportunities_panel">
-    <h3><a href="#">Oportunidades</a></h3>
+    <h3><%= link_to 'Oportunidades', opportunities_path %></h3>
 
     <ul>
       <% @opportunities.each do |o| %>
-        <li><%= link_to o.title, '#' %></li>
+        <li><%= link_to o.title, opportunity_path(o) %></li>
       <% end %>
     </ul>
   </div>

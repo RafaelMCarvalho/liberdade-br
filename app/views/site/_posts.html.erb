@@ -30,8 +30,8 @@
 
           <% if p.blog %>
             <p class="links">
-              <%= link_to'Visitar o blog', p.blog.link, :target => '_blank' %> |
-              <%= link_to'Mais posts deste blog', '#' %>
+              <%= link_to 'Visitar o blog', p.blog.link, :target => '_blank' %> |
+              <%= link_to 'Mais posts deste blog', posts_blog_path(p.blog) %>
             </p>
           <% end %>
         </div>

@@ -17,7 +17,7 @@
           <ul class="opportunities_list">
             <% @opportunities.limit(6).each do |o| %>
               <li>
-                <h3><%= link_to o.title, '#' %></h3>
+                <h3><%= link_to o.title, opportunity_path(o) %></h3>
 
                 <% if o.content %>
                   <p class="resume">
@@ -25,7 +25,7 @@
                   </p>
                 <% end %>
 
-                <p class="more"><%= link_to 'Mais informações', '#' %></p>
+                <p class="more"><%= link_to 'Mais informações', opportunity_path(o) %></p>
               </li>
             <% end %>
           </ul>

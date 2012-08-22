@@ -1,0 +1,43 @@
+<%= content_for :page_title do 'opportunities' end %>
+
+<%= content_for :page_id do 'opportunities' end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+
+      <div id="main_contet">
+        <% unless @opportunities.limit(6).empty? %>
+          <h2>Oportunidades</h2>
+
+          <ul class="opportunities_list">
+            <% @opportunities.limit(6).each do |o| %>
+              <li>
+                <h3><%= link_to o.title, '#' %></h3>
+
+                <% if o.content %>
+                  <p class="resume">
+                    <%= smart_truncate(o.content, 200) %>
+                  </p>
+                <% end %>
+
+                <p class="more"><%= link_to 'Mais informações', '#' %></p>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <% if @opportunities.length > 6 %>
+          <hr />
+        <% end %>
+
+        <%= paginate @opportunities %>
+      </div>
+    </div>
+  </div>
+  <!-- CONTENT END -->
+<% end %>

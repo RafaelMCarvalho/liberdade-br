@@ -8,7 +8,7 @@ LiberdadeBr::Application.routes.draw do
 #= 1. user routes ==============================================================
   devise_for :users
 
-#= 2. pages ====================================================================  
+#= 2. pages ====================================================================
   get "/contact" => "site#contact", :as => :contact
   post "/contact" => "site#send_contact", :as => :send_contact
   get '/about' => 'site#about', :as => :about
@@ -32,6 +32,14 @@ LiberdadeBr::Application.routes.draw do
 
 #= 7. Events and Opportunities =================================================
   get '/eventos-e-oportunidades' => 'site#events_and_opportunities', :as => :events_and_opportunities
+
+#= 8. Events ===================================================================
+  get '/eventos' => 'events#index', :as => :events
+  get '/evento/:id' => 'events#show', :as => :event
+
+#= 8. Opportunities ===================================================================
+  get '/oportunidades' => 'opportunities#index', :as => :opportunities
+  get '/oportunidade/:id' => 'Opportunities#show', :as => :opportunity
 
   root :to => "site#index"
 end

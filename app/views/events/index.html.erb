@@ -1,0 +1,59 @@
+<%= content_for :page_title do 'Events' end %>
+
+<%= content_for :page_id do 'events' end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+
+      <div id="main_contet">
+        <% unless @events.limit(6).empty? %>
+          <h2>Eventos</h2>
+
+          <ul class="events_list">
+            <% @events.limit(6).each do |e| %>
+              <li>
+                <div class="date">
+                  <p>
+                    <span class="day"><%= e.date.strftime('%d') %></span>
+                    <span class="month"><%= e.date.strftime('%b') %></span>
+                  </p>
+                </div>
+
+                <div class="event_content">
+                  <h3><%= link_to e.name, event_path(e) %></h3>
+
+                  <% if e.image.exists? %>
+                    <p class="image">
+                      <%= image_tag e.image.url(:event_list_image),
+                        :alt => e.name, :size => '120x120' %>
+                    </p>
+                  <% end %>
+
+                  <% if e.description %>
+                    <p class="resume">
+                      <%= smart_truncate(e.description, 200) %>
+                    </p>
+                  <% end %>
+
+                  <p class="more"><%= link_to 'Mais informações', event_path(e) %></p>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <% if @events.length > 6 %>
+          <hr />
+        <% end %>
+
+        <%= paginate @events %>
+      </div>
+    </div>
+  </div>
+  <!-- CONTENT END -->
+<% end %>

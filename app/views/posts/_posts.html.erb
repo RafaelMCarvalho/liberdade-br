@@ -23,7 +23,9 @@
           </p>
 
           <% if p.content %>
-            <div class="resume"><%= smart_truncate(p.content, 200) %></div>
+            <div class="resume">
+              <p><%= smart_truncate(p.content, 200) %></p>
+            </div>
           <% end %>
 
           <% if p.blog %>

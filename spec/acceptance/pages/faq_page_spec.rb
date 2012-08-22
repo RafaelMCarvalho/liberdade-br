@@ -4,8 +4,9 @@ require 'spec_helper'
 feature 'faq page' do
   background do
     FactoryGirl.create :configuration
-    @faq_page = FactoryGirl.create :page, :indicator => Page::PAGES[:faq], 
-                              :content => 'Página sobre o FAQ do Liberdade.br'
+    @faq_page = FactoryGirl.create :page, :indicator => Page::PAGES[:faq],
+      :content => 'Página sobre o FAQ do Liberdade.br',
+      :title => 'Perguntas frequentes'
   end
 
   scenario 'should show when is published' do

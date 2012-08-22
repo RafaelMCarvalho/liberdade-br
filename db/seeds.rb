@@ -1,4 +1,11 @@
+
 # -*- encoding : utf-8 -*-
+
+def file_to_string file_name
+  lines = File.open(file_name).collect { |line| line }
+
+  return lines.empty? ? '' : lines * ''
+end
 
 # User
 
@@ -29,7 +36,9 @@ Configuration.create!(
   :site_title => 'Liberdade.br',
   :donation_link => 'http://google.com',
   :donation_goal => '10000.00',
-  :donation_collected => '4000.00'
+  :donation_collected => '4000.00',
+  :facebook => 'http://www.facebook.com/liberdadebr',
+  :facebook_like_goal => 500
 )
 
 # Pages
@@ -38,7 +47,7 @@ Page.delete_all
 
 page = Page.create!(
   :title => 'Contato',
-  :content => 'Conteúdo da página de contato',
+  :content => file_to_string('public/seeds/contact_page.part.html'),
   :published => true
 )
 page.indicator = Page::PAGES[:contact]
@@ -46,7 +55,7 @@ page.save
 
 page = Page.create!(
   :title => 'Sobre o Liberdade.br',
-  :content => 'Conteúdo da página sobre o Liberdade.br',
+  :content => file_to_string('public/seeds/about_page.part.html'),
   :published => true
 )
 page.indicator = Page::PAGES[:about]
@@ -54,7 +63,7 @@ page.save
 
 page = Page.create!(
   :title => 'Financiadores do Liberdade.br',
-  :content => 'Conteúdo da página Financiadores do Liberdade.br',
+  :content => file_to_string('public/seeds/financers_page.part.html'),
   :published => true
 )
 page.indicator = Page::PAGES[:financers]
@@ -62,7 +71,7 @@ page.save
 
 page = Page.create!(
   :title => 'Perguntas frequentes sobre o Liberdade.br',
-  :content => 'Conteúdo da página Perguntas frequentes',
+  :content => file_to_string('public/seeds/faq_page.part.html'),
   :published => true
 )
 page.indicator = Page::PAGES[:faq]

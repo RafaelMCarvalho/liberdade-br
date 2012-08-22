@@ -7,7 +7,8 @@ feature 'Send a contact message' do
   end
 
   scenario 'successfully' do
-    Factory.create :page, :indicator => Page::PAGES[:contact]
+    Factory.create :page, :indicator => Page::PAGES[:contact],
+      :title => 'Contato'
     visit '/'
     click_link 'Contato'
     fill_in 'Nome', :with => 'Fulano'
@@ -35,4 +36,3 @@ feature 'Send a contact message' do
     end
   end
 end
-

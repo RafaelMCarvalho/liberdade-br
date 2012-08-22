@@ -1,5 +1,39 @@
-<%= content_for :content do %>
-  <h3><%= @about.title %></h3>
+<%= content_for :page_title do @about.title end %>
 
-  <%= @about.content.html_safe %>
+<%= content_for :page_id do 'about' end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+      <div id="content_header">
+        <ul class="breadcrumbs">
+          <li><%= link_to 'Início', root_path %></li>
+          <li><span><%= @about.title %></span></li>
+        </ul>
+
+        <hr />
+
+        <div class="header">
+          <h2><%= @about.title %></h2>
+        </div>
+      </div>
+
+      <div id="main_contet">
+        <div class="post">
+          <%= @about.content.html_safe if @about.content %>
+        </div>
+      </div>
+
+      <div id="sidebar">
+        <%= render :partial => 'about_sidebar' %>
+      </div>
+
+    </div>
+  </div>
+  <!-- CONTENT END -->
+
 <% end %>

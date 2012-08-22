@@ -1,0 +1,29 @@
+<%
+  fb_page = ::Configuration.first.facebook
+  unless fb_page.blank? || Rails.env.test?
+    id = fb_page.split('/').last
+    @fb_likes = JSON.parse(open("http://graph.facebook.com/?id=#{id}").read)['likes']
+  end
+%>
+
+<% unless configuration.facebook_like_goal.blank? or configuration.facebook.blank? %>
+  <div class="sidebar_box_wrapper" id="facebook_box">
+    <div class="sidebar_box">
+      <h3>Ajude-nos a conseguir <%= configuration.facebook_like_goal %> fãns no Facebook</h3>
+
+      <div class="facebook_progress_bar">
+        <p><span><%= @fb_likes %></span></p>
+      </div>
+
+      <div class="facebook_like_iframe">
+        <iframe src="https://www.facebook.com/plugins/like.php?href=<%= configuration.facebook %>" scrolling="no" frameborder="0" style="border:none; width:300px; height:65px"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <style type="text/css">
+    #facebook_box .facebook_progress_bar p {
+      width: <%= (@fb_likes * 308 / configuration.facebook_like_goal).to_i %>px
+    }
+  </style>
+<% end %>

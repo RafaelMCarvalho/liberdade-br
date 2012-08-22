@@ -64,7 +64,7 @@
       <h1><%= link_to image_tag('/assets/logo.png', :alt => 'Liberdade.br',
         :size => '300x105'), root_path %></h1>
       <% financers_page = Page.get_page(:financers) %>
-      <% if financers_page and financers_page.published? %> 
+      <% if financers_page and financers_page.published? %>
         <%= link_to 'Veja a lista completa das pessoas que financiaram esta iniciativa', financers_path, :id => 'partners_page_link' %>
       <% end %>
     </div>
@@ -77,22 +77,24 @@
       <li class="active home_item">
         <%= link_to '<strong><span>Principal</span></strong>'.html_safe, root_path %>
       </li>
+
       <% about_page = Page.get_page(:about) %>
       <% if about_page and about_page.published? %>
         <li class="info_item">
-          <%= link_to '<strong><span>Sobre o Liberdade.br</span></strong>'.html_safe, about_path %>
+          <%= link_to "<strong><span>#{about_page.title}</span></strong>".html_safe, about_path %>
         </li>
       <% end %>
 
       <% faq_page = Page.get_page(:faq) %>
-      <% if faq_page and faq_page.published? %>      
+      <% if faq_page and faq_page.published? %>
         <li class="faq_item">
-          <%= link_to '<strong><span>Perguntas frequentes</span></strong>'.html_safe, faq_path %>
+          <%= link_to "<strong><span>#{faq_page.title}</span></strong>".html_safe, faq_path %>
         </li>
       <% end %>
 
       <li class="events_item">
-        <%= link_to '<strong><span>Eventos e oportunidades</span></strong>'.html_safe, '#' %>
+        <%= link_to '<strong><span>Eventos e oportunidades</span></strong>'.html_safe,
+          events_and_opportunities_path %>
       </li>
 
       <li class="share_item">
@@ -150,9 +152,12 @@
         </div>
       </li>
 
-      <li class="contact_item">
-        <%= link_to '<strong><span>Contato</span></strong>'.html_safe, contact_path %>
-      </li>
+      <% contact_page = Page.get_page(:contact) %>
+      <% if contact_page and contact_page.published? %>
+        <li class="contact_item">
+          <%= link_to "<strong><span>#{contact_page.title}</span></strong>".html_safe, contact_path %>
+        </li>
+      <% end %>
 
       <li class="social_item">
         <ul>

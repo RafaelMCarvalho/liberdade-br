@@ -9,19 +9,19 @@ end
 
 # User
 
-User.delete_all
+#User.delete_all
 
-User.create!(
-  :email => 'admin@base.com',
-  :password => '123456',
-  :role => :coordinator
-)
+#User.create!(
+#  :email => 'admin@base.com',
+#  :password => '123456',
+#  :role => :coordinator
+#)
 
-User.create!(
-  :email => 'moderator@base.com',
-  :password => '123456',
-  :role => :moderator
-)
+#User.create!(
+#  :email => 'moderator@base.com',
+#  :password => '123456',
+#  :role => :moderator
+#)
 
 # Configuration
 

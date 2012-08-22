@@ -14,7 +14,6 @@ feature 'about page' do
     visit '/'
     click_link 'Sobre o Liberdade.br'
     page.should have_content 'Página sobre o Liberdade.br'
-    save_and_open_page
     current_path.should == about_path
   end
 

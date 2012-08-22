@@ -23,13 +23,15 @@
           </p>
 
           <% if p.content %>
-            <div class="resume"><%= smart_truncate(p.content, 200) %></div>
+            <div class="resume">
+              <p><%= smart_truncate(p.content, 200) %></p>
+            </div>
           <% end %>
 
           <% if p.blog %>
             <p class="links">
               <%= link_to'Visitar o blog', p.blog.link, :target => '_blank' %> |
-              <%= link_to'Mais posts deste blog', '#' %>
+              <%= link_to'Mais posts deste blog', posts_blog_path(p.blog) %>
             </p>
           <% end %>
         </div>

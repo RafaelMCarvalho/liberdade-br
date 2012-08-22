@@ -53,7 +53,7 @@ page.indicator = Page::PAGES[:contact]
 page.save
 
 page = Page.create!(
-  :title => 'Sobre o Liberdade.br',
+  :title => 'Sobre o Liberdade.BR',
   :content => file_to_string('public/seeds/about_page.part.html'),
   :published => true
 )
@@ -69,7 +69,7 @@ page.indicator = Page::PAGES[:financers]
 page.save
 
 page = Page.create!(
-  :title => 'Perguntas frequentes sobre o Liberdade.br',
+  :title => 'Perguntas frequentes',
   :content => file_to_string('public/seeds/faq_page.part.html'),
   :published => true
 )

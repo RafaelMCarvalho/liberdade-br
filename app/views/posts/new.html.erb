@@ -21,7 +21,7 @@
           <h2>Enviar artigo</h2>
         </div>
       </div>
-      <div id="main_contet">
+      <div id="main_content">
         <%= content_tag(:p, notice, :class => 'notice') if notice %>
 
         <%= simple_form_for(@post, :url => send_post_path) do |f| %>

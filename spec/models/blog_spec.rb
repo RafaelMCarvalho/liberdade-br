@@ -20,6 +20,12 @@ describe Blog do
 		  it { should have_valid(:link).when('blog.algorich.com.br') }
 		  it { should_not have_valid(:link).when('', nil, 'foo') }
 		end
+
+    context 'rss' do
+      it { should have_valid(:rss).when('http://blog.algorich.com.br/rss') }
+      it { should have_valid(:rss).when('blog.algorich.com.br') }
+      it { should_not have_valid(:rss).when('', nil, 'foo') }
+    end
 	end
 
   context 'get new posts from feed and' do

@@ -25,9 +25,13 @@ feature 'manager blogs' do
 		end
 
 		it 'with errors' do
+			fill_in 'Nome', :with => ''
+			fill_in 'Link', :with => ''
+			fill_in 'RSS', :with => ''
 			click_button 'Salvar'
 			page.should have_content 'Nome não pode ser vazio'
 			page.should have_content 'Link não pode ser vazio'
+			page.should have_content 'RSS não pode ser vazio'
 		end
 	end
 
@@ -53,12 +57,24 @@ feature 'manager blogs' do
 			@blog.description.should == 'MeuEvento.com é um sistema de gerenciamento de evento'
 		end
 
-		it 'with errors' do
-			fill_in 'Nome', :with => ''
-			fill_in 'Link', :with => ''
-			click_button 'Salvar'
-			page.should have_content 'Nome não pode ser vazio'
-			page.should have_content 'Link não pode ser vazio'
+		context 'with errors' do
+			it 'blank' do
+				fill_in 'Nome', :with => ''
+				fill_in 'Link', :with => ''
+				fill_in 'RSS', :with => ''
+				click_button 'Salvar'
+				page.should have_content 'Nome não pode ser vazio'
+				page.should have_content 'Link não pode ser vazio'
+				page.should have_content 'RSS não pode ser vazio'
+			end
+
+			it 'invalid' do
+				fill_in 'Link', :with => 'foo'
+				fill_in 'RSS', :with => 'bar'
+				click_button 'Salvar'
+				page.should have_content 'Link não é válido'
+				page.should have_content 'RSS não é válido'
+			end
 		end
 	end
 
@@ -66,6 +82,7 @@ feature 'manager blogs' do
 		FactoryGirl.create :blog
 		click_link 'Blog'
 		click_link 'Excluir'
+		sleep 2
 		click_button 'Sim, eu tenho certeza'
 		page.should have_content 'Blog excluído(a) com sucesso'
 		Blog.all.should be_empty

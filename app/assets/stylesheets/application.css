@@ -1377,6 +1377,10 @@ ul.breadcrumbs li a:hover {
     font-size: 16px;
 }
 
+#sidebar .post * {
+    font-size: 14px;
+}
+
 .post p, .post dt {
     margin-top: 20px;
 }
@@ -1406,7 +1410,7 @@ ul.breadcrumbs li a:hover {
 
 .post h1, .post h2, .post h3 {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
+    font-size: 18px !important;
     text-transform: uppercase;
 }
 

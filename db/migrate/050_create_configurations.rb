@@ -24,6 +24,12 @@ class CreateConfigurations < ActiveRecord::Migration
       t.float :donation_goal
       t.float :donation_collected
 
+      # Sponsor
+      t.string :sponsor_title
+      t.string :sponsor_url
+      t.boolean :sponsor_new_tab
+      t.boolean :sponsor_published
+      t.has_attached_file :sponsor_image
       t.timestamps
     end
   end

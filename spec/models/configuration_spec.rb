@@ -29,6 +29,11 @@ describe Configuration do
       it { should have_valid(:twitter).when('blog.algorich.com.br') }
       it { should_not have_valid(:twitter).when('foo') }
     end
+    context 'sponsor_url' do
+      it { should have_valid(:sponsor_url).when('http://blog.algorich.com.br') }
+      it { should have_valid(:sponsor_url).when('blog.algorich.com.br') }
+      it { should_not have_valid(:sponsor_url).when('foo') }
+    end
   end
 end
 

@@ -202,6 +202,15 @@ RailsAdmin.config do |config|
         field :donation_collected
       end
 
+      group :sponsor do
+        label 'Propaganda'
+        field :sponsor_title
+        field :sponsor_image
+        field :sponsor_url
+        field :sponsor_new_tab
+        field :sponsor_published
+      end
+
       group :email do
         label 'Configurações de email'
         field :email

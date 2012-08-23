@@ -37,7 +37,12 @@ Configuration.create!(
   :donation_goal => '10000.00',
   :donation_collected => '4000.00',
   :facebook => 'http://www.facebook.com/liberdadebr',
-  :facebook_like_goal => 500
+  :facebook_like_goal => 500,
+  :sponsor_title => 'Propaganda',
+  :sponsor_url => 'http://google.com',
+  :sponsor_image => File.open("spec/data/image.jpg"),
+  :sponsor_new_tab => true,
+  :sponsor_published => true
 )
 
 # Pages

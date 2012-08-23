@@ -9,13 +9,24 @@
     <div id="content_gradiente"></div>
 
     <div id="content">
+      <div id="content_header">
+        <ul class="breadcrumbs">
+          <li><%= link_to 'Início', root_path %></li>
+          <li><%= link_to 'Eventos e oportunidades', events_and_opportunities_path %></li>
+          <li><span>Eventos</span></li>
+        </ul>
+
+        <hr />
+
+        <div class="header">
+          <h2>Eventos</h2>
+        </div>
+      </div>
 
       <div id="main_content">
-        <% unless @events.limit(6).empty? %>
-          <h2>Eventos</h2>
-
+        <% unless @events.empty? %>
           <ul class="events_list">
-            <% @events.limit(6).each do |e| %>
+            <% @events.each do |e| %>
               <li>
                 <div class="date">
                   <p>
@@ -47,9 +58,7 @@
           </ul>
         <% end %>
 
-        <% if @events.length > 6 %>
-          <hr />
-        <% end %>
+        <hr />
 
         <%= paginate @events %>
       </div>

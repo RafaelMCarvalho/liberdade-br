@@ -8,10 +8,15 @@
 $(function () {
     $("#main_navigation .donate_item > a, #main_navigation .share_item > a").click(
         function () {
+            if ($(this).parent().hasClass("donate_item")) {
+                $("#main_navigation .share_item").removeClass("active");
+            } else {
+                $("#main_navigation .donate_item").removeClass("active");
+            }
+
             if ($(this).parent().hasClass("active")) {
                 $(this).parent().removeClass("active");
             } else {
-                $("#main_navigation > li").removeClass("active");
                 $(this).parent().addClass("active");
             }
         }

@@ -1,6 +1,6 @@
-<%= content_for :page_title do @post.title end %>
+<%= content_for :page_title do @page.title end %>
 
-<%= content_for :page_id do 'post' end %>
+<%= content_for :page_id do 'send_post' end %>
 
 <%= content_for :content do %>
   <!-- CONTENT BEGIN -->
@@ -18,25 +18,36 @@
         <hr />
 
         <div class="header">
-          <h2>Enviar artigo</h2>
+          <h2><%= @page.title %></h2>
         </div>
       </div>
-      <div id="main_content">
-        <%= content_tag(:p, notice, :class => 'notice') if notice %>
 
+      <div id="main_content">
         <%= simple_form_for(@post, :url => send_post_path) do |f| %>
+          <%= content_tag(:p, notice, :class => 'notice') if notice %>
+
           <div class="inputs">
             <%= f.input :title %>
             <%= f.input :content, :as => :text %>
-            <%= f.input :authors, :label => 'Nomes dos autores', :hint => 'Separados por vírgula', :input_html => { :value => @authors_input_value } %>
-            <%= f.input :categories, :label => 'Categorias', :hint => 'Separadas por vírgula', :input_html => { :value => @categories_input_value } %>
+            <%= f.input :authors, :label => 'Nomes dos autores',
+              :hint => 'Separados por vírgula',
+              :input_html => { :value => @authors_input_value } %>
+            <%= f.input :categories, :label => 'Categorias',
+              :hint => 'Separadas por vírgula',
+              :input_html => { :value => @categories_input_value } %>
           </div>
           <div class="actions">
-            <%= f.button :submit, 'Enviar' %>
+            <p class="buttom"><%= f.button :submit, 'Enviar' %></p>
           </div>
         <% end %>
       </div>
+
       <div id="sidebar">
+        <div class="post">
+          <%= @page.content.html_safe if @page.content %>
+        </div>
+
+        <div class="sidebar_detail"></div>
       </div>
     </div>
   </div>

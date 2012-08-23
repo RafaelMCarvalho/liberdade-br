@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 class SiteController < ApplicationController
 
   def index
@@ -26,7 +27,7 @@ class SiteController < ApplicationController
     @contact = Page.where('indicator = ?', Page::PAGES[:contact]).first
     @contact_form = Contact.new
 
-    raise ActionController::RoutingError unless @contact.published
+    raise ActionController::RoutingError.new('Not Found') unless @contact.published
   end
 
   def send_contact

@@ -76,6 +76,14 @@ page = Page.create!(
 page.indicator = Page::PAGES[:faq]
 page.save
 
+page = Page.create!(
+  :title => 'Enviar atigo',
+  :content => file_to_string('public/seeds/send_post_page.part.html'),
+  :published => true
+)
+page.indicator = Page::PAGES[:send_post]
+page.save
+
 # Banner
 
 Banner.delete_all

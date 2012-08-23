@@ -3,6 +3,7 @@ require 'spec_helper'
 
 feature 'manage posts' do
   background do
+    FactoryGirl.create :page, :indicator => Page::PAGES[:send_post], :published => true
     FactoryGirl.create :configuration
   end
 

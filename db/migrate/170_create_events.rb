@@ -7,6 +7,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :link
       t.date :date
       t.text :description
+      t.string :local
       t.boolean :published
 
       t.string :image_file_name

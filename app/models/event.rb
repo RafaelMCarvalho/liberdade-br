@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
     :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/,
     :message => 'com formato inválido'
 
-  attr_accessible :name, :link, :date, :image, :description, :published
+  attr_accessible :name, :link, :date, :image, :description, :published, :local
 
   attr_accessor :delete_image
 

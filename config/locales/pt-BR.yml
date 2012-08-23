@@ -80,7 +80,7 @@ pt-BR:
       event:
         name: "Nome"
         link: "Site"
-        date: "data de início"
+        date: "Data de início"
         description: "Descrição"
         published: "Publicado"
         image: "Imagem de divulgação"

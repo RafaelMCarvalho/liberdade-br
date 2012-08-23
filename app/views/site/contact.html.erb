@@ -1,0 +1,52 @@
+<%= content_for :page_title do @contact.title end %>
+
+<%= content_for :page_id do 'contact' end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+      <div id="content_header">
+        <ul class="breadcrumbs">
+          <li><%= link_to 'Início', root_path %></li>
+          <li><span><%= @contact.title %></span></li>
+        </ul>
+
+        <hr />
+
+        <div class="header">
+          <h2><%= @contact.title %></h2>
+        </div>
+      </div>
+
+      <div id="main_content">
+        <div class="post">
+          <%= @contact.content.html_safe if @contact.content %>
+        </div>
+
+        <%= simple_form_for(@contact_form, :url => send_contact_path) do |f| %>
+          <%= content_tag(:p, notice, :class => 'notice') if notice %>
+
+          <div class="fields">
+            <%= f.input :name %>
+            <%= f.input :email %>
+            <%= f.input :message, :as => :text %>
+          </div>
+
+          <div class="actions">
+            <p class="buttom"><%= f.button :submit, 'Enviar mensagem' %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <div id="sidebar">
+        <%= render :partial => 'about_sidebar' %>
+      </div>
+
+    </div>
+  </div>
+  <!-- CONTENT END -->
+<% end %>

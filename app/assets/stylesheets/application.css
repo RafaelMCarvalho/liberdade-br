@@ -65,16 +65,18 @@ input[type="submit"]::-moz-focus-inner {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 }
 
-.buttom a {
+.buttom a, .buttom input {
     padding: 5px 15px;
     display: block;
 
+    cursor: pointer;
     color: #000 !important;
     font-size: 14px !important;
     text-shadow: 0 1px 0 #fff;
     text-decoration: none;
     text-align: center;
     border-radius: 30px;
+    border: 0;
     background: rgb(255,255,255); /* Old browsers */
     background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
@@ -86,12 +88,12 @@ input[type="submit"]::-moz-focus-inner {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.buttom a:hover {
+.buttom a:hover, .buttom input:hover {
     text-decoration: none !important;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
-.buttom a:active {
+.buttom a:active, .buttom input:active {
     margin: 1px 0 -1px 0;
 }
 
@@ -187,6 +189,17 @@ input[type="submit"]::-moz-focus-inner {
     background: -ms-linear-gradient(top,  rgba(255,255,255,1) 16%,rgba(255,255,255,0.87) 27%,rgba(255,255,255,0) 100%); /* IE10+ */
     background: linear-gradient(to bottom,  rgba(255,255,255,1) 16%,rgba(255,255,255,0.87) 27%,rgba(255,255,255,0) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+#header_wrapper {
+    background: rgb(239,239,239); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(239,239,239,1) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(239,239,239,1) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(239,239,239,1) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(239,239,239,1) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(239,239,239,1) 0%,rgba(255,255,255,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
 }
 
 #header {
@@ -732,6 +745,16 @@ ul#main_navigation > li.social_item li.rss_item a {
     background: #e6e6e6;
 }
 
+#content .search_form .fields {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+
+#content .search_form .input {
+    padding: 0;
+}
+
 #content .search_form .input label {
     display: none;
 }
@@ -740,6 +763,7 @@ ul#main_navigation > li.social_item li.rss_item a {
     padding: 10px;
     display: block;
     width: 490px;
+    z-index: 0;
 
     color: #777;
     font-family: Georgia, Times, serif;
@@ -768,6 +792,7 @@ ul#main_navigation > li.social_item li.rss_item a {
     display: block;
     overflow: hidden;
     text-indent: -555px;
+    z-index: 1;
 
     cursor: pointer;
     border: 0;
@@ -1311,7 +1336,7 @@ ul.breadcrumbs li a:hover {
     margin-top: 20px;
 }
 
-#events_and_opportunities_page #sidebar {
+#events_and_opportunities_page #sidebar, #send_post_page #sidebar {
     margin-top: -20px;
     padding-left: 20px;
     width: 320px;
@@ -1326,8 +1351,16 @@ ul.breadcrumbs li a:hover {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
 }
 
-#events_and_opportunities_page #sidebar .sidebar_detail {
+#sidebar .sidebar_detail {
     margin-left: -20px;
+}
+
+/*
+** Send post page
+*/
+
+#send_post_page #sidebar {
+    padding-top: 50px
 }
 
 /*
@@ -1367,6 +1400,16 @@ ul.breadcrumbs li a:hover {
     text-decoration: underline;
 }
 
+.post ul li, .post ol li {
+    margin: 20px 0 0 20px;
+}
+
+.post h1, .post h2, .post h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
 .post .hilight_wrapper {
     margin: 0 20px 20px 0;
     padding: 5px 0;
@@ -1404,6 +1447,263 @@ ul.breadcrumbs li a:hover {
 
 .post_categories a:hover {
     text-decoration: underline;
+}
+
+/*
+**
+*/
+
+form.simple_form {
+    margin-top: 20px;
+}
+
+form.simple_form fieldset legend {
+    padding: 10px;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+form.simple_form .fields {
+    margin-bottom: 20px;
+}
+
+form.simple_form .input {
+    padding: 10px;
+}
+
+form.simple_form .input hr {
+    clear: both;
+
+    border: 0;
+}
+
+form.simple_form .input label, form.simple_form .input input,
+form.simple_form .input textarea {
+    display: block;
+    float: left;
+}
+
+form.simple_form .input label {
+    width: 120px;
+
+    font-size: 14px;
+    text-shadow: 0 1px 0 #fff;
+}
+
+form.simple_form .input input, form.simple_form .input textarea {
+    padding: 10px;
+    width: 365px;
+
+    border: 1px solid #ccc;
+    border-top-color: #aaa;
+    box-shadow: inset 0 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+form.simple_form .input .big_info p {
+    padding: 10px;
+
+    color: #C09853;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid #FBEED5;
+    border-radius: 4px;
+    background-color: #FCF8E3;
+}
+
+form.simple_form .input ul, .section form .input .big_info,
+form.simple_form .input ul, .section form .input .total {
+    margin: 0 -10px 0 -10px;
+    padding: 10px;
+    display: block;
+    clear: both;
+
+    list-style: none;
+    background: #fff;
+}
+
+form.simple_form .input ul, .section form .input .total {
+    font-size: 36px;
+    font-weight: 300;
+}
+
+form.simple_form .input ul, .section form .input .total span {
+    font-weight: 300;
+}
+
+form.simple_form .input ul li {
+    margin-top: 10px;
+    line-height: 1;
+
+    cursor: pointer;
+    color: #333;
+    font-size: 14px;
+    text-shadow: 0 1px 0 #eee;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    border-bottom: 1px solid #aaa;
+    background-color: #EEE;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EEE), color-stop(100%, #CCC));
+    background-image: -webkit-linear-gradient(top, #EEE, #CCC);
+    background-image: -moz-linear-gradient(top, #EEE, #CCC);
+    background-image: -ms-linear-gradient(top, #EEE, #CCC);
+    background-image: -o-linear-gradient(top, #EEE, #CCC);
+    background-image: linear-gradient(top, #EEE, #CCC);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+form.simple_form .input ul li.active {
+    border: 1px solid #aaa;
+    border-bottom: 1px solid #888;
+    box-shadow: inset 0 0 5px 2px #AAA, 0 1px 0 0 #EEE;
+}
+
+form.simple_form .input ul li.block {
+    cursor: default;
+    border: 1px dashed #ccc;
+    background: #fff;
+}
+
+form.simple_form .input ul li.block > span .price,
+form.simple_form .input ul li.block > span .title {
+    border-color: #fff !important;
+    box-shadow: none;
+}
+
+form.simple_form .input ul li .info {
+    margin: -10px 0 0 510px;
+    padding: 10px;
+    position: absolute;
+    width: 210px;
+    display: none;
+
+    cursor: default;
+    border-radius: 5px;
+    border: 5px solid #eee;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+form.simple_form .input ul li:hover .info {
+    display: block;
+}
+
+form.simple_form .input ul li .info .info_detail {
+    margin: -5px 0 0 -32px;
+    width: 22px;
+    height: 31px;
+    position: absolute;
+
+    background: url("/assets/registration_activity_info_detail.png") no-repeat center;
+}
+
+form.simple_form .input ul li .info .more {
+    margin-top: 30px;
+
+    font-size: 14px;
+    text-align: center;
+    text-shadow: none;
+}
+
+form.simple_form .input ul li .info .datetime * {
+    color: #000;
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    text-shadow: none;
+}
+
+form.simple_form .input ul li .info .datetime span {
+    padding: 2px 0;
+    display: inline;
+}
+
+form.simple_form .input ul li .info .datetime .date {
+    padding-left: 25px;
+
+    background: url("/assets/calendar_icon.png") no-repeat left center;
+}
+
+form.simple_form .input ul li .info .datetime .time {
+    padding-left: 25px;
+
+    background: url("/assets/clock_icon.png") no-repeat left center;
+}
+
+form.simple_form .input ul li.block > span {
+    color: #555;
+    text-shadow: none;
+}
+
+form.simple_form .input ul li > span {
+    padding: 10px 10px 10px 40px;
+    display: block;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+}
+
+form.simple_form .input ul li > span .price,
+form.simple_form .input ul li > span .title {
+    margin: -10px 0;
+    padding: 10px 0;
+    display: block;
+}
+
+form.simple_form .input ul li > span .price {
+    width: 80px;
+    padding-right: 10px;
+    float: left;
+
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    border-right: 1px solid #ccc;
+}
+
+form.simple_form .input ul li > span .title {
+    margin-left: -1px;
+    padding-left: 10px;
+    width: 340px;
+    float: left;
+
+    border-left: 1px solid #ccc;
+    box-shadow: inset 1px 0 0 #eee;
+}
+
+form.simple_form .input ul li.active > span {
+    background: url("/assets/green_ok_icon.png") no-repeat 10px center;
+}
+
+form.simple_form .input ul li:first-child {
+    margin-top: 0;
+}
+
+form.simple_form .input .error, form.simple_form .input .hint {
+    margin-left: 120px;
+    display: block;
+
+    color: red;
+    font-size: 12px;
+}
+
+form.simple_form .input .hint {
+    color: #444;
+}
+
+form.simple_form .input:first-child {
+    border-top: 0;
+}
+
+form.simple_form .actions {
+    margin: 20px 0 0 130px;
+}
+
+form.simple_form .actions p {
+    float: left;
+}
+
+form.simple_form .actions img {
+    float: right;
 }
 
 /*

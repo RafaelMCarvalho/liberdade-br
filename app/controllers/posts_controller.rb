@@ -10,19 +10,26 @@ class PostsController < ApplicationController
   end
 
   def new
+    @page = Page.where('indicator = ?', Page::PAGES[:send_post]).first
     @post = Post.new
+
+    raise ActionController::RoutingError.new('Not Found') unless @page.published
   end
 
   def send_post
+    @page = Page.where('indicator = ?', Page::PAGES[:send_post]).first
+
     @post = Post.build_from_new_post_page(params[:post])
     @authors_input_value = @post.authors.map(&:name).join(', ')
     @categories_input_value = @post.categories.map(&:name).join(', ')
+
     if @post.save
       flash[:notice] = 'Post enviado com sucesso. Ele será avaliado pelos moderadores antes de ser exibido no site.'
       redirect_to :action => 'new'
     else
       render :action => 'new'
     end
+
   end
 
   def show
@@ -88,4 +95,3 @@ class PostsController < ApplicationController
     end
   end
 end
-

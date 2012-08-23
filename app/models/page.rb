@@ -9,11 +9,11 @@ class Page < ActiveRecord::Base
     :contact => 1,
     :about => 2,
     :financers => 3,
-    :faq => 4
+    :faq => 4,
+    :send_post => 5
   }
 
   def self.get_page(id)
     find_by_indicator(PAGES[id.to_sym])
   end
 end
-

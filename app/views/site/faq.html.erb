@@ -1,5 +1,39 @@
-<%= content_for :content do %>
-  <h3><%= @faq.title %></h3>
+<%= content_for :page_title do @faq.title end %>
 
-  <%= @faq.content.html_safe %>
+<%= content_for :page_id do 'faq' end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+      <div id="content_header">
+        <ul class="breadcrumbs">
+          <li><%= link_to 'Início', root_path %></li>
+          <li><span><%= @faq.title %></span></li>
+        </ul>
+
+        <hr />
+
+        <div class="header">
+          <h2><%= @faq.title %></h2>
+        </div>
+      </div>
+
+      <div id="main_content">
+        <div class="post">
+          <%= @faq.content.html_safe if @faq.content %>
+        </div>
+      </div>
+
+      <div id="sidebar">
+        <%= render :partial => 'about_sidebar' %>
+      </div>
+
+    </div>
+  </div>
+  <!-- CONTENT END -->
+
 <% end %>

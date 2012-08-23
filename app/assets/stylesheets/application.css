@@ -1344,8 +1344,27 @@ ul.breadcrumbs li a:hover {
     font-size: 16px;
 }
 
-.post p {
+.post p, .post dt {
     margin-top: 20px;
+}
+
+.post dt {
+    margin-bottom: 5px;
+
+    font-weight: bold;
+}
+
+.post dd {
+    margin-left: 20px;
+}
+
+.post a {
+    color: #59F;
+    text-decoration: none;
+}
+
+.post a:hover {
+    text-decoration: underline;
 }
 
 .post .hilight_wrapper {

@@ -239,15 +239,17 @@
             </li>
           <% end %>
 
-          <li id="implementation">
-            <h3>Realização</h3>
+          <% if configuration.realization_image %>
+            <li id="implementation">
+              <h3>Realização</h3>
 
-            <ul>
-              <li><%= link_to image_tag('/assets/ideias.png', :alt => 'Name',
-                :size => '250x56'), '#' %></li>
-              </li>
-            </ul>
-          </li>
+              <ul>
+                <li><%= link_to image_tag(configuration.realization_image.url(:normal), :alt => configuration.realization_title, :size => '250x56'),
+                  configuration.realization_url, :target => '_blank' %></li>
+                </li>
+              </ul>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>

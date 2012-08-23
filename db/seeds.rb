@@ -10,17 +10,17 @@ end
 
 #User.delete_all
 
-#User.create!(
+# User.create!(
 #  :email => 'admin@base.com',
 #  :password => '123456',
 #  :role => :coordinator
-#)
+# )
 
-#User.create!(
+# User.create!(
 #  :email => 'moderator@base.com',
 #  :password => '123456',
 #  :role => :moderator
-#)
+# )
 
 # Configuration
 
@@ -37,7 +37,15 @@ Configuration.create!(
   :donation_goal => '10000.00',
   :donation_collected => '4000.00',
   :facebook => 'http://www.facebook.com/liberdadebr',
-  :facebook_like_goal => 500
+  :facebook_like_goal => 500,
+  :sponsor_title => 'Libertários',
+  :sponsor_url => 'http://www.pliber.org.br',
+  :sponsor_image => File.open("public/seeds/libertarios.jpg"),
+  :sponsor_new_tab => true,
+  :sponsor_published => true,
+  :realization_title => 'Instituto para o Desenvolvimento Econômico, Institucional e Social',
+  :realization_url => 'http://www.ideias.org/',
+  :realization_image => File.open("public/seeds/ideias.png"),
 )
 
 # Pages

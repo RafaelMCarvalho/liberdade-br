@@ -35,6 +35,14 @@ pt-BR:
         donation_goal: 'Objetivo (R$)'
         site_url: 'URL do site'
         site_title: 'Título do site'
+        sponsor_title: 'Título'
+        sponsor_image: 'Imagem'
+        sponsor_url: 'URL'
+        sponsor_new_tab: 'Abrir em nova aba'
+        sponsor_published: 'Publicada'
+        realization_title: 'Título'
+        realization_image: 'Imagem'
+        realization_url: 'URL'
       opportunity:
         title: "Título"
         content: "Conteúdo"

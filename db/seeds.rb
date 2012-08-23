@@ -45,7 +45,7 @@ Configuration.create!(
   :ad_published => true,
   :realization_title => 'Instituto para o Desenvolvimento Econômico, Institucional e Social',
   :realization_url => 'http://www.ideias.org/',
-  :realization_image => File.open("public/seeds/ideias.png"),
+  :realization_image => File.open("public/seeds/ideias.png")
 )
 
 # Pages

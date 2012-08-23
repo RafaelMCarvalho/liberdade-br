@@ -74,25 +74,29 @@
   <!-- MAIN NAVIGATION BEGIN -->
   <div id="main_navigation_wrapper">
     <ul id="main_navigation">
-      <li class="active home_item">
+      <% li_class = (request.path == root_path) ? 'active' : '' %>
+      <li class="home_item <%= li_class %>">
         <%= link_to '<strong><span>Principal</span></strong>'.html_safe, root_path %>
       </li>
 
       <% about_page = Page.get_page(:about) %>
       <% if about_page and about_page.published? %>
-        <li class="info_item">
+        <% li_class = (request.path == about_path) ? 'active' : '' %>
+        <li class="info_item <%= li_class %>">
           <%= link_to "<strong><span>#{about_page.title}</span></strong>".html_safe, about_path %>
         </li>
       <% end %>
 
       <% faq_page = Page.get_page(:faq) %>
       <% if faq_page and faq_page.published? %>
-        <li class="faq_item">
+        <% li_class = (request.path == faq_path) ? 'active' : '' %>
+        <li class="faq_item <%= li_class %>">
           <%= link_to "<strong><span>#{faq_page.title}</span></strong>".html_safe, faq_path %>
         </li>
       <% end %>
 
-      <li class="events_item">
+      <% li_class = (request.path == events_and_opportunities_path) ? 'active' : '' %>
+      <li class="events_item <%= li_class %>">
         <%= link_to '<strong><span>Eventos e oportunidades</span></strong>'.html_safe,
           events_and_opportunities_path %>
       </li>
@@ -154,7 +158,8 @@
 
       <% contact_page = Page.get_page(:contact) %>
       <% if contact_page and contact_page.published? %>
-        <li class="contact_item">
+        <% li_class = (request.path == contact_path) ? 'active' : '' %>
+        <li class="contact_item <%= li_class %>">
           <%= link_to "<strong><span>#{contact_page.title}</span></strong>".html_safe, contact_path %>
         </li>
       <% end %>

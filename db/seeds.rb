@@ -253,6 +253,7 @@ names = [
     :link => 'http://www.algorich.com.br/',
     :date => Date.today + i.days,
     :published => true,
+    :local => 'Lorem ipsum dolor',
     :image => File.open('public/seeds/event_image.jpg'),
     :description => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       Proin ipsum dui, bibendum non dignissim ac, auctor in mauris. Integer

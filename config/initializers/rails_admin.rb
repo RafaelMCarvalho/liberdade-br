@@ -125,6 +125,11 @@ RailsAdmin.config do |config|
     list do
       field :image
       field :title
+      field :link do
+        formatted_value do
+          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
+        end
+      end
       field :published
     end
 
@@ -137,6 +142,31 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Event do
+    navigation_label 'Conteúdos'
+
+    list do
+      field :image
+      field :date
+      field :name
+      field :link do
+        formatted_value do
+          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
+        end
+      end
+      field :published
+    end
+
+   edit do
+      field :image
+      field :date
+      field :name
+      field :link
+      field :published
+      field :local
+      field(:description) { ckeditor true }
+    end
+  end
 
   config.model Opportunity do
     navigation_label 'Conteúdos'
@@ -173,7 +203,13 @@ RailsAdmin.config do |config|
     navigation_label 'Conteúdos'
 
     list do
+      field :image
       field :name
+      field :link do
+        formatted_value do
+          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
+        end
+      end
     end
 
     edit do

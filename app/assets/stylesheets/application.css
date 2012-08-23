@@ -714,6 +714,19 @@ ul#main_navigation > li.social_item li.rss_item a {
     font-size: 14px;
 }
 
+#content #content_header .info .date {
+    padding-left: 23px;
+
+    background: url("/assets/calendar_icon.png") no-repeat left center;
+}
+
+#content #content_header .info .local {
+    padding: 5px 0 5px 23px;
+    display: inline-block;
+
+    background: url("/assets/local_icon.png") no-repeat left center;
+}
+
 #content #content_header .info a {
     padding-right: 16px;
 
@@ -1423,6 +1436,16 @@ ul.breadcrumbs li a:hover {
     border-left: 0;
     border-right: 0;
     width: 200px;
+}
+
+.post .pretty_image {
+    margin: 10px 10px 10px 0;
+    padding: 5px;
+    float: left;
+
+    line-height: 0;
+    float: left;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .post .hilight_wrapper .hilight {

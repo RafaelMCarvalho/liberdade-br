@@ -16,6 +16,13 @@ describe Category do
     end
   end
 
+  it 'should return only published posts' do
+    published_post = FactoryGirl.create :post, :published => true
+    unpublished_post = FactoryGirl.create :post, :published => false
+    category = FactoryGirl.create :category, :posts => [published_post, unpublished_post]
+    category.published_posts.should == [published_post]
+  end
+
   it 'name should be downcased' do
     c = Category.create(:name => 'LIBERALISMO')
     c.name.should == 'liberalismo'

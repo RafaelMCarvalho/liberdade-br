@@ -14,7 +14,7 @@
           <li><%= link_to 'Início', root_path %></li>
           <li><%= link_to 'Posts', posts_path %></li>
           <% if @post.blog %>
-            <li><%= link_to @post.blog.name, '#' %></li>
+            <li><%= link_to @post.blog.name, posts_blog_path(@post.blog) %></li>
           <% end %>
           <li><span><%= @post.title %></span></li>
         </ul>
@@ -57,7 +57,7 @@
 
         <% unless @post.categories.empty? %>
           <p class="post_categories">
-            <%= (@post.categories.collect { |c| link_to(c.name, '#') }).
+            <%= (@post.categories.collect { |c| link_to(c.name, posts_category_path(c)) }).
               to_sentence.html_safe %>
           </p>
         <% end %>

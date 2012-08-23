@@ -202,13 +202,13 @@ RailsAdmin.config do |config|
         field :donation_collected
       end
 
-      group :sponsor do
+      group :ad do
         label 'Propaganda'
-        field :sponsor_title
-        field :sponsor_image
-        field :sponsor_url
-        field :sponsor_new_tab
-        field :sponsor_published
+        field :ad_title
+        field :ad_image
+        field :ad_url
+        field :ad_new_tab
+        field :ad_published
       end
 
       group :realization do

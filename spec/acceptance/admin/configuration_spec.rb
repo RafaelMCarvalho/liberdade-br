@@ -23,10 +23,10 @@ feature 'Manupulate configurations' do
       fill_in 'Link', :with => 'http://foo.com'
       fill_in 'Objetivo (R$)', :with => '1000.00'
       fill_in 'Angariado (R$)', :with => '600.00'
-      # Sponsor
-      fill_in 'Título', :with => 'Sponsor'
+      # Ad
+      fill_in 'Título', :with => 'Ad'
       attach_file 'Imagem', IMAGE
-      fill_in 'URL', :with => 'http://sponsor.com'
+      fill_in 'URL', :with => 'http://ad.com'
       check 'Publicada'
       check 'Abrir em nova aba'
       click_button 'Salvar'
@@ -44,8 +44,8 @@ feature 'Manupulate configurations' do
         page.should have_content 'E-mail não é válido.'
       end
 
-     scenario 'invalid sponsor url' do
-        fill_in 'URL', :with => 'http://sponsor'
+     scenario 'invalid ad url' do
+        fill_in 'URL', :with => 'http://ad'
         click_button 'Salvar'
         page.should have_content 'URL não é válido.'
       end

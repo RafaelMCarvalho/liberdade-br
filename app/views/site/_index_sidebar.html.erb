@@ -11,13 +11,16 @@
   </div>
 </div>
 
-<div class="sidebar_box_wrapper" id="custom_box">
-  <div class="sidebar_box">
-    <p class="buttom">
-      <a href="#">Acesse agora</a>
-    </p>
+<% if configuration.ad_published %>
+  <div class="sidebar_box_wrapper" id="custom_box">
+    <div class="sidebar_box">
+      <p class="buttom">
+        <%= link_to 'Acesse agora', configuration.ad_url,
+          :target => ('_blank' if configuration.ad_new_tab) %>
+      </p>
+    </div>
   </div>
-</div>
+<% end %>
 
 <%= render :partial => 'facebook_box' %>
 

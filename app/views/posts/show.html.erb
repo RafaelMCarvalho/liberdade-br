@@ -4,6 +4,9 @@
   <meta property="og:description" content="<%= @post.hilight %>" />
   <meta property="og:url" content="<%= request.url %>" />
   <meta property="og:image" content="<%= configuration.site_url + '/assets/facebook_size_logo.jpg' %>" />
+  <% if current_user %>
+    <meta property="fb:app_id" content="508974272450177"/>
+  <% end %>
 <% end %>
 
 
@@ -70,12 +73,13 @@
               to_sentence.html_safe %>
           </p>
         <% end %>
+
       </div>
 
       <div id="sidebar">
         <%= render :partial => 'post_sidebar', :locals => { :post => @post } %>
       </div>
-
+      <div class="fb-comments" data-href="<%= request.url %>" data-num-posts="2" data-width="530"></div>
     </div>
   </div>
   <!-- CONTENT END -->

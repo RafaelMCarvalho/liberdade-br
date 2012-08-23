@@ -35,6 +35,14 @@ pt-BR:
         donation_goal: 'Objetivo (R$)'
         site_url: 'URL do site'
         site_title: 'Título do site'
+        ad_title: 'Título'
+        ad_image: 'Imagem'
+        ad_url: 'URL'
+        ad_new_tab: 'Abrir em nova aba'
+        ad_published: 'Publicada'
+        realization_title: 'Título'
+        realization_image: 'Imagem'
+        realization_url: 'URL'
       opportunity:
         title: "Título"
         content: "Conteúdo"
@@ -58,6 +66,7 @@ pt-BR:
         password_confirmation: "Confirmação da senha"
         current_password: 'Senha atual'
         role: 'Permissão'
+        remember_me: 'Lembrar'
       banner:
         title: "Título"
         link: "Link"

@@ -3,8 +3,8 @@ class Banner < ActiveRecord::Base
   attr_accessible :title, :link, :open_in_new_tab, :image, :published
 
   has_attached_file :image,
-    :path => ':rails_root/public/system/sponsors/:id/:style/:filename',
-    :url => '/system/sponsors/:id/:style/:filename',
+    :path => ':rails_root/public/system/banners/:id/:style/:filename',
+    :url => '/system/banners/:id/:style/:filename',
     :styles => { :banner => '970x410#', :thumb => '97x41#' }
 
   validates_attachment_content_type :image,

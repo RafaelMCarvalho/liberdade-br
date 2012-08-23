@@ -29,6 +29,16 @@ describe Configuration do
       it { should have_valid(:twitter).when('blog.algorich.com.br') }
       it { should_not have_valid(:twitter).when('foo') }
     end
+    context 'ad_url' do
+      it { should have_valid(:ad_url).when('http://blog.algorich.com.br') }
+      it { should have_valid(:ad_url).when('blog.algorich.com.br') }
+      it { should_not have_valid(:ad_url).when('foo') }
+    end
+    context 'realization_url' do
+      it { should have_valid(:realization_url).when('http://blog.algorich.com.br') }
+      it { should have_valid(:realization_url).when('blog.algorich.com.br') }
+      it { should_not have_valid(:realization_url).when('foo') }
+    end
   end
 end
 

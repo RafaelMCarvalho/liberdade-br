@@ -23,6 +23,12 @@ feature 'Manupulate configurations' do
       fill_in 'Link', :with => 'http://foo.com'
       fill_in 'Objetivo (R$)', :with => '1000.00'
       fill_in 'Angariado (R$)', :with => '600.00'
+      # Ad
+      fill_in 'Título', :with => 'Ad'
+      attach_file 'Imagem', IMAGE
+      fill_in 'URL', :with => 'http://ad.com'
+      check 'Publicada'
+      check 'Abrir em nova aba'
       click_button 'Salvar'
       page.should have_content 'Configuração atualizado(a) com sucesso.'
 
@@ -36,6 +42,12 @@ feature 'Manupulate configurations' do
         fill_in 'E-mail', :with => 'email@qualquer'
         click_button 'Salvar'
         page.should have_content 'E-mail não é válido.'
+      end
+
+     scenario 'invalid ad url' do
+        fill_in 'URL', :with => 'http://ad'
+        click_button 'Salvar'
+        page.should have_content 'URL não é válido.'
       end
 
       scenario 'empty fields' do

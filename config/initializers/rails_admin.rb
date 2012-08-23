@@ -202,6 +202,22 @@ RailsAdmin.config do |config|
         field :donation_collected
       end
 
+      group :ad do
+        label 'Propaganda'
+        field :ad_title
+        field :ad_image
+        field :ad_url
+        field :ad_new_tab
+        field :ad_published
+      end
+
+      group :realization do
+        label 'Realização'
+        field :realization_title
+        field :realization_image
+        field :realization_url
+      end
+
       group :email do
         label 'Configurações de email'
         field :email

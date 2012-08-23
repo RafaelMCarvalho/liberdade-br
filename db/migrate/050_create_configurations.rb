@@ -31,6 +31,11 @@ class CreateConfigurations < ActiveRecord::Migration
       t.boolean :sponsor_published
       t.has_attached_file :sponsor_image
       t.timestamps
+
+      # Realization
+      t.string :realization_title
+      t.has_attached_file :realization_image
+      t.string :realization_url
     end
   end
 

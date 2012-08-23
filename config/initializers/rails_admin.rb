@@ -211,6 +211,13 @@ RailsAdmin.config do |config|
         field :sponsor_published
       end
 
+      group :realization do
+        label 'Realização'
+        field :realization_title
+        field :realization_image
+        field :realization_url
+      end
+
       group :email do
         label 'Configurações de email'
         field :email

@@ -40,6 +40,9 @@ pt-BR:
         sponsor_url: 'URL'
         sponsor_new_tab: 'Abrir em nova aba'
         sponsor_published: 'Publicada'
+        realization_title: 'Título'
+        realization_image: 'Imagem'
+        realization_url: 'URL'
       opportunity:
         title: "Título"
         content: "Conteúdo"

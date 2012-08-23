@@ -22,6 +22,10 @@ describe PostsController do
     { :get => '/posts/blog/1' }.should route_to(:controller => 'posts', :action => 'per_blog', :id => '1')
   end
 
+  it 'get to posts by category page' do
+    { :get => '/posts/category/1' }.should route_to(:controller => 'posts', :action => 'per_category', :id => '1')
+  end
+
   it 'get send post page' do
     { :get => '/posts/new' }.should route_to(:controller => 'posts', :action => 'new')
   end

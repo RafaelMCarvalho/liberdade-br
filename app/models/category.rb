@@ -14,6 +14,10 @@ class Category < ActiveRecord::Base
     category ? category : self.create(:name => name)
   end
 
+  def published_posts
+    posts.where("published = ?", true)
+  end
+
   private
   def downcase_name
     self.name = name.downcase_with_accents

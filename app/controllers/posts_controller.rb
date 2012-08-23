@@ -51,6 +51,12 @@ class PostsController < ApplicationController
     render :index
   end
 
+  def per_category
+    @category = Category.find(params[:id])
+    @posts = @category.published_posts.page(params[:page])
+    @search = @posts.search(params[:q])
+    render :index
+  end
 
   def approve
     params[:approve] = true

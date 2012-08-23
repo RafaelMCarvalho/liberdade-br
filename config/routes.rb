@@ -25,19 +25,22 @@ LiberdadeBr::Application.routes.draw do
 #= 5. Blog =====================================================================
   get '/posts/blog/:id' => 'posts#per_blog', :as => :posts_blog
 
-#= 6. Post =====================================================================
+#= 6. Category =================================================================
+  get '/posts/category/:id' => 'posts#per_category', :as => :posts_category
+
+#= 7. Post =====================================================================
   resources :posts, :only => [:index, :show, :new]
   post "/posts" => "posts#index", :as => :posts
   post '/posts/send' => 'posts#send_post', :as => :send_post
 
-#= 7. Events and Opportunities =================================================
+#= 8. Events and Opportunities =================================================
   get '/eventos-e-oportunidades' => 'site#events_and_opportunities', :as => :events_and_opportunities
 
-#= 8. Events ===================================================================
+#= 9. Events ===================================================================
   get '/eventos' => 'events#index', :as => :events
   get '/evento/:id' => 'events#show', :as => :event
 
-#= 8. Opportunities ===================================================================
+#= 10. Opportunities ===========================================================
   get '/oportunidades' => 'opportunities#index', :as => :opportunities
   get '/oportunidade/:id' => 'Opportunities#show', :as => :opportunity
 

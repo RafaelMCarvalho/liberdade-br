@@ -272,3 +272,9 @@ pt-BR:
   admin:
     home:
       name: "Site"
+
+  # Views
+  views:
+    pagination:
+      first: "Primeira"
+      last: "Última"

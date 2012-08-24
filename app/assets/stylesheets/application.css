@@ -1342,9 +1342,13 @@ ul.breadcrumbs li a:hover {
     background: url("/assets/mail_icon.png") no-repeat left center;
 }
 
+#events_page #content_header {
+    background: url("/assets/calendar_icon_62.png") no-repeat left center;
+}
+
 #about_page #content_header h2, #faq_page #content_header h2,
 #events_and_opportunities_page #content_header h2,
-#contact_page #content_header h2 {
+#contact_page #content_header h2, #events_page h2 {
     padding-left: 64px;
 }
 
@@ -1363,11 +1367,27 @@ ul.breadcrumbs li a:hover {
     text-transform: uppercase;
 }
 
+#events_and_opportunities_page #main_content h2,
+#events_and_opportunities_page #sidebar h2 {
+    padding: 7px 0 3px 30px;
+
+    background: url("/assets/calendar_icon_32.png") no-repeat left center;
+}
+
+#events_and_opportunities_page #sidebar h2 {
+    background-image: url("/assets/star_icon_32.png");
+}
+
 #events_and_opportunities_page #sidebar h2 {
     margin-top: 20px;
 }
 
-#events_and_opportunities_page #sidebar, #send_post_page #sidebar {
+#events_page #sidebar h3 {
+    margin-top: 40px;
+}
+
+#events_and_opportunities_page #sidebar, #send_post_page #sidebar,
+#events_page #sidebar {
     margin-top: -20px;
     padding-left: 20px;
     width: 320px;

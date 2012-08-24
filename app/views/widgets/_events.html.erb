@@ -1,0 +1,19 @@
+<%
+  events = Event.where('published = ? AND date >= ?', true, Date.today).
+    order('date').limit(5)
+%>
+
+<% unless events.empty? %>
+  <div class="sidebar_panel" id="events_panel">
+    <h3><%= link_to 'Eventos', events_path %></h3>
+
+    <ul>
+      <% events.each do |e| %>
+        <li>
+          <span class="date"><%= e.date.strftime('%d/%m') %></span>
+          <%= link_to e.name, event_path(e) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

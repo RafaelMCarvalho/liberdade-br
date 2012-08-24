@@ -1,4 +1,4 @@
-<%= content_for :page_title do 'opportunities' end %>
+<%= content_for :page_title do 'Oportunidades' end %>
 
 <%= content_for :page_id do 'opportunities' end %>
 
@@ -9,11 +9,22 @@
     <div id="content_gradiente"></div>
 
     <div id="content">
+      <div id="content_header">
+        <ul class="breadcrumbs">
+          <li><%= link_to 'Início', root_path %></li>
+          <li><%= link_to 'Eventos e oportunidades', events_and_opportunities_path %></li>
+          <li><span>Oportunidades</span></li>
+        </ul>
+
+        <hr />
+
+        <div class="header">
+          <h2>Oportunidades</h2>
+        </div>
+      </div>
 
       <div id="main_content">
-        <% unless @opportunities.limit(6).empty? %>
-          <h2>Oportunidades</h2>
-
+        <% unless @opportunities.empty? %>
           <ul class="opportunities_list">
             <% @opportunities.limit(6).each do |o| %>
               <li>
@@ -31,12 +42,17 @@
           </ul>
         <% end %>
 
-        <% if @opportunities.length > 6 %>
-          <hr />
-        <% end %>
+        <hr />
 
         <%= paginate @opportunities %>
       </div>
+
+      <div id="sidebar">
+        <%= render :partial => 'widgets/events' %>
+
+        <div class="sidebar_detail"></div>
+      </div>
+
     </div>
   </div>
   <!-- CONTENT END -->

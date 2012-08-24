@@ -1,11 +1,12 @@
 <%
   opportunities = Opportunity.where('published = ?', true).
     order('created_at').limit(5)
+  title ||= nil
 %>
 
 <% unless opportunities.empty? %>
   <div class="sidebar_panel" id="opportunities_panel">
-    <h3><%= link_to 'Oportunidades', opportunities_path %></h3>
+    <h3><%= link_to title.nil? ? 'Oportunidades' : title, opportunities_path %></h3>
 
     <ul>
       <% opportunities.each do |o| %>

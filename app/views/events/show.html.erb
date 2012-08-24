@@ -1,7 +1,7 @@
 <%= content_for :og do %>
   <meta property="og:title" content="<%= @event.name %>" />
   <meta property="og:site_name" content="<%= configuration.site_title %>" />
-  <meta property="og:description" content="<%= @event %>" />
+  <meta property="og:description" content="<%= smart_truncate(@event.description, 200) %>" />
   <meta property="og:url" content="<%= request.url %>" />
   <meta property="og:image" content="<%= configuration.site_url + '/assets/facebook_size_logo.jpg' %>" />
 <% end %>
@@ -31,9 +31,10 @@
           <h2><%= @event.name %></h2>
 
           <p class="info">
-            <strong class="date"><%= @event.date.strftime('%d de %B de %Y') %></strong><br />
-            <span class="local">Centro de exposições e convivências da UENF -
-            Campos dos Goytacazes/RJ</span>
+            <strong class="date"><%= @event.date.strftime('%d de %B de %Y') %></strong>
+            <% if @event.local %>
+              <br /><span class="local"><%= @event.local %></span>
+            <% end %>
           </p>
 
           <!-- AddThis Button BEGIN -->
@@ -62,6 +63,9 @@
       </div>
 
       <div id="sidebar">
+        <%= render :partial => 'widgets/events', :locals => { :title => 'Mais eventos' } %>
+
+        <div class="sidebar_detail"></div>
       </div>
 
     </div>

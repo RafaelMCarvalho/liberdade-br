@@ -1,0 +1,62 @@
+<%= content_for :og do %>
+  <meta property="og:title" content="<%= @opportunity.title %>" />
+  <meta property="og:site_name" content="<%= configuration.site_title %>" />
+  <meta property="og:description" content="<%= smart_truncate(@opportunity.content, 200) %>" />
+  <meta property="og:url" content="<%= request.url %>" />
+  <meta property="og:image" content="<%= configuration.site_url + '/assets/facebook_size_logo.jpg' %>" />
+<% end %>
+
+<%= content_for :page_title do @opportunity.title end %>
+
+<%= content_for :page_id do 'opportunity' end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+      <div id="content_header">
+        <ul class="breadcrumbs">
+          <li><%= link_to 'Início', root_path %></li>
+          <li><%= link_to 'Eventos e oportunidades', events_and_opportunities_path %></li>
+          <li><%= link_to 'Oportunidades', events_path %></li>
+          <li><span><%= @opportunity.title %></span></li>
+        </ul>
+
+        <hr />
+
+        <div class="header">
+          <h2><%= @opportunity.title %></h2>
+
+          <!-- AddThis Button BEGIN -->
+          <div class="addthis_toolbox addthis_default_style " addthis:url="<%= request.url %>" addthis:title="<%= @opportunity.title %>">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_counter addthis_pill_style"></a>
+          </div>
+          <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+          <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-502149e70cee4a2b"></script>
+          <!-- AddThis Button END -->
+        </div>
+      </div>
+
+      <div id="main_content">
+        <div class="post">
+          <%= @opportunity.content.html_safe if @opportunity.content %>
+        </div>
+      </div>
+
+      <div id="sidebar">
+        <%= render :partial => 'widgets/opportunities',
+          :locals => { :title => 'Mais oportunidades' } %>
+
+        <div class="sidebar_detail"></div>
+      </div>
+
+    </div>
+  </div>
+  <!-- CONTENT END -->
+
+<% end %>

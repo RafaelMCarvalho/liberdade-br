@@ -1,11 +1,12 @@
 <%
   events = Event.where('published = ? AND date >= ?', true, Date.today).
     order('date').limit(5)
+  title ||= nil
 %>
 
 <% unless events.empty? %>
   <div class="sidebar_panel" id="events_panel">
-    <h3><%= link_to 'Eventos', events_path %></h3>
+    <h3><%= link_to title.nil? ? 'Eventos' : title, events_path %></h3>
 
     <ul>
       <% events.each do |e| %>

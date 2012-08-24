@@ -1510,21 +1510,29 @@ ul.opportunities_list li .more a:hover {
     background: #eee;
 }
 
-.post_categories {
+.post_categories, .post_authors {
     margin-top: 20px;
-    padding: 20px 20px 20px 60px;
+    padding: 20px;
 
     font-size: 14px;
     text-shadow: 0 1px 0 #fff;
-    background: #eee url("/assets/tag_icon.png") no-repeat 0 center;
+    background-color: #eee;
 }
 
-.post_categories a {
+.post_categories h3, .post_authors h3 {
+    margin-bottom: 10px;
+
+    color: black;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.post_categories a, .post_authors a {
     color: #000;
     text-decoration: none;
 }
 
-.post_categories a:hover {
+.post_categories a:hover, .post_authors a:hover {
     text-decoration: underline;
 }
 

@@ -8,19 +8,19 @@ end
 
 # User
 
-# User.delete_all
+User.delete_all
 
-# User.create!(
-#  :email => 'admin@base.com',
-#  :password => '123456',
-#  :role => :coordinator
-# )
+User.create!(
+  :email => 'admin@base.com',
+  :password => '123456',
+  :role => :coordinator
+)
 
-# User.create!(
-#  :email => 'moderator@base.com',
-#  :password => '123456',
-#  :role => :moderator
-# )
+User.create!(
+  :email => 'moderator@base.com',
+  :password => '123456',
+  :role => :moderator
+)
 
 # Configuration
 
@@ -301,10 +301,10 @@ end
 
 # # Posts
 
-# Post.delete_all
-# Blog.all.each do |blog|
-#  feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
-#  feed.entries.select do |entry|
-#    Post.create_from_feed_entry(entry, blog)
-#  end
-# end
+Post.delete_all
+Blog.all.each do |blog|
+  feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
+  feed.entries.select do |entry|
+    Post.create_from_feed_entry(entry, blog)
+  end
+end

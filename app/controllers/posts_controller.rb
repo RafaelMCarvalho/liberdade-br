@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     @search = Post.where('published = ?', true).order('published_at DESC').search(params[:q])
     @posts = @search.result
     @posts = @posts.uniq.page(params[:page]).per(6)
+    @posts.reload
   end
 
   def new
@@ -45,23 +46,26 @@ class PostsController < ApplicationController
   end
 
   def per_author
+    @search = Post.where('published = ?', true).order('published_at DESC').search(params[:q])
     @author = Author.find(params[:id])
-    @posts = @author.published_posts.page(params[:page])
-    @search = @posts.search(params[:q])
+    @posts = @author.published_posts.uniq.page(params[:page]).per(6)
+    @posts.reload
     render :index
   end
 
   def per_blog
+    @search = Post.where('published = ?', true).order('published_at DESC').search(params[:q])
     @blog = Blog.find(params[:id])
-    @posts = @blog.published_posts.page(params[:page])
-    @search = @posts.search(params[:q])
+    @posts = @blog.published_posts.uniq.page(params[:page]).per(6)
+    @posts.reload
     render :index
   end
 
   def per_category
+    @search = Post.where('published = ?', true).order('published_at DESC').search(params[:q])
     @category = Category.find(params[:id])
-    @posts = @category.published_posts.page(params[:page])
-    @search = @posts.search(params[:q])
+    @posts = @category.published_posts.uniq.page(params[:page]).per(6)
+    @posts.reload
     render :index
   end
 

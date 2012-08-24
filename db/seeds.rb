@@ -40,12 +40,13 @@ Configuration.create!(
   :facebook_like_goal => 500,
   :ad_title => 'Libertários',
   :ad_url => 'http://www.pliber.org.br',
-  :ad_image => File.open("public/seeds/libertarios.jpg"),
+  :ad_image => File.open("public/seeds/nolan.png"),
   :ad_new_tab => true,
   :ad_published => true,
   :realization_title => 'Instituto para o Desenvolvimento Econômico, Institucional e Social',
   :realization_url => 'http://www.ideias.org/',
-  :realization_image => File.open('public/seeds/ideias.png')
+  :realization_image => File.open('public/seeds/ideias.png'),
+  :footer => file_to_string('public/seeds/footer.part.html')
 )
 
 # Pages

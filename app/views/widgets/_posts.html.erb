@@ -1,0 +1,15 @@
+<%
+  posts = Post.where('published = ?', true).order('published_at DESC').limit(5)
+%>
+
+<% unless posts.empty? %>
+  <div class="sidebar_panel">
+    <h3><%= link_to 'Posts em destaque', posts_path %></h3>
+
+    <ul>
+      <% posts.each do |p| %>
+        <li><%= link_to p.title, post_path(p.id) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

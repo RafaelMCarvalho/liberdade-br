@@ -66,19 +66,35 @@
           <%= @post.content.html_safe if @post.content %>
         </div>
 
-        <% unless @post.categories.empty? %>
-          <p class="post_categories">
-            <%= (@post.categories.collect { |c| link_to(c.name, posts_category_path(c)) }).
-              to_sentence.html_safe %>
-          </p>
+        <% unless (authors = @post.authors).empty? %>
+          <div class="post_authors">
+            <h3><%= authors.length == 1 ? 'Autor' : 'Autores' %></h3>
+
+            <p><%= (authors.collect { |a| link_to(a.name, posts_author_path(a)) }).
+              to_sentence.html_safe %></p>
+          </div>
         <% end %>
 
+        <% unless @post.categories.empty? %>
+          <div class="post_categories">
+            <h3>Categorias</h3>
+
+            <p><%= (@post.categories.collect { |c| link_to(c.name, posts_category_path(c)) }).
+              to_sentence.html_safe %></p>
+          </div>
+        <% end %>
+
+        <hr />
+
+        <div class="fb-comments" data-href="<%= request.url %>" data-num-posts="2" data-width="530"></div>
       </div>
 
       <div id="sidebar">
-        <%= render :partial => 'post_sidebar', :locals => { :post => @post } %>
+        <%= render :partial => 'widgets/facebook_likebox' %>
+        <%= render :partial => 'widgets/facebook_fanpage' %>
+        <%= render :partial => 'widgets/posts' %>
+        <%= render :partial => 'widgets/blog', :locals => { :blog => @post.blog } %>
       </div>
-      <div class="fb-comments" data-href="<%= request.url %>" data-num-posts="2" data-width="530"></div>
     </div>
   </div>
   <!-- CONTENT END -->

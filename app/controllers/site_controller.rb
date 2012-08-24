@@ -5,9 +5,9 @@ class SiteController < ApplicationController
   def index
     @banners = Banner.where('published = ?', true)
     @search = Post.where('published = ?', true).order('published_at DESC').
-        search(params[:q])
+      search(params[:q])
     @posts = @search.result
-    @posts = @posts.uniq
+    @posts = @posts.uniq.limit(6)
   end
 
   def events_and_opportunities

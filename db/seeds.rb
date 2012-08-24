@@ -70,7 +70,7 @@ page.indicator = Page::PAGES[:about]
 page.save
 
 page = Page.create!(
-  :title => 'Financiadores do Liberdade.br',
+  :title => 'Financiadores do Liberdade.BR',
   :content => file_to_string('public/seeds/financers_page.part.html'),
   :published => true
 )
@@ -301,10 +301,10 @@ end
 
 # # Posts
 
-Post.delete_all
-Blog.all.each do |blog|
-  feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
-  feed.entries.select do |entry|
-    Post.create_from_feed_entry(entry, blog)
-  end
-end
+#Post.delete_all
+#Blog.all.each do |blog|
+#  feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
+#  feed.entries.select do |entry|
+#    Post.create_from_feed_entry(entry, blog)
+#  end
+#end

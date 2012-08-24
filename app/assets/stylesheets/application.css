@@ -701,6 +701,9 @@ ul#main_navigation > li.social_item li.rss_item a {
     font-size: 42px;
 }
 
+#post_page #content_header h2 {
+    font-size: 32px;
+}
 
 #content #content_header hr {
     border: 0;

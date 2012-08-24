@@ -2,6 +2,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.bxSlider.min
+//= require tinymce-jquery
 
 /* Main navigation */
 

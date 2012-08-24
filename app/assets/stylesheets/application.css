@@ -1327,15 +1327,33 @@ ul.breadcrumbs li a:hover {
 }
 
 /*
+** Pages
+*/
+
+#about_page #content_header {
+    background: url("/assets/info_icon.png") no-repeat left center;
+}
+
+#faq_page #content_header {
+    background: url("/assets/faq_icon.png") no-repeat left center;
+}
+
+#contact_page #content_header {
+    background: url("/assets/mail_icon.png") no-repeat left center;
+}
+
+#about_page #content_header h2, #faq_page #content_header h2,
+#events_and_opportunities_page #content_header h2,
+#contact_page #content_header h2 {
+    padding-left: 64px;
+}
+
+/*
 ** Events and opportunities page
 */
 
 #events_and_opportunities_page #content_header {
     background: url("/assets/events_and_opportunities_icon_62.png") no-repeat left center;
-}
-
-#events_and_opportunities_page #content_header h2 {
-    padding-left: 64px;
 }
 
 #events_and_opportunities_page #main_content h2,
@@ -1527,182 +1545,9 @@ form.simple_form .input input, form.simple_form .input textarea {
     box-shadow: inset 0 3px 0 rgba(0, 0, 0, 0.05);
 }
 
-form.simple_form .input .big_info p {
-    padding: 10px;
-
-    color: #C09853;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-    border: 1px solid #FBEED5;
-    border-radius: 4px;
-    background-color: #FCF8E3;
-}
-
-form.simple_form .input ul, .section form .input .big_info,
-form.simple_form .input ul, .section form .input .total {
-    margin: 0 -10px 0 -10px;
-    padding: 10px;
-    display: block;
-    clear: both;
-
-    list-style: none;
-    background: #fff;
-}
-
-form.simple_form .input ul, .section form .input .total {
-    font-size: 36px;
-    font-weight: 300;
-}
-
-form.simple_form .input ul, .section form .input .total span {
-    font-weight: 300;
-}
-
-form.simple_form .input ul li {
-    margin-top: 10px;
-    line-height: 1;
-
-    cursor: pointer;
-    color: #333;
+form.simple_form .notice {
+    margin-left: 130px;
     font-size: 14px;
-    text-shadow: 0 1px 0 #eee;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    border-bottom: 1px solid #aaa;
-    background-color: #EEE;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EEE), color-stop(100%, #CCC));
-    background-image: -webkit-linear-gradient(top, #EEE, #CCC);
-    background-image: -moz-linear-gradient(top, #EEE, #CCC);
-    background-image: -ms-linear-gradient(top, #EEE, #CCC);
-    background-image: -o-linear-gradient(top, #EEE, #CCC);
-    background-image: linear-gradient(top, #EEE, #CCC);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-
-form.simple_form .input ul li.active {
-    border: 1px solid #aaa;
-    border-bottom: 1px solid #888;
-    box-shadow: inset 0 0 5px 2px #AAA, 0 1px 0 0 #EEE;
-}
-
-form.simple_form .input ul li.block {
-    cursor: default;
-    border: 1px dashed #ccc;
-    background: #fff;
-}
-
-form.simple_form .input ul li.block > span .price,
-form.simple_form .input ul li.block > span .title {
-    border-color: #fff !important;
-    box-shadow: none;
-}
-
-form.simple_form .input ul li .info {
-    margin: -10px 0 0 510px;
-    padding: 10px;
-    position: absolute;
-    width: 210px;
-    display: none;
-
-    cursor: default;
-    border-radius: 5px;
-    border: 5px solid #eee;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-form.simple_form .input ul li:hover .info {
-    display: block;
-}
-
-form.simple_form .input ul li .info .info_detail {
-    margin: -5px 0 0 -32px;
-    width: 22px;
-    height: 31px;
-    position: absolute;
-
-    background: url("/assets/registration_activity_info_detail.png") no-repeat center;
-}
-
-form.simple_form .input ul li .info .more {
-    margin-top: 30px;
-
-    font-size: 14px;
-    text-align: center;
-    text-shadow: none;
-}
-
-form.simple_form .input ul li .info .datetime * {
-    color: #000;
-    font-family: "Open Sans", sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    font-style: normal;
-    text-shadow: none;
-}
-
-form.simple_form .input ul li .info .datetime span {
-    padding: 2px 0;
-    display: inline;
-}
-
-form.simple_form .input ul li .info .datetime .date {
-    padding-left: 25px;
-
-    background: url("/assets/calendar_icon.png") no-repeat left center;
-}
-
-form.simple_form .input ul li .info .datetime .time {
-    padding-left: 25px;
-
-    background: url("/assets/clock_icon.png") no-repeat left center;
-}
-
-form.simple_form .input ul li.block > span {
-    color: #555;
-    text-shadow: none;
-}
-
-form.simple_form .input ul li > span {
-    padding: 10px 10px 10px 40px;
-    display: block;
-
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 800;
-}
-
-form.simple_form .input ul li > span .price,
-form.simple_form .input ul li > span .title {
-    margin: -10px 0;
-    padding: 10px 0;
-    display: block;
-}
-
-form.simple_form .input ul li > span .price {
-    width: 80px;
-    padding-right: 10px;
-    float: left;
-
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    border-right: 1px solid #ccc;
-}
-
-form.simple_form .input ul li > span .title {
-    margin-left: -1px;
-    padding-left: 10px;
-    width: 340px;
-    float: left;
-
-    border-left: 1px solid #ccc;
-    box-shadow: inset 1px 0 0 #eee;
-}
-
-form.simple_form .input ul li.active > span {
-    background: url("/assets/green_ok_icon.png") no-repeat 10px center;
-}
-
-form.simple_form .input ul li:first-child {
-    margin-top: 0;
 }
 
 form.simple_form .input .error, form.simple_form .input .hint {

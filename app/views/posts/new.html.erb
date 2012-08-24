@@ -23,6 +23,19 @@
       </div>
 
       <div id="main_content">
+        <%= tinymce_assets %>
+        <script type="text/javascript">
+          tinyMCE.init({
+              mode: 'textareas',
+              language: 'br',
+              theme: 'advanced',
+              theme_advanced_buttons1 : 'bold,italic,underline,|,bullist,numlist,|,link,unlink',
+              theme_advanced_toolbar_location: 'top',
+              theme_advanced_toolbar_align: 'left',
+              theme_advanced_statusbar_location : 'none',
+          });
+        </script>
+
         <%= simple_form_for(@post, :url => send_post_path) do |f| %>
           <%= content_tag(:p, notice, :class => 'notice') if notice %>
 

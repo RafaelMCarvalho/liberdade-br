@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @categories_input_value = @post.categories.map(&:name).join(', ')
 
     if @post.save
-      flash[:notice] = 'Post enviado com sucesso. Ele será avaliado pelos moderadores antes de ser exibido no site.'
+      flash[:notice] = 'Post enviado com sucesso. Ele será avaliado pelos moderadores antes de ser publicado no site.'
       redirect_to :action => 'new'
     else
       render :action => 'new'

@@ -1,15 +1,18 @@
-<div class="sidebar_box_wrapper" id="submit_post_box">
-  <div class="sidebar_box">
-    <h3>Envie seu artigo</h3>
+<% send_post_page = Page.get_page(:send_post) %>
+<% if send_post_page and send_post_page.published? %>
+  <div class="sidebar_box_wrapper" id="submit_post_box">
+    <div class="sidebar_box">
+      <h3>Envie seu artigo</h3>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi suscipit
-    faucibus neque, eget mollis odio aliquet non.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi suscipit
+      faucibus neque, eget mollis odio aliquet non.</p>
 
-    <p class="buttom">
-      <%= link_to 'Envie agora', new_post_path %>
-    </p>
+      <p class="buttom">
+        <%= link_to 'Envie agora', new_post_path %>
+      </p>
+    </div>
   </div>
-</div>
+<% end %>
 
 <% if configuration.ad_published %>
   <div class="sidebar_box_wrapper" id="custom_box">

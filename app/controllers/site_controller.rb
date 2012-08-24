@@ -35,7 +35,7 @@ class SiteController < ApplicationController
     @contact_form = Contact.new(params[:contact])
 
     if @contact_form.save
-      redirect_to(contact_path, :notice => "Mensagem enviada com sucesso.")
+      redirect_to(contact_path, :notice => 'Mensagem enviada com sucesso.')
     else
       render :action => :contact
     end

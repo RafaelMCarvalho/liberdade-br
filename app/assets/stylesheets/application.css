@@ -753,7 +753,7 @@ ul#main_navigation > li.social_item li.rss_item a {
 /* Search form */
 
 #content .search_form {
-    margin-bottom: 20px;
+    margin: 0 0 20px 0;
     padding: 10px;
     background: #e6e6e6;
 }

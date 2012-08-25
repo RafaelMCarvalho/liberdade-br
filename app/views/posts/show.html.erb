@@ -13,6 +13,36 @@
 
 <%= content_for :page_id do 'post' end %>
 
+<% if current_user %>
+  <%= content_for :moderator_actions do %>
+    <% unless @post.published %>
+      <div class="flash info">
+        <p>Este post não está publicado. Isto é apenas uma pré-visualização.</p>
+      </div>
+    <% end %>
+    <% unless flash[:notice].blank? %>
+      <div class="flash notice">
+        <p><%= flash[:notice] %></p>
+      </div>
+    <% end %>
+
+    <div class="rates">
+      <p class="approval"><%= @post.approval_rate.round(1).to_s %>%</p>
+      <p class="reproval"><%= @post.reproval_rate.round(1).to_s %>%</p>
+    </div>
+
+    <div class="actions">
+      <%= link_to 'Aprovar', approve_post_path(@post, current_user),
+        :method => :post, :class => ('choosen' if @voted_approve) %>
+
+      <%= link_to 'Reprovar', reprove_post_path(@post, current_user),
+        :method => :post, :class => ('choosen' unless @voted_approve) %>
+
+      <%= link_to 'Voltar para administração', '/admin/post' %>
+    </div>
+  <% end %>
+<% end %>
+
 <%= content_for :content do %>
   <!-- CONTENT BEGIN -->
   <div id="content_wrapper">

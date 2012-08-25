@@ -2,7 +2,7 @@
 class Ability
   include CanCan::Ability
 
-  MODELS = [Configuration, Page]
+  MODELS = [Configuration, Page, Post]
 
   def initialize(user)
     if user
@@ -10,6 +10,7 @@ class Ability
       if user.role? :moderator
         can :dashboard
         can :read, Post
+        can :show_in_app, Post
         can :update, User, :id => user.id #moderator can update own user details
       elsif user.role? :coordinator
         can :access, :rails_admin

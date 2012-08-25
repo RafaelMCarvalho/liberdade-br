@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
   attr_accessible :title, :url, :content, :published_at, :blog, :authors,
      :author_ids, :categories,:category_ids, :blog_id,
      :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids,
-     :approval_rate, :reproval_rate, :hilight
+     :approval_rate, :reproval_rate, :hilight, :both_rates
 
   def self.create_from_feed_entry(entry, blog)
     categories = []
@@ -88,5 +88,8 @@ class Post < ActiveRecord::Base
       :approval_rate => (approvals.to_f/users.to_f*100).round(1),
       :reproval_rate => (reprovals.to_f/users.to_f*100).round(1)
     )
+  end
+
+  def evaluations_pretty
   end
 end

@@ -83,8 +83,17 @@ RailsAdmin.config do |config|
           "#{value}%"
         end
       end
-      field :categories
-      field :authors
+      # field :both_rates do
+      #   column_width 200;
+      #   pretty_value do
+      #     "Aprovação: #{self.approval_rate}% / Reprovação: #{self.reproval_rate}%"
+      #     "<div class=\"progress\" style=\"margin: 0;\">
+      #       <div class=\"bar bar-success\" style=\"width: #{value.first}%;\"></div>
+      #       <div class=\"bar bar-danger\" style=\"width: #{value.last}%;\"></div>
+      #     </div>".html_safe
+      #   end
+      # end
+      field :published
       field :published_at
     end
 

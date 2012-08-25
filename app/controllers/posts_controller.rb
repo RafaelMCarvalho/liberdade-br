@@ -36,12 +36,13 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
 
-    if !@post.published
-      if current_user
-        flash[:info] = 'Este post não está publicado. Isto é apenas uma pré-visualização.'
-      else
-        raise ActionController::RoutingError.new('Not Found')
-      end
+    if current_user
+      @evaluation = PostEvaluation.where('user_id = ? AND post_id = ?', current_user, @post.id).first
+      @voted_approve = @evaluation.try(:approve)
+    end
+
+    if !@post.published and !current_user
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 
@@ -78,6 +79,7 @@ class PostsController < ApplicationController
     else
       @evaluation.update_attributes(params)
     end
+    redirect_to post_path(params[:post_id]), :notice => 'Você aprovou o post com sucesso.'
   end
 
   def reprove
@@ -89,6 +91,7 @@ class PostsController < ApplicationController
     else
       @evaluation.update_attributes(params)
     end
+    redirect_to post_path(params[:post_id]), :notice => 'Você reprovou o post com sucesso.'
   end
 
   protected

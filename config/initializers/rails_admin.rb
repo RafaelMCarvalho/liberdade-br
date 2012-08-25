@@ -7,7 +7,120 @@ RailsAdmin.config do |config|
   config.authorize_with :cancan
   config.compact_show_view = false
 
+# GENERAL ======================================================================
+
+  config.model Configuration do
+    navigation_label 'Geral'
+    weight 0
+
+    edit do
+      group :email do
+        label 'Geral'
+        active false
+
+        field :site_title
+        field :site_url
+        field :email
+
+        field :keywords do
+           help 'Opcional. Separadas por vírgula. Recomendável no máximo 10 palavras chave.'
+        end
+
+        field :description do
+          help 'Opcional. Descrição utilizada pelos buscadores. Recomendável até 160 caracteres.'
+        end
+
+        field :google_analytics
+      end
+
+      group :social do
+        label 'Redes sociais'
+        active false
+
+        field :twitter
+        field :facebook
+        field :facebook_like_goal
+      end
+
+      group :donation do
+        label 'Quadro de doação'
+        active false
+
+        field(:donation_text) { ckeditor false }
+        field :donation_link
+        field :donation_goal
+        field :donation_collected
+      end
+
+      group :ad do
+        label 'Quandro de propaganda'
+        active false
+
+        field :ad_title
+        field :ad_url
+        field :ad_new_tab
+        field :ad_published
+        field :ad_image
+      end
+
+      group :realization do
+        label 'Realização'
+        active false
+
+        field :realization_title
+        field :realization_url
+        field :realization_image
+      end
+
+      group :realization do
+        label 'Rodapé'
+        active false
+
+        field(:footer) { ckeditor true }
+      end
+    end
+  end
+
+  config.model User do
+    navigation_label 'Geral'
+    weight 1
+
+    object_label_method { :email }
+
+    list do
+      field :email
+    end
+
+    create do
+      field :email
+      field(:password) do
+        label 'Senha'
+        help 'Digite a senha do novo usuário'
+      end
+
+      field :password_confirmation do
+        label 'Confirme a senha'
+        help 'Confirme a senha do novo usuário'
+      end
+      field :role
+    end
+
+    edit do
+      field :email
+      field(:password) do
+        label 'Senha'
+        help 'Digite uma nova senha caso deseje modificar a atual'
+      end
+
+      field :password_confirmation do
+        label 'Confirme a senha'
+        help 'Confirme a senha caso deseje mudar a senha atual'
+      end
+    end
+  end
+
 # POSTS ========================================================================
+
   config.model Author do
     navigation_label 'Postagens'
 
@@ -221,105 +334,7 @@ RailsAdmin.config do |config|
 
 # MENU =========================================================================
 
-  config.model Configuration do
-    edit do
-      group :social do
-        label 'Redes sociais'
-        field :twitter
-        field :facebook
-        field :facebook_like_goal
-      end
 
-      group :donation do
-        label 'Doação'
-        field(:donation_text) { ckeditor false }
-        field :donation_link
-        field :donation_goal
-        field :donation_collected
-      end
-
-      group :ad do
-        label 'Propaganda'
-        field :ad_title
-        field :ad_image
-        field :ad_url
-        field :ad_new_tab
-        field :ad_published
-      end
-
-      group :realization do
-        label 'Realização'
-        field :realization_title
-        field :realization_image
-        field :realization_url
-      end
-
-      group :email do
-        label 'Configurações de email'
-        field :email
-      end
-
-      group :info_search do
-        label 'Informações para buscadores e redes sociais'
-
-        field :keywords do
-           help 'Separadas por vírgula. Recomendável no máximo 10 palavras chave.'
-        end
-        field :description do
-          help 'Descrição utilizada pelos buscadores. Recomendável até 160 caracteres.'
-        end
-        field :google_analytics
-        field :site_url
-        field :site_title
-      end
-      field :footer
-    end
-  end
-
-  config.model User do
-    object_label_method { :email }
-
-    list do
-      field :email
-    end
-
-    create do
-      field :email
-      field(:password) do
-        label 'Senha'
-        help 'Digite a senha do novo usuário'
-      end
-
-      field :password_confirmation do
-        label 'Confirme a senha'
-        help 'Confirme a senha do novo usuário'
-      end
-      field :role
-    end
-
-    edit do
-      field :email
-      field(:password) do
-        label 'Senha'
-        help 'Digite uma nova senha caso deseje modificar a atual'
-      end
-
-      field :password_confirmation do
-        label 'Confirme a senha'
-        help 'Confirme a senha caso deseje mudar a senha atual'
-      end
-    end
-
-    show do
-      field :email
-      field :role do
-        label 'Tipo de usuário'
-        pretty_value do
-          value == :coordinator ? 'Coordenador' : 'Moderador'
-        end
-      end
-    end
-  end
 
   # CKeditor models (begin)
   config.model Ckeditor::Asset do

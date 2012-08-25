@@ -222,9 +222,9 @@ RailsAdmin.config do |config|
           if evaluation.nil?
             html = ""
           elsif evaluation.approve == true
-            html = "<i class=\"icon-thumbs-up\"></i>".html_safe
+            html = "<i class=\"icon-thumbs-up\" title=\"Você aprovou\"></i>".html_safe
           else
-            html = "<i class=\"icon-thumbs-down\"></i>".html_safe
+            html = "<i class=\"icon-thumbs-down\" title=\"Você reprovou\"></i>".html_safe
           end
           html
         end

@@ -200,12 +200,11 @@
     <!-- FOOTER BEGIN -->
     <div id="footer_wrapper">
       <div id="footer">
-        <div id="footer_info">
-          <p>Esta obra é licenciada sob uma licença
-            <a href="http://creativecommons.org/licenses/by/3.0/br/" targeft="_blank">
-              Creative Commons Atribuição 3.0 Brasil</a>.
-          </p>
-        </div>
+        <% if configuration.footer %>
+          <div id="footer_info">
+            <%= configuration.footer.html_safe %>
+          </div>
+        <% end %>
 
         <ul id="footer_sections">
           <li id="partners_list">

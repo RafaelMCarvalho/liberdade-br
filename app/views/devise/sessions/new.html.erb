@@ -1,5 +1,4 @@
 <%= content_for :content do %>
-
   <h2>Login</h2>
 
   <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -13,7 +12,7 @@
       <div class="links">
         <%= render :partial => "devise/shared/links" %>
       </div>
-      <%= f.button :submit, 'Entrar' %>
+      <p class="buttom"><%= f.button :submit, 'Entrar' %></p>
     </div>
   <% end %>
 

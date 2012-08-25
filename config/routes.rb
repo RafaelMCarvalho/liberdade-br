@@ -44,5 +44,5 @@ LiberdadeBr::Application.routes.draw do
   get '/oportunidades' => 'opportunities#index', :as => :opportunities
   get '/oportunidade/:id' => 'opportunities#show', :as => :opportunity
 
-  root :to => "site#index"
+  root :to => 'site#index'
 end

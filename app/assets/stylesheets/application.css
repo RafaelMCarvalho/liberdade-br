@@ -225,7 +225,7 @@ input[type="submit"]::-moz-focus-inner {
 }
 
 #header #partners_page_link:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 /*
@@ -701,6 +701,9 @@ ul#main_navigation > li.social_item li.rss_item a {
     font-size: 42px;
 }
 
+#post_page #content_header h2 {
+    font-size: 32px;
+}
 
 #content #content_header hr {
     border: 0;
@@ -753,7 +756,7 @@ ul#main_navigation > li.social_item li.rss_item a {
 /* Search form */
 
 #content .search_form {
-    margin-bottom: 20px;
+    margin: 0 0 20px 0;
     padding: 10px;
     background: #e6e6e6;
 }
@@ -906,6 +909,10 @@ ul#main_navigation > li.social_item li.rss_item a {
     border-radius: 10px 10px 0 10px;
     background: #e6e6e6;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+#ad_box .sidebar_box {
+    padding-top: 144px;
 }
 
 #content .sidebar_box h3 {
@@ -1537,7 +1544,23 @@ ul.opportunities_list li .more a:hover {
 }
 
 /*
-**
+** Financers page
+*/
+
+#financers_page #main_content .post > ul {
+    margin-top: 20px;
+}
+
+#financers_page #main_content .post > ul li {
+    margin: 0 20px 5px 0;
+    float: left;
+    width: 210px;
+
+    list-style: none;
+}
+
+/*
+** Form
 */
 
 form.simple_form {

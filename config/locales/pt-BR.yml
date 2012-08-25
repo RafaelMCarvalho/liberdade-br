@@ -23,12 +23,12 @@ pt-BR:
       category:
         name: 'Nome'
       configuration:
-        email: "E-mail"
+        email: "E-mail para contato"
         keywords: "Palavras-chave"
         description: "Descrição"
         google_analytics: 'Google Analytics'
         footer: 'Rodapé'
-        facebook_like_goal: 'Objetivo de Facebook likes'
+        facebook_like_goal: 'Objetivo de likes no Facebook'
         donation_text: 'Texto'
         donation_link: 'Link'
         donation_collected: 'Angariado (R$)'
@@ -39,7 +39,7 @@ pt-BR:
         ad_image: 'Imagem'
         ad_url: 'URL'
         ad_new_tab: 'Abrir em nova aba'
-        ad_published: 'Publicada'
+        ad_published: 'Publicado'
         realization_title: 'Título'
         realization_image: 'Imagem'
         realization_url: 'URL'

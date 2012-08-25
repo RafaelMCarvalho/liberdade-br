@@ -1,5 +1,5 @@
 <% if configuration.ad_published %>
-  <div class="sidebar_box_wrapper" id="custom_box">
+  <div class="sidebar_box_wrapper" id="ad_box">
     <div class="sidebar_box">
       <p class="buttom">
         <%= link_to 'Acesse agora', configuration.ad_url,
@@ -7,4 +7,10 @@
       </p>
     </div>
   </div>
+
+  <style type="text/css">
+    #ad_box .sidebar_box {
+      background: url("<%= configuration.ad_image.url(:normal) %>") no-repeat center;
+    }
+  </style>
 <% end %>

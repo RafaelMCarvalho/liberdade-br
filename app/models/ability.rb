@@ -2,7 +2,7 @@
 class Ability
   include CanCan::Ability
 
-  MODELS = [Configuration, Page, Post]
+  MODELS = [Configuration, Page, Post, User]
 
   def initialize(user)
     if user
@@ -23,4 +23,3 @@ class Ability
     end
   end
 end
-

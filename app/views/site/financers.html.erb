@@ -1,5 +1,40 @@
-<%= content_for :content do %>
-  <h3><%= @financers.title %></h3>
+<%= content_for :page_title do @financers.title end %>
 
-  <%= @financers.content.html_safe %>
+<%= content_for :page_id do 'financers' end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+      <div id="content_header">
+        <ul class="breadcrumbs">
+          <li><%= link_to 'Início', root_path %></li>
+          <li><span><%= @financers.title %></span></li>
+        </ul>
+
+        <hr />
+
+        <div class="header">
+          <h2><%= @financers.title %></h2>
+        </div>
+      </div>
+
+      <div id="main_content">
+        <div class="post">
+          <%= @financers.content.html_safe if @financers.content %>
+        </div>
+      </div>
+
+      <div id="sidebar">
+        <%= render :partial => 'widgets/facebook_likebox' %>
+        <%= render :partial => 'widgets/facebook_fanpage' %>
+      </div>
+
+    </div>
+  </div>
+  <!-- CONTENT END -->
+
 <% end %>

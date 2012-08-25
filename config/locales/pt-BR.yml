@@ -54,12 +54,14 @@ pt-BR:
       post:
         title: 'Título'
         content: 'Conteúdo'
+        published: 'Publicado'
         published_at: 'Publicado em'
         authors: 'Autores'
         categories: 'Categorias'
         approval_rate: 'Aprovação'
         reproval_rate: 'Reprovação'
         evaluations_count: 'Avaliações'
+        evaluations_pretty: 'Taxas de avaliação'
       user:
         email: "E-mail"
         password: "Senha"

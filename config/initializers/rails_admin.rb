@@ -186,27 +186,49 @@ RailsAdmin.config do |config|
           "#{value}/#{User.count}"
         end
       end
-      field :reproval_rate do
+      field :evaluations_pretty do
+        column_width 150;
         pretty_value do
-          "#{value}%"
+          approval = bindings[:object].approval_rate.round(1)
+          reproval = bindings[:object].reproval_rate.round(1)
+          if approval == 0 and reproval == 0
+            html = "<span class=\"label\" style=\"width: 100%;\">Sem avaliações</span>".html_safe
+          else
+            html = "
+            <div class=\"progress\" style=\"margin: 0;\" title=\"Não avaliaram\">
+              <div class=\"bar bar-success\" style=\"width: #{approval.to_i}%;overflow: hidden;\" title=\"Aprovação\">#{approval}%</div>
+              <div class=\"bar bar-danger\" style=\"width: #{reproval.to_i}%;overflow: hidden;\" title=\"Reprovação\">#{reproval}%</div>
+              <div style=\"text-align: center;overflow: hidden;\">#{(100.0 - approval - reproval).round(1)}%</div>
+            </div>".html_safe
+          end
+          html
         end
       end
-      field :approval_rate do
+      field :published do
+        label 'Status'
         pretty_value do
-          "#{value}%"
+          if value == true
+            html = "<span class=\"label label-success\">Aprovado</span>".html_safe
+          else
+            html = "<span class=\"label label-important\">Reprovado</span>".html_safe
+          end
+          html
         end
       end
-      # field :both_rates do
-      #   column_width 200;
-      #   pretty_value do
-      #     "Aprovação: #{self.approval_rate}% / Reprovação: #{self.reproval_rate}%"
-      #     "<div class=\"progress\" style=\"margin: 0;\">
-      #       <div class=\"bar bar-success\" style=\"width: #{value.first}%;\"></div>
-      #       <div class=\"bar bar-danger\" style=\"width: #{value.last}%;\"></div>
-      #     </div>".html_safe
-      #   end
-      # end
-      field :published
+      field :user_evaluation do
+        label ' '
+        pretty_value do
+          evaluation = PostEvaluation.where('user_id = ? and post_id = ?', bindings[:view].current_user.id, bindings[:object].id).first
+          if evaluation.nil?
+            html = ""
+          elsif evaluation.approve == true
+            html = "<i class=\"icon-thumbs-up\"></i>".html_safe
+          else
+            html = "<i class=\"icon-thumbs-down\"></i>".html_safe
+          end
+          html
+        end
+      end
       field :published_at
     end
 

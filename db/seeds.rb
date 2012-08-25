@@ -300,7 +300,7 @@ names = [
   )
 end
 
-# # Posts
+# Posts
 
 Post.delete_all
 Blog.all.each do |blog|

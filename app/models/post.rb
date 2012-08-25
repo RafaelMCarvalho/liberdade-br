@@ -73,10 +73,10 @@ class Post < ActiveRecord::Base
   end
 
   def check_rates_to_publish
-    if self.reproval_rate >= 50.0
-      self.published = false
-    elsif self.approval_rate >= 20.0
+    if self.approval_rate >= 20.0 and self.reproval_rate < 50.0
       self.published = true
+    else
+      self.published = false
     end
   end
 

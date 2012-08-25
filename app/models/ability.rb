@@ -20,8 +20,8 @@ class Ability
         cannot [:destroy, :create], Configuration
         cannot :history, :all
 
-        MODELS.each { |model| cannot :show, model }
       end
+      MODELS.each { |model| cannot :show, model }
     end
   end
 end

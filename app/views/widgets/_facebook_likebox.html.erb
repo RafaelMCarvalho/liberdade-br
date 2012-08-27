@@ -10,7 +10,7 @@
   end
 %>
 
-<% unless configuration.facebook_like_goal.blank? or configuration.facebook.blank? %>
+<% if configuration.facebook_like_goal and configuration.facebook and @fb_likes < configuration.facebook_like_goal %>
   <div class="sidebar_box_wrapper" id="facebook_box">
     <div class="sidebar_box">
       <h3>Ajude-nos a conseguir <%= configuration.facebook_like_goal %> fãs no Facebook</h3>

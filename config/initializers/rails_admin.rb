@@ -123,7 +123,7 @@ RailsAdmin.config do |config|
 
   config.model Post do
     navigation_label 'Postagens'
-    weight 3
+    weight 2
 
     list do
       field :title
@@ -206,10 +206,9 @@ RailsAdmin.config do |config|
 
   config.model Blog do
     navigation_label 'Postagens'
-    weight 4
+    weight 3
 
     list do
-      field :image
       field :name
       field :link do
         formatted_value do
@@ -224,18 +223,6 @@ RailsAdmin.config do |config|
       field :rss
       field(:description) { ckeditor true }
       field :image
-    end
-
-    show do
-      field :image
-      field :name
-      field :link
-      field :rss
-      field :description do
-        pretty_value do
-          value.html_safe
-        end
-      end
     end
   end
 
@@ -269,7 +256,9 @@ RailsAdmin.config do |config|
     weight 6
 
     list do
-      field :image
+      field :image do
+        thumb_method :thumb
+      end
       field :title
       field :link do
         formatted_value do
@@ -284,7 +273,9 @@ RailsAdmin.config do |config|
       field :link
       field :open_in_new_tab
       field :published
-      field :image
+      field :image do
+        thumb_method :thumb
+      end
     end
   end
 
@@ -309,25 +300,23 @@ RailsAdmin.config do |config|
     weight 8
 
     list do
-      field :image
       field :date
+      field :end_date
       field :name
-      field :link do
-        formatted_value do
-          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
-        end
-      end
       field :published
     end
 
    edit do
-      field :image
-      field :date
       field :name
+      field :date
+      field :end_date
+      field :local
       field :link
       field :published
-      field :local
       field(:description) { ckeditor true }
+      field :image do
+        thumb_method :event_list_image
+      end
     end
   end
 
@@ -342,8 +331,8 @@ RailsAdmin.config do |config|
 
     edit do
       field :title
-      field(:content) { ckeditor true }
       field :published
+      field(:content) { ckeditor true }
     end
   end
 
@@ -354,17 +343,14 @@ RailsAdmin.config do |config|
     list do
       field :image
       field :name
-      field :link do
-        formatted_value do
-          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
-        end
-      end
     end
 
     edit do
       field :name
       field :link
-      field :image
+      field :image do
+        thumb_method :small
+      end
     end
   end
 

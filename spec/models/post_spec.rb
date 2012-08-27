@@ -108,7 +108,7 @@ describe Post do
         :url => 'http://depositode.blogspot.com/2012/06/sobre-corporacoes-e-leis-de.html',
         :content => 'Some text very big'*500,
         :published => Time.parse('Jul 25 13:25:00 -0300 2012'),
-        :categories => ['LIBERALISMO', 'RESPONSABILIDADE LIMITADA'],
+        :categories => ['LIBERALISMO', 'RESPONSABILIDADE LIMITADA', 'LIBERDADE.BR'],
         :author => 'Richard  , Leonard   '
       )
       Post.create_from_feed_entry(@entry, (FactoryGirl.create :blog))
@@ -125,8 +125,8 @@ describe Post do
     it 'with the rigth categories (creating the nonexistent ones)' do
       Category.create(:name => 'liberalismo')
       categories = Category.all
-      categories.should have(2).categories
-      categories.collect(&:name).should include('liberalismo', 'responsabilidade limitada')
+      categories.should have(3).categories
+      categories.collect(&:name).should include('liberalismo', 'responsabilidade limitada', 'liberdade.br')
       @post.categories.should include(*categories)
     end
 
@@ -136,6 +136,28 @@ describe Post do
       authors.should have(2).authors
       authors.collect(&:name).should include('Richard', 'Leonard')
       @post.authors.should include(*authors)
+    end
+  end
+
+  context 'should create a post from a feed entry without category liberdade.br' do
+    # I'm using before(:each) because stub isn't supported on before(:create)
+    # more info on https://github.com/rspec/rspec-mocks/issues/92#issuecomment-3178470
+    before(:each) do
+      @entry = stub(
+        :title => 'Sobre corporações e leis de responsabilidade limitada',
+        :url => 'http://depositode.blogspot.com/2012/06/sobre-corporacoes-e-leis-de.html',
+        :content => 'Some text very big'*500,
+        :published => Time.parse('Jul 25 13:25:00 -0300 2012'),
+        :categories => ['LIBERALISMO', 'RESPONSABILIDADE LIMITADA'], # without liberdade.br category
+        :author => 'Richard  , Leonard   '
+      )
+      Post.create_from_feed_entry(@entry, (FactoryGirl.create :blog))
+    end
+
+    it 'should not have posts, auhors or categories' do
+      Post.all.should have(0).posts
+      Author.all.should have(0).author
+      Category.all.should have(0).categories
     end
   end
 

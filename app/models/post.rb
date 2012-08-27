@@ -32,25 +32,27 @@ class Post < ActiveRecord::Base
      :user_evaluation, :moderator_conter, :criterion_for_publication
 
   def self.create_from_feed_entry(entry, blog)
-    categories = []
-    entry.categories.each do |name|
-      categories << Category.get_or_create_by_name(name)
-    end
+    if entry.categories.map(&:downcase_with_accents).include?('liberdade.br')
+      categories = []
+      entry.categories.each do |name|
+        categories << Category.get_or_create_by_name(name)
+      end
 
-    authors = []
-    entry.author.split(',').each do |name|
-      authors << Author.get_or_create_by_name(name.strip)
-    end
+      authors = []
+      entry.author.split(',').each do |name|
+        authors << Author.get_or_create_by_name(name.strip)
+      end
 
-    Post.create!(
-      :title => entry.title,
-      :url => entry.url,
-      :content => entry.content,
-      :published_at => entry.published,
-      :categories => categories,
-      :authors => authors,
-      :blog => blog
-    )
+      Post.create!(
+        :title => entry.title,
+        :url => entry.url,
+        :content => entry.content,
+        :published_at => entry.published,
+        :categories => categories,
+        :authors => authors,
+        :blog => blog
+      )
+    end
   end
 
   def self.build_from_new_post_page(params)

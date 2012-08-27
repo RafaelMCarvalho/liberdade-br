@@ -2,7 +2,8 @@
 class Ability
   include CanCan::Ability
 
-  MODELS = [Configuration, Page, Post, User]
+  MODELS = [Configuration, Page, Post, User, Author, Event,
+    Opportunity, Sponsor]
 
   def initialize(user)
     if user

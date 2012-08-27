@@ -84,6 +84,8 @@ pt-BR:
         name: "Nome"
         link: "Site"
         date: "Data de início"
+        end_date: "Data de fim"
+        local: "Local"
         description: "Descrição"
         published: "Publicado"
         image: "Imagem de divulgação"

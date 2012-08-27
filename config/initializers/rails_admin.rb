@@ -179,6 +179,8 @@ RailsAdmin.config do |config|
     navigation_label 'Postagens'
 
     list do
+      sort_by :published_at
+      sort_reverse true
       field :title
       field :blog
       field :evaluations_count
@@ -203,10 +205,16 @@ RailsAdmin.config do |config|
       field :published do
         label 'Status'
         pretty_value do
-          if value == true
-            html = "<span class=\"label label-success\">Aprovado</span>".html_safe
-          else
-            html = "<span class=\"label label-important\">Reprovado</span>".html_safe
+          if bindings[:object].published_by_admin?
+            html = "<span class=\"label label-success\">Aprovado pelo adminstrador</span>".html_safe
+          elsif bindings[:object].unpublished_by_admin?
+            html = "<span class=\"label label-important\">Reprovado pelo adminstrador</span>".html_safe
+          elsif bindings[:object].published_by_moderation?
+            if value == true
+              html = "<span class=\"label label-success\">Aprovado</span>".html_safe
+            else
+              html = "<span class=\"label label-important\">Reprovado</span>".html_safe
+            end
           end
           html
         end
@@ -235,6 +243,7 @@ RailsAdmin.config do |config|
       field :published_at
       field :authors
       field :categories
+      field :criterion_for_publication
     end
 
     show do

@@ -54,6 +54,7 @@ pt-BR:
       post:
         title: 'Título'
         content: 'Conteúdo'
+        criterion_for_publication: 'Critério para publicação'
         published: 'Publicado'
         published_at: 'Publicado em'
         authors: 'Autores'

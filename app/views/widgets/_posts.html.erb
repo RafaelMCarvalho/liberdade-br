@@ -1,5 +1,5 @@
 <%
-  posts = Post.where('published = ?', true).order('published_at DESC').limit(5)
+  posts = Post.published.order('published_at DESC').limit(5)
 %>
 
 <% unless posts.empty? %>

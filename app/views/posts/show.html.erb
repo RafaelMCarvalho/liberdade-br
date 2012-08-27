@@ -57,9 +57,16 @@
           <p class="info">
             Publicado originalmente em:
             <% if @post.blog %>
-              <%= link_to @post.blog.name, @post.blog.link, :target => '_blank' %> |
+              <%= link_to @post.blog.name, @post.blog.link, :target => '_blank',
+                :class => 'blog_name' %> |
             <% end %>
             <%= @post.published_at.strftime('%d de %B de %Y') %>.
+
+            <% unless (authors = @post.authors).empty? %>
+              <br />
+              Por <%= (authors.collect { |a| link_to(a.name, posts_author_path(a)) }).
+                to_sentence.html_safe %>.
+            <% end %>
           </p>
 
           <!-- AddThis Button BEGIN -->
@@ -85,15 +92,6 @@
 
           <%= @post.content.html_safe if @post.content %>
         </div>
-
-        <% unless (authors = @post.authors).empty? %>
-          <div class="post_authors">
-            <h3><%= authors.length == 1 ? 'Autor' : 'Autores' %></h3>
-
-            <p><%= (authors.collect { |a| link_to(a.name, posts_author_path(a)) }).
-              to_sentence.html_safe %></p>
-          </div>
-        <% end %>
 
         <% unless @post.categories.empty? %>
           <div class="post_categories">

@@ -861,10 +861,13 @@ ul#main_navigation > li.social_item li.rss_item a {
 }
 
 #content #content_header .info a {
-    padding-right: 16px;
-
     color: #444;
     text-decoration: none;
+}
+
+#content #content_header .info a.blog_name {
+    padding-right: 16px;
+
     background: url("/assets/link_icon.png") no-repeat right center;
 }
 

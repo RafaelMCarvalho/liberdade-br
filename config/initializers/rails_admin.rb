@@ -47,7 +47,6 @@ RailsAdmin.config do |config|
         active false
 
         field(:donation_text) { ckeditor false }
-        field :donation_link
         field :donation_goal
         field :donation_collected
       end

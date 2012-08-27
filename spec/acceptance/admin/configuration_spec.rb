@@ -20,7 +20,6 @@ feature 'Manupulate configurations' do
       fill_in 'URL do site', :with => 'http://foo.com'
       fill_in 'Título do site', :with => 'Liberdade.br'
       fill_in 'Texto', :with => 'Footer'
-      fill_in 'Link', :with => 'http://foo.com'
       fill_in 'Objetivo (R$)', :with => '1000.00'
       fill_in 'Angariado (R$)', :with => '600.00'
       # Ad

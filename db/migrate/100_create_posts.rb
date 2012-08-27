@@ -12,6 +12,7 @@ class CreatePosts < ActiveRecord::Migration
       t.float :reproval_rate, :default => 0.0
       t.boolean :published
       t.date :published_at
+      t.integer :moderator_counter, :default => 0
 
       t.timestamps
     end

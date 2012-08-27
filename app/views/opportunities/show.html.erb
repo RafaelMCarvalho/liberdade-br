@@ -22,7 +22,7 @@
           <li><%= link_to 'Início', root_path %></li>
           <li><%= link_to 'Eventos e oportunidades', events_and_opportunities_path %></li>
           <li><%= link_to 'Oportunidades', events_path %></li>
-          <li><span><%= @opportunity.title %></span></li>
+          <li><span><%= truncate(@opportunity.title, :length => 100) %></span></li>
         </ul>
 
         <hr />

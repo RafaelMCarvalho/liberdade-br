@@ -902,23 +902,6 @@ ul#main_navigation > li.social_item li.rss_item a {
 
 #content .search_form .input {
     padding: 0;
-}
-
-#content .search_form .input label {
-    display: none;
-}
-
-#content .search_form .fields input {
-    padding: 10px;
-    display: block;
-    width: 490px;
-    z-index: 0;
-
-    color: #777;
-    font-family: Georgia, Times, serif;
-    font-size: 16px;
-    font-style: italic;
-    border: 0;
     border-top: 1px solid #acacac;
     background: rgb(191,191,191); /* Old browsers */
     background: -moz-linear-gradient(top,  rgba(191,191,191,1) 0%, rgba(229,229,229,1) 7%, rgba(255,255,255,1) 17%); /* FF3.6+ */
@@ -928,6 +911,25 @@ ul#main_navigation > li.social_item li.rss_item a {
     background: -ms-linear-gradient(top,  rgba(191,191,191,1) 0%,rgba(229,229,229,1) 7%,rgba(255,255,255,1) 17%); /* IE10+ */
     background: linear-gradient(to bottom,  rgba(191,191,191,1) 0%,rgba(229,229,229,1) 7%,rgba(255,255,255,1) 17%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfbfbf', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+#content .search_form .input label {
+    display: none;
+}
+
+#content .search_form .fields input {
+    padding: 10px;
+    display: block;
+    width: 450px;
+    z-index: 0;
+
+    color: #777;
+    font-family: Georgia, Times, serif;
+    font-size: 16px;
+    font-style: italic;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
 #content .search_form .actions {

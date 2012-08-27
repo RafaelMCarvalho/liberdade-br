@@ -254,6 +254,7 @@ names = [
     :name => names[i % names.length],
     :link => 'http://www.algorich.com.br/',
     :date => Date.today + i.days,
+    :end_date => Date.today + i.days + 1,
     :published => true,
     :local => 'Lorem ipsum dolor',
     :image => File.open('public/seeds/event_image.jpg'),
@@ -302,10 +303,10 @@ end
 
 # Posts
 
-Post.delete_all
-Blog.all.each do |blog|
-  feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
-  feed.entries.select do |entry|
-    Post.create_from_feed_entry(entry, blog)
-  end
-end
+#Post.delete_all
+#Blog.all.each do |blog|
+#  feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
+#  feed.entries.select do |entry|
+#    Post.create_from_feed_entry(entry, blog)
+#  end
+#end

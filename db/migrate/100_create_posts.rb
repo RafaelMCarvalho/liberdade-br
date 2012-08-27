@@ -13,6 +13,7 @@ class CreatePosts < ActiveRecord::Migration
       t.boolean :published
       t.date :published_at
       t.integer :moderator_counter, :default => 0
+      t.integer :criterion_for_publication, :default => Post::CRITERION_FOR_PUBLICATION[:by_moderation]
 
       t.timestamps
     end

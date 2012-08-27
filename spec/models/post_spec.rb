@@ -59,8 +59,9 @@ describe Post do
         :post => @post, :approve => true
     end
 
-    it 'when some user is created' do
-      FactoryGirl.create :user
+    it 'when some user is created and evaluate the post' do
+      user = FactoryGirl.create :user
+      FactoryGirl.create :post_evaluation, :post => @post, :user => user
     end
 
     after(:each) do
@@ -173,5 +174,19 @@ describe Post do
       authors.collect(&:name).should include('Richard', 'Leonard')
       @post.authors.should include(*authors)
     end
+  end
+
+  it 'should return all posts published by admin or moderation, except unpublished by admin ones' do
+    post1 = FactoryGirl.create :post, :criterion_for_publication => Post::CRITERION_FOR_PUBLICATION[:by_moderation], :published => true
+    post2 = FactoryGirl.create :post, :criterion_for_publication => Post::CRITERION_FOR_PUBLICATION[:by_moderation], :published => false
+
+    post3 = FactoryGirl.create :post, :criterion_for_publication => Post::CRITERION_FOR_PUBLICATION[:always_published], :published => true
+    post4 = FactoryGirl.create :post, :criterion_for_publication => Post::CRITERION_FOR_PUBLICATION[:always_published], :published => false
+
+    post5 = FactoryGirl.create :post, :criterion_for_publication => Post::CRITERION_FOR_PUBLICATION[:always_unpublished], :published => true
+    post6 = FactoryGirl.create :post, :criterion_for_publication => Post::CRITERION_FOR_PUBLICATION[:always_unpublished], :published => false
+
+    Post.published.should include(post1, post3, post4)
+    Post.published.should_not include(post2, post5, post6)
   end
 end

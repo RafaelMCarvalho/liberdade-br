@@ -9,6 +9,12 @@ class Post < ActiveRecord::Base
   has_many :post_evaluations, :dependent => :destroy
   has_many :users, :through => :post_evaluations
 
+  CRITERION_FOR_PUBLICATION = {
+    :by_moderation => 0,
+    :always_published => 1,
+    :always_unpublished => 2
+  }
+
   validates_presence_of :title
   validates_presence_of :authors, :if => lambda { self.blog.nil? }
   validates_presence_of :content, :if => lambda { self.blog.nil? }
@@ -23,7 +29,7 @@ class Post < ActiveRecord::Base
      :author_ids, :categories,:category_ids, :blog_id,
      :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids,
      :approval_rate, :reproval_rate, :hilight, :evaluations_pretty,
-     :user_evaluation, :moderator_conter
+     :user_evaluation, :moderator_conter, :criterion_for_publication
 
   def self.create_from_feed_entry(entry, blog)
     categories = []
@@ -109,5 +115,28 @@ class Post < ActiveRecord::Base
     if self.post_evaluations.count > self.moderator_counter
       self.moderator_counter = self.post_evaluations.count
     end
+  end
+
+  def published_by_admin?
+    self.criterion_for_publication == CRITERION_FOR_PUBLICATION[:always_published]
+  end
+
+  def unpublished_by_admin?
+    self.criterion_for_publication == CRITERION_FOR_PUBLICATION[:always_unpublished]
+  end
+
+  def published_by_moderation?
+    self.criterion_for_publication == CRITERION_FOR_PUBLICATION[:by_moderation]
+  end
+
+  def criterion_for_publication_enum
+    { 'Avaliado pelos moderadores' => CRITERION_FOR_PUBLICATION[:by_moderation],
+      'Sempre publicado' => CRITERION_FOR_PUBLICATION[:always_published],
+      'Sempre despublicado' => CRITERION_FOR_PUBLICATION[:always_unpublished] }
+  end
+
+  def self.published
+    Post.where('published = ? and criterion_for_publication <> ? or criterion_for_publication = ?',
+      true, CRITERION_FOR_PUBLICATION[:always_unpublished], CRITERION_FOR_PUBLICATION[:always_published])
   end
 end

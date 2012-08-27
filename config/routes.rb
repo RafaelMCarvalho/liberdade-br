@@ -44,5 +44,8 @@ LiberdadeBr::Application.routes.draw do
   get '/oportunidades' => 'opportunities#index', :as => :opportunities
   get '/oportunidade/:id' => 'opportunities#show', :as => :opportunity
 
+#= 10. Donate ==================================================================
+  get '/doacao' => 'site#donate', :as => :donate
+
   root :to => 'site#index'
 end

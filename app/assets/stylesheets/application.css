@@ -1497,9 +1497,14 @@ ul.opportunities_list li .more a:hover {
     background: url("/assets/star_icon_62.png") no-repeat left center;
 }
 
+#donate_page #content_header {
+    background: url("/assets/donate_icon.png") no-repeat left center;
+}
+
 #about_page #content_header h2, #faq_page #content_header h2,
 #events_and_opportunities_page #content_header h2,
-#contact_page #content_header h2, #events_page h2, #opportunities_page h2 {
+#contact_page #content_header h2, #events_page h2, #opportunities_page h2,
+#donate_page #content_header h2 {
     padding-left: 64px;
 }
 

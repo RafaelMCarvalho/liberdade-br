@@ -10,7 +10,8 @@ class Page < ActiveRecord::Base
     :about => 2,
     :financers => 3,
     :faq => 4,
-    :send_post => 5
+    :send_post => 5,
+    :donate => 6
   }
 
   def self.get_page(id)

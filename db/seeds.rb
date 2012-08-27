@@ -94,6 +94,14 @@ page = Page.create!(
 page.indicator = Page::PAGES[:send_post]
 page.save
 
+page = Page.create!(
+  :title => 'Faça uma doação',
+  :content => file_to_string('public/seeds/donate_page.part.html'),
+  :published => true
+)
+page.indicator = Page::PAGES[:donate]
+page.save
+
 # Banner
 
 Banner.delete_all

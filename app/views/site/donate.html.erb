@@ -1,0 +1,40 @@
+<%= content_for :page_title do @donate.title end %>
+
+<%= content_for :page_id do 'donate' end %>
+
+<%= content_for :content do %>
+  <!-- CONTENT BEGIN -->
+  <div id="content_wrapper">
+    <div id="content_shadow"></div>
+    <div id="content_gradiente"></div>
+
+    <div id="content">
+      <div id="content_header">
+        <ul class="breadcrumbs">
+          <li><%= link_to 'Início', root_path %></li>
+          <li><span><%= @donate.title %></span></li>
+        </ul>
+
+        <hr />
+
+        <div class="header">
+          <h2><%= @donate.title %></h2>
+        </div>
+      </div>
+
+      <div id="main_content">
+        <div class="post">
+          <%= @donate.content.html_safe if @donate.content %>
+        </div>
+      </div>
+
+      <div id="sidebar">
+        <%= render :partial => 'widgets/facebook_likebox' %>
+        <%= render :partial => 'widgets/twitter' %>
+      </div>
+
+    </div>
+  </div>
+  <!-- CONTENT END -->
+
+<% end %>

@@ -129,39 +129,20 @@
         </div>
       </li>
 
-      <li class="donate_item">
-        <%= link_to '<strong><span>Faça uma doação</span></strong>'.html_safe, 'javascript:void(0);' %>
+      <% donate_page = Page.get_page(:donate) %>
+      <% if donate_page and donate_page.published %>
+        <li class="donate_item">
+          <% if configuration.donation_goal and configuration.donation_collected %>
+            <%= link_to "<strong><span>#{donate_page.title}</span></strong>".html_safe,
+              'javascript:void(0);' %>
 
-        <style type="text/css">
-          ul#main_navigation .navigation_box .progress_bar .bar span {
-            width: <%= (configuration.donation_collected * 200 / configuration.donation_goal).to_i %>px
-          }
-        </style>
-
-        <div class="navigation_box_wrapper">
-          <div class="navigation_box">
-            <div class="content">
-              <p><%= configuration.donation_text %></p>
-
-              <hr />
-
-              <div class="progress_bar">
-                <p class="bar"><span></span></p>
-                <p class="goal">
-                  <span><%= number_to_currency(configuration.donation_goal) %></span>
-                </p>
-                <p class="collected"><span><%= number_to_currency(configuration.donation_collected) %></span></p>
-              </div>
-
-              <hr />
-
-              <p class="buttom">
-                <a href="<%= configuration.donation_link %>">Faça uma doação</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </li>
+            <%= render :partial => 'layouts/donate_box' %>
+          <% else %>
+            <%= link_to "<strong><span#{donate_page.title}</span></strong>".html_safe,
+              donate_path %>
+          <% end %>
+        </li>
+      <% end %>
 
       <% contact_page = Page.get_page(:contact) %>
       <% if contact_page and contact_page.published? %>

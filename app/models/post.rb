@@ -17,10 +17,13 @@ class Post < ActiveRecord::Base
     self.approval_rate_changed? or self.reproval_rate_changed?
   }
 
+  before_validation :set_moderator_counter, :on => :create
+
   attr_accessible :title, :url, :content, :published_at, :blog, :authors,
      :author_ids, :categories,:category_ids, :blog_id,
      :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids,
-     :approval_rate, :reproval_rate, :hilight, :evaluations_pretty, :user_evaluation
+     :approval_rate, :reproval_rate, :hilight, :evaluations_pretty,
+     :user_evaluation, :moderator_conter
 
   def self.create_from_feed_entry(entry, blog)
     categories = []
@@ -69,7 +72,7 @@ class Post < ActiveRecord::Base
   end
 
   def evaluations_count
-    self.post_evaluations.count
+    "#{self.post_evaluations.count}/#{self.moderator_counter}"
   end
 
   def check_rates_to_publish
@@ -81,9 +84,10 @@ class Post < ActiveRecord::Base
   end
 
   def update_evaluation_rates
+    self.update_moderator_counter
     approvals = self.post_evaluations.where('approve = ?', true).count
     reprovals = self.post_evaluations.where('approve = ?', false).count
-    users = User.count
+    users = self.moderator_counter
     self.update_attributes(
       :approval_rate => (approvals.to_f/users.to_f*100).round(1),
       :reproval_rate => (reprovals.to_f/users.to_f*100).round(1)
@@ -95,5 +99,15 @@ class Post < ActiveRecord::Base
 
   def evaluations_pretty
     "Aprovação: #{self.approval_rate}% / Reprovação: #{self.reproval_rate}%"
+  end
+
+  def set_moderator_counter
+    self.moderator_counter = User.count
+  end
+
+  def update_moderator_counter
+    if self.post_evaluations.count > self.moderator_counter
+      self.moderator_counter = self.post_evaluations.count
+    end
   end
 end

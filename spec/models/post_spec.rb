@@ -70,6 +70,34 @@ describe Post do
     end
   end
 
+  context 'moderator_counter' do
+    it 'should initialize with actual moderators(users) count and  update to total users votes when it exceeds the moderator counter' do
+      user1 = FactoryGirl.create :user
+      user2 = FactoryGirl.create :user
+      post = FactoryGirl.create :post
+      post.moderator_counter.should == 2
+      user3 = FactoryGirl.create :user
+      FactoryGirl.create :post_evaluation, :user => user1, :post => post
+      FactoryGirl.create :post_evaluation, :user => user2, :post => post
+      post.moderator_counter.should == 2
+      FactoryGirl.create :post_evaluation, :user => user3, :post => post
+      post.reload.moderator_counter.should == 3
+    end
+
+    it 'should evaluate post based on moderator_counter' do
+      user1 = FactoryGirl.create :user
+      user2 = FactoryGirl.create :user
+      post = FactoryGirl.create :post
+      FactoryGirl.create :post_evaluation, :user => user1, :post => post, :approve => true
+      FactoryGirl.create :post_evaluation, :user => user2, :post => post, :approve => true
+      post.reload.approval_rate.should == 100.0
+      user3 = FactoryGirl.create :user
+      post.reload.approval_rate.should == 100.0
+      FactoryGirl.create :post_evaluation, :user => user3, :post => post, :approve => false
+      post.reload.approval_rate.round(1).should == 66.7
+    end
+  end
+
   context 'should create a post from a feed entry' do
     # I'm using before(:each) because stub isn't supported on before(:create)
     # more info on https://github.com/rspec/rspec-mocks/issues/92#issuecomment-3178470

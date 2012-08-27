@@ -181,11 +181,7 @@ RailsAdmin.config do |config|
     list do
       field :title
       field :blog
-      field :evaluations_count do
-        pretty_value do
-          "#{value}/#{User.count}"
-        end
-      end
+      field :evaluations_count
       field :evaluations_pretty do
         column_width 150;
         pretty_value do

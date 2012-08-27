@@ -223,7 +223,7 @@
 
               <ul>
                 <% sponsors.each do |s| %>
-                  <li>
+                  <li><span>
                     <% if s.link %>
                       <a href="<%= s.link %>" target="_blank">
                         <% if s.image.exists? %>
@@ -240,8 +240,11 @@
                       <% end %>
                     <% end %>
                   <% end %>
-                </li>
+                </span></li>
               </ul>
+
+              <p class="next">Próximo</p>
+              <p class="previous">Anterior</p>
             </li>
           <% end %>
 

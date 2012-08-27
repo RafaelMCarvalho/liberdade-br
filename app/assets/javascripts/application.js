@@ -26,7 +26,7 @@ $(function () {
 
 /* Banner */
 
-var banner_image_sld, banner_info_sld;
+var banner_image_sld, banner_info_sld, sponsors_sld;
 
 $(function () {
     banner_image_sld = $("#banner ul.images").bxSlider({
@@ -52,5 +52,23 @@ $(function () {
         $(this).addClass("active");
         banner_image_sld.goToSlide(slide_pos);
         banner_info_sld.goToSlide(slide_pos);
+    });
+});
+
+$(function () {
+    sponsors_sld = $("#sponsors_list ul").bxSlider({
+        auto: true, controls: false, pause: 6000, mode: 'fade'
+    });
+});
+
+$(function () {
+    $('#sponsors_list .next').click(function () {
+        sponsors_sld.goToNextSlide();
+    });
+});
+
+$(function () {
+    $('#sponsors_list .previous').click(function () {
+        sponsors_sld.goToPreviousSlide();
     });
 });

@@ -1798,6 +1798,7 @@ form.simple_form .actions img {
 
 #footer_wrapper {
     margin-top: 10px;
+    padding-bottom: 20px;
 
     background: #ffcc00 url("/assets/footer_detail.png") no-repeat center top;
 }
@@ -1861,13 +1862,40 @@ form.simple_form .actions img {
     width: 250px;
 }
 
+#footer #sponsors_list .next, #footer #sponsors_list .previous {
+    margin-top: -200px;
+    height: 200px;
+    width: 15px;
+    position: absolute;
+    overflow: hidden;
+    text-indent: -555px;
+    z-index: 3000;
+
+    cursor: pointer;
+    background: url("/assets/sponsors_list_controls.png") no-repeat left center;
+}
+
+#footer #sponsors_list .previous {
+    margin-left: 235px;
+    background-position: right center;
+}
+
 #footer #sponsors_list li {
     margin-bottom: 10px;
 }
 
+#footer #sponsors_list li span {
+    display: table-cell;
+    vertical-align: middle;
+    width: 250px;
+    height: 200px;
+
+    font-size: 40px;
+    text-align: center;
+}
+
 #footer #sponsors_list li img {
     display: block;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 #footer #implementation {

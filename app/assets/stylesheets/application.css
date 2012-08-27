@@ -1571,6 +1571,8 @@ ul.opportunities_list li .more a:hover {
 
 .post {
     margin-top: -20px;
+
+    text-align: justify;
 }
 
 .post * {
@@ -1583,8 +1585,15 @@ ul.opportunities_list li .more a:hover {
     font-size: 14px;
 }
 
-.post p, .post dt {
+.post p, .post dt, .post blockquote {
     margin-top: 20px;
+}
+
+.post blockquote {
+    padding-left: 15px;
+
+    font-style: italic;
+    border-left: 5px solid #eee;
 }
 
 .post dt {
@@ -1614,6 +1623,11 @@ ul.opportunities_list li .more a:hover {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px !important;
     text-transform: uppercase;
+}
+
+.post .image {
+    font-size: 14px;
+    text-align: center;
 }
 
 .post .hilight_wrapper {

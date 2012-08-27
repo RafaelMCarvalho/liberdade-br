@@ -128,6 +128,16 @@ pt-BR:
             message:
               blank: " não pode ser vazio."
 
+  # Views
+  views:
+    pagination:
+      first: "Primeira"
+      last: "Última"
+
+  admin:
+    home:
+      name: "Site"
+
   # formatos de data e hora
   date:
     formats:
@@ -270,13 +280,3 @@ pt-BR:
       words_connector: ', '
       two_words_connector: ' e '
       last_word_connector: ' e '
-
-  admin:
-    home:
-      name: "Site"
-
-  # Views
-  views:
-    pagination:
-      first: "Primeira"
-      last: "Última"

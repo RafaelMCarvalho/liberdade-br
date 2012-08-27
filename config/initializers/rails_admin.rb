@@ -121,62 +121,9 @@ RailsAdmin.config do |config|
 
 # POSTS ========================================================================
 
-  config.model Author do
-    navigation_label 'Postagens'
-
-    list do
-      field :name
-    end
-
-    edit do
-      field :name
-      field(:description) { ckeditor true }
-    end
-  end
-
-  config.model Blog do
-    navigation_label 'Postagens'
-
-    list do
-      field :image
-      field :name
-      field :link do
-        formatted_value do
-          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
-        end
-      end
-    end
-
-    edit do
-      field :name
-      field :link
-      field :rss
-      field(:description) { ckeditor true }
-      field :image
-    end
-
-    show do
-      field :image
-      field :name
-      field :link
-      field :rss
-      field :description do
-        pretty_value do
-          value.html_safe
-        end
-      end
-    end
-  end
-
-  config.model Category do
-    navigation_label 'Postagens'
-
-    list { field :name }
-    edit { field :name }
-  end
-
   config.model Post do
     navigation_label 'Postagens'
+    weight 3
 
     list do
       field :title
@@ -261,10 +208,69 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Blog do
+    navigation_label 'Postagens'
+    weight 4
+
+    list do
+      field :image
+      field :name
+      field :link do
+        formatted_value do
+          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
+        end
+      end
+    end
+
+    edit do
+      field :name
+      field :link
+      field :rss
+      field(:description) { ckeditor true }
+      field :image
+    end
+
+    show do
+      field :image
+      field :name
+      field :link
+      field :rss
+      field :description do
+        pretty_value do
+          value.html_safe
+        end
+      end
+    end
+  end
+
+  config.model Author do
+    navigation_label 'Postagens'
+    weight 4
+
+    list do
+      field :name
+    end
+
+    edit do
+      field :name
+    end
+  end
+
+
+  config.model Category do
+    navigation_label 'Postagens'
+    weight 5
+
+    list { field :name }
+    edit { field :name }
+  end
+
+
 # CONTENTS =====================================================================
 
   config.model Banner do
     navigation_label 'Conteúdos'
+    weight 6
 
     list do
       field :image
@@ -286,8 +292,25 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Page do
+    navigation_label 'Conteúdos'
+    weight 7
+
+    list do
+      field :title
+      field :published
+    end
+
+    edit do
+      field :title
+      field(:content) { ckeditor true }
+      field :published
+    end
+  end
+
   config.model Event do
     navigation_label 'Conteúdos'
+    weight 8
 
     list do
       field :image
@@ -314,22 +337,7 @@ RailsAdmin.config do |config|
 
   config.model Opportunity do
     navigation_label 'Conteúdos'
-
-    list do
-      field :title
-      field :published
-    end
-
-    edit do
-      field :title
-      field(:content) { ckeditor true }
-      field :published
-    end
-  end
-
-
-  config.model Page do
-    navigation_label 'Conteúdos'
+    weight 9
 
     list do
       field :title
@@ -345,6 +353,7 @@ RailsAdmin.config do |config|
 
   config.model Sponsor do
     navigation_label 'Conteúdos'
+    weight 10
 
     list do
       field :image
@@ -365,8 +374,6 @@ RailsAdmin.config do |config|
 
 # MENU =========================================================================
 
-
-
   # CKeditor models (begin)
   config.model Ckeditor::Asset do
     visible false
@@ -376,7 +383,7 @@ RailsAdmin.config do |config|
     label 'Imagem'
     label_plural 'Imagens'
     navigation_label 'Arquivos'
-    weight 1
+    weight 11
 
     edit do
       field(:data) { label 'Imagem' }
@@ -392,7 +399,7 @@ RailsAdmin.config do |config|
   config.model Ckeditor::AttachmentFile do
     label 'Arquivo'
     navigation_label 'Arquivos'
-    weight 1
+    weight 12
 
     edit do
       field(:data) { label 'Arquivo' }

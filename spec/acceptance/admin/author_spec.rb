@@ -16,7 +16,6 @@ feature 'manager authors' do
 
 		it 'successfully' do
 			fill_in 'Nome', :with => 'Blog da Algorich'
-			fill_in 'Descrição', :with => 'Blog da empresa'
 			click_button 'Salvar'
 			page.should have_content 'Autor criado(a) com sucesso'
 		end
@@ -36,12 +35,10 @@ feature 'manager authors' do
 
 		it 'successfully' do
 			fill_in 'Nome', :with => 'Outro nome'
-			fill_in 'Descrição', :with => 'MeuEvento.com é um sistema de gerenciamento de evento'
 			click_button 'Salvar'
 			page.should have_content 'Autor atualizado(a) com sucesso'
 			@author.reload
 			@author.name.should == 'Outro nome'
-			@author.description.should == 'MeuEvento.com é um sistema de gerenciamento de evento'
 		end
 
 		it 'with errors' do

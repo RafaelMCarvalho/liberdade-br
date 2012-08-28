@@ -1,0 +1,29 @@
+<style type="text/css">
+  ul#main_navigation .navigation_box .progress_bar .bar span {
+    width: <%= (configuration.donation_collected * 200 / configuration.donation_goal).to_i %>px
+  }
+</style>
+
+<div class="navigation_box_wrapper">
+  <div class="navigation_box">
+    <div class="content">
+      <p><%= configuration.donation_text %></p>
+
+      <hr />
+
+      <div class="progress_bar">
+        <p class="bar"><span></span></p>
+        <p class="goal">
+          <span><%= number_to_currency(configuration.donation_goal) %></span>
+        </p>
+        <p class="collected"><span>
+          <%= number_to_currency(configuration.donation_collected) %>
+        </span></p>
+      </div>
+
+      <hr />
+
+      <p class="buttom"><%= link_to 'Faça uma doação', donate_path %></p>
+    </div>
+  </div>
+</div>

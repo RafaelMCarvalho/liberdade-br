@@ -40,20 +40,26 @@ class SiteController < ApplicationController
   # CONTACT END
 
   def about
-    @about = Page.where("indicator = ?", Page::PAGES[:about]).first
+    @about = Page.where('indicator = ?', Page::PAGES[:about]).first
 
     raise ActionController::RoutingError.new('Not Found') unless @about.published
   end
 
   def faq
-    @faq = Page.where("indicator = ?", Page::PAGES[:faq]).first
+    @faq = Page.where('indicator = ?', Page::PAGES[:faq]).first
 
     raise ActionController::RoutingError.new('Not Found') unless @faq.published
   end
 
   def financers
-    @financers = Page.where("indicator = ?", Page::PAGES[:financers]).first
+    @financers = Page.where('indicator = ?', Page::PAGES[:financers]).first
 
     raise ActionController::RoutingError.new('Not Found') unless @financers.published
+  end
+
+  def donate
+    @donate = Page.where('indicator = ?', Page::PAGES[:donate]).first
+
+    raise ActionController::RoutingError.new('Not Found') unless @donate.published
   end
 end

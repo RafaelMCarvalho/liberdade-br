@@ -10,7 +10,7 @@ gem 'simple_form', '2.0.2'
 gem 'slim', '1.2.2'
 gem 'jquery-rails', '2.0.2'
 gem 'sprockets', '2.1.3'
-gem 'ckeditor'
+gem 'ckeditor', '3.7.1'
 gem 'paperclip', '2.7.0'
 gem 'feedzirra', '0.2.0.rc2'
 gem 'whenever', '0.7.3', :require => false

@@ -45,6 +45,7 @@ LiberdadeBr::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( login.css )
+  config.assets.precompile += Ckeditor.assets
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

@@ -104,12 +104,6 @@ namespace :deploy do
      ln -sf #{shared_path}/database.yml #{latest_release}/config/database.yml &&
      ln -sf #{shared_path}/setup_load_paths.rb #{latest_release}/config/
    CMD
-
-   if fetch(:normalize_asset_timestamps, true)
-     stamp = Time.now.utc.strftime("%Y%m%d%H%M.%S")
-     asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")
-     run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env => { "TZ" => "UTC" }
-   end
  end
 
  desc "Zero-downtime restart of Unicorn"
@@ -137,8 +131,8 @@ namespace :deploy do
  end
 end
 
-namespace :db do
- task :migrate do
+namespace :database do
+ task :migrate   do
   run 'sed -i s/^/\#/ ' + latest_release + '/config/initializers/rails_admin.rb'
   run "cd #{latest_release}; bundle exec rake db:migrate RAILS_ENV=production"
   run 'sed -i s/^\#// '+ latest_release + '/config/initializers/rails_admin.rb'
@@ -170,7 +164,7 @@ namespace :utils do
  end
 end
 
-tasks = ['deploy:finalize_update', 'bundle:install', 'db:migrate']
+tasks = ['deploy:finalize_update', 'bundle:install', 'database:migrate']
 
 if ENV["assets"]
  tasks << 'utils:compile_assets'

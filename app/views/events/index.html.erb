@@ -1,4 +1,4 @@
-<%= content_for :page_title do 'Events' end %>
+<%= content_for :page_title do 'Eventos' end %>
 
 <%= content_for :page_id do 'events' end %>
 
@@ -61,6 +61,12 @@
         <hr />
 
         <%= paginate @events %>
+      </div>
+
+      <div id="sidebar">
+        <%= render :partial => 'widgets/opportunities' %>
+
+        <div class="sidebar_detail"></div>
       </div>
     </div>
   </div>

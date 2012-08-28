@@ -5,7 +5,7 @@ class Sponsor < ActiveRecord::Base
     :path => ":rails_root/public/system/sponsors/:id/:style/:filename",
     :url => "/system/sponsors/:id/:style/:filename",
     :styles => {
-      :small => '250x100#', :thumb => '125x50#'
+      :small => '250x200#', :thumb => '125x100#'
     }
 
   validates_attachment_content_type :image,

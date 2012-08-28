@@ -23,12 +23,12 @@ pt-BR:
       category:
         name: 'Nome'
       configuration:
-        email: "E-mail"
+        email: "E-mail para contato"
         keywords: "Palavras-chave"
         description: "Descrição"
         google_analytics: 'Google Analytics'
         footer: 'Rodapé'
-        facebook_like_goal: 'Objetivo de Facebook likes'
+        facebook_like_goal: 'Objetivo de likes no Facebook'
         donation_text: 'Texto'
         donation_link: 'Link'
         donation_collected: 'Angariado (R$)'
@@ -39,7 +39,7 @@ pt-BR:
         ad_image: 'Imagem'
         ad_url: 'URL'
         ad_new_tab: 'Abrir em nova aba'
-        ad_published: 'Publicada'
+        ad_published: 'Publicado'
         realization_title: 'Título'
         realization_image: 'Imagem'
         realization_url: 'URL'
@@ -54,12 +54,15 @@ pt-BR:
       post:
         title: 'Título'
         content: 'Conteúdo'
+        criterion_for_publication: 'Critério para publicação'
+        published: 'Publicado'
         published_at: 'Publicado em'
         authors: 'Autores'
         categories: 'Categorias'
         approval_rate: 'Aprovação'
         reproval_rate: 'Reprovação'
         evaluations_count: 'Avaliações'
+        evaluations_pretty: 'Taxas de avaliação'
       user:
         email: "E-mail"
         password: "Senha"
@@ -81,6 +84,8 @@ pt-BR:
         name: "Nome"
         link: "Site"
         date: "Data de início"
+        end_date: "Data de fim"
+        local: "Local"
         description: "Descrição"
         published: "Publicado"
         image: "Imagem de divulgação"
@@ -125,6 +130,16 @@ pt-BR:
               invalid: " formato inválido."
             message:
               blank: " não pode ser vazio."
+
+  # Views
+  views:
+    pagination:
+      first: "Primeira"
+      last: "Última"
+
+  admin:
+    home:
+      name: "Site"
 
   # formatos de data e hora
   date:
@@ -268,7 +283,3 @@ pt-BR:
       words_connector: ', '
       two_words_connector: ' e '
       last_word_connector: ' e '
-
-  admin:
-    home:
-      name: "Site"

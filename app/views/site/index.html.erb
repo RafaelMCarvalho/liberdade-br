@@ -82,7 +82,11 @@
       </div>
 
       <div id="sidebar">
-        <%= render :partial => 'index_sidebar', :locals => { :posts => @posts } %>
+        <%= render :partial => 'widgets/send_post' %>
+        <%= render :partial => 'widgets/advertising' %>
+        <%= render :partial => 'widgets/facebook_likebox' %>
+        <%= render :partial => 'widgets/events' %>
+        <%= render :partial => 'widgets/opportunities' %>
       </div>
 
     </div>

@@ -2,7 +2,8 @@
 class Ability
   include CanCan::Ability
 
-  MODELS = [Configuration, Page]
+  MODELS = [Configuration, Page, Post, User, Author, Event,
+    Opportunity, Sponsor]
 
   def initialize(user)
     if user
@@ -10,16 +11,18 @@ class Ability
       if user.role? :moderator
         can :dashboard
         can :read, Post
+        can :show_in_app, Post
         can :update, User, :id => user.id #moderator can update own user details
+        cannot :history, :all
       elsif user.role? :coordinator
         can :access, :rails_admin
         can :manage, :all
         cannot [:destroy, :create], Page
         cannot [:destroy, :create], Configuration
+        cannot :history, :all
 
-        MODELS.each { |model| cannot :show, model }
       end
+      MODELS.each { |model| cannot :show, model }
     end
   end
 end
-

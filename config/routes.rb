@@ -42,7 +42,13 @@ LiberdadeBr::Application.routes.draw do
 
 #= 10. Opportunities ===========================================================
   get '/oportunidades' => 'opportunities#index', :as => :opportunities
-  get '/oportunidade/:id' => 'Opportunities#show', :as => :opportunity
+  get '/oportunidade/:id' => 'opportunities#show', :as => :opportunity
 
-  root :to => "site#index"
+#= 11. Feed ====================================================================
+  get '/feed' => 'posts#feed', :as => :feed, :defaults => { :format => 'atom' }
+
+#= 12. Donate ==================================================================
+  get '/doacao' => 'site#donate', :as => :donate
+
+  root :to => 'site#index'
 end

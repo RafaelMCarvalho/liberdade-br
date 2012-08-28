@@ -8,44 +8,36 @@ end
 
 # User
 
-# User.delete_all
+User.delete_all
 
-# User.create!(
-#  :email => 'admin@base.com',
-#  :password => '123456',
-#  :role => :coordinator
-# )
+User.create!(
+  :email => 'admin@base.com',
+  :password => '123456',
+  :role => :coordinator
+)
 
-# User.create!(
+#User.create!(
 #  :email => 'moderator@base.com',
 #  :password => '123456',
 #  :role => :moderator
-# )
+#)
 
 # Configuration
 
 Configuration.delete_all
 
 Configuration.create!(
-  :email => 'base@project.com.br',
+  :email => 'contato@liberdade.cc',
   :donation_text => 'Liberdade.br é um projeto sem fins lucrativos
     que se mantem graças as doações de pessoas que compartilham de seus
     ideais. Faça sua contribuição e nos ajude também.',
   :site_url => 'http://liberdade.cc',
-  :site_title => 'Liberdade.br',
-  :donation_link => 'http://google.com',
-  :donation_goal => '10000.00',
-  :donation_collected => '4000.00',
+  :site_title => 'Liberdade.BR',
   :facebook => 'http://www.facebook.com/liberdadebr',
-  :facebook_like_goal => 500,
-  :ad_title => 'Libertários',
-  :ad_url => 'http://www.pliber.org.br',
-  :ad_image => File.open("public/seeds/libertarios.jpg"),
-  :ad_new_tab => true,
-  :ad_published => true,
   :realization_title => 'Instituto para o Desenvolvimento Econômico, Institucional e Social',
   :realization_url => 'http://www.ideias.org/',
-  :realization_image => File.open("public/seeds/ideias.png")
+  :realization_image => File.open('public/seeds/ideias.png'),
+  :footer => file_to_string('public/seeds/footer.part.html')
 )
 
 # Pages
@@ -54,6 +46,7 @@ Page.delete_all
 
 page = Page.create!(
   :title => 'Contato',
+  :content => file_to_string('public/seeds/contact_page.part.html'),
   :content => file_to_string('public/seeds/contact_page.part.html'),
   :published => true
 )
@@ -69,7 +62,7 @@ page.indicator = Page::PAGES[:about]
 page.save
 
 page = Page.create!(
-  :title => 'Financiadores do Liberdade.br',
+  :title => 'Financiadores do Liberdade.BR',
   :content => file_to_string('public/seeds/financers_page.part.html'),
   :published => true
 )
@@ -92,33 +85,41 @@ page = Page.create!(
 page.indicator = Page::PAGES[:send_post]
 page.save
 
+page = Page.create!(
+  :title => 'Faça uma doação',
+  :content => file_to_string('public/seeds/donate_page.part.html'),
+  :published => true
+)
+page.indicator = Page::PAGES[:donate]
+page.save
+
 # Banner
 
-Banner.delete_all
+#Banner.delete_all
 
-Banner.create!(
-  :title => 'Lorem ipsum dolor sit amet',
-  :link => 'http://www.algorich.com.br',
-  :open_in_new_tab => true,
-  :published => true,
-  :image => File.open('public/seeds/banner1.png')
-)
+#Banner.create!(
+#  :title => 'Lorem ipsum dolor sit amet',
+#  :link => 'http://www.algorich.com.br',
+#  :open_in_new_tab => true,
+#  :published => true,
+#  :image => File.open('public/seeds/banner1.png')
+#)
 
-Banner.create!(
-  :title => 'Quisque ultricies dapibus suscipit',
-  :link => 'http://www.algorich.com.br',
-  :open_in_new_tab => true,
-  :published => true,
-  :image => File.open('public/seeds/banner2.png')
-)
+#Banner.create!(
+#  :title => 'Quisque ultricies dapibus suscipit',
+#  :link => 'http://www.algorich.com.br',
+#  :open_in_new_tab => true,
+#  :published => true,
+#  :image => File.open('public/seeds/banner2.png')
+#)
 
-Banner.create!(
-  :title => 'Praesent urna est molestie in hendrerit eu vestibulum',
-  :link => 'http://www.algorich.com.br',
-  :open_in_new_tab => true,
-  :published => true,
-  :image => File.open('public/seeds/banner3.png')
-)
+#Banner.create!(
+#  :title => 'Praesent urna est molestie in hendrerit eu vestibulum',
+#  :link => 'http://www.algorich.com.br',
+#  :open_in_new_tab => true,
+#  :published => true,
+#  :image => File.open('public/seeds/banner3.png')
+#)
 
 # Blog
 
@@ -217,93 +218,94 @@ Blog.create!(
 
 # Sponsors
 
-Sponsor.delete_all
+#Sponsor.delete_all
 
-Sponsor.create!(
-  :name => 'Instituto Mises Brasil',
-  :link => 'http://www.mises.org.br/',
-  :image => File.open('public/seeds/sponsor.png')
-)
+#Sponsor.create!(
+#  :name => 'Instituto Mises Brasil',
+#  :link => 'http://www.mises.org.br/',
+#  :image => File.open('public/seeds/sponsor.png')
+#)
 
-Sponsor.create!(
-  :name => 'Ordem Livre',
-  :link => 'http://www.ordemlivre.com/',
-  :image => File.open('public/seeds/sponsor.png')
-)
+#Sponsor.create!(
+#  :name => 'Ordem Livre',
+#  :link => 'http://www.ordemlivre.com/',
+#  :image => File.open('public/seeds/sponsor.png')
+#)
 
-Sponsor.create!(
-  :name => 'IDEAS',
-  :link => 'http://www.ideas.org.br/'
-)
+#Sponsor.create!(
+#  :name => 'IDEAS',
+#  :link => 'http://www.ideas.org.br/'
+#)
 
 # Events
 
-Event.delete_all
+#Event.delete_all
 
-names = [
-  'Lorem ipsum dolor sit amet',
-  'Sed quam elit',
-  'Curabitur venenatis',
-  'Nullam at felis eu neque tempor sed'
-]
+#names = [
+#  'Lorem ipsum dolor sit amet',
+#  'Sed quam elit',
+#  'Curabitur venenatis',
+#  'Nullam at felis eu neque tempor sed'
+#]
 
-10.times do |i|
-  Event.create!(
-    :name => names[i % names.length],
-    :link => 'http://www.algorich.com.br/',
-    :date => Date.today + i.days,
-    :published => true,
-    :local => 'Lorem ipsum dolor',
-    :image => File.open('public/seeds/event_image.jpg'),
-    :description => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Proin ipsum dui, bibendum non dignissim ac, auctor in mauris. Integer
-      condimentum rutrum mauris et mattis. Nullam suscipit mollis mi vitae
-      semper. Nam commodo, erat vel bibendum pharetra, velit nisl lacinia diam,
-      in consectetur quam augue luctus velit. Etiam nec nisl dui, ut scelerisque
-      dui. In fringilla, nunc in consectetur feugiat, ipsum mauris dignissim
-      eros, in bibendum ipsum risus quis turpis. Fusce placerat suscipit
-      placerat. Pellentesque elementum fermentum mi, vitae mollis mauris
-      laoreet ut. Donec varius lobortis vehicula. Donec id elementum mauris.
-      Duis id nulla a est volutpat semper. Donec vitae porta est. Proin velit
-      mi, facilisis a placerat ac, adipiscing sed nibh. Sed eu sapien est. Sed
-      aliquam leo quis eros varius vitae accumsan ligula consectetur.</p>'
-  )
-end
+#10.times do |i|
+#  Event.create!(
+#    :name => names[i % names.length],
+#    :link => 'http://www.algorich.com.br/',
+#    :date => Date.today + i.days,
+#    :end_date => Date.today + i.days + 1,
+#    :published => true,
+#    :local => 'Lorem ipsum dolor',
+#    :image => File.open('public/seeds/event_image.jpg'),
+#    :description => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#      Proin ipsum dui, bibendum non dignissim ac, auctor in mauris. Integer
+#      condimentum rutrum mauris et mattis. Nullam suscipit mollis mi vitae
+#      semper. Nam commodo, erat vel bibendum pharetra, velit nisl lacinia diam,
+#      in consectetur quam augue luctus velit. Etiam nec nisl dui, ut scelerisque
+#      dui. In fringilla, nunc in consectetur feugiat, ipsum mauris dignissim
+#      eros, in bibendum ipsum risus quis turpis. Fusce placerat suscipit
+#      placerat. Pellentesque elementum fermentum mi, vitae mollis mauris
+#      laoreet ut. Donec varius lobortis vehicula. Donec id elementum mauris.
+#      Duis id nulla a est volutpat semper. Donec vitae porta est. Proin velit
+#      mi, facilisis a placerat ac, adipiscing sed nibh. Sed eu sapien est. Sed
+#      aliquam leo quis eros varius vitae accumsan ligula consectetur.</p>'
+#  )
+#end
 
 # Opportunities
 
-names = [
-  'Lorem ipsum dolor sit amet',
-  'Sed quam elit',
-  'Curabitur venenatis',
-  'Nullam at felis eu neque tempor sed'
-]
+#names = [
+#  'Lorem ipsum dolor sit amet',
+#  'Sed quam elit',
+#  'Curabitur venenatis',
+#  'Nullam at felis eu neque tempor sed'
+#]
 
-10.times do |i|
-  Opportunity.create!(
-    :title => names[i % names.length],
-    :published => true,
-    :content => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Proin ipsum dui, bibendum non dignissim ac, auctor in mauris. Integer
-      condimentum rutrum mauris et mattis. Nullam suscipit mollis mi vitae
-      semper. Nam commodo, erat vel bibendum pharetra, velit nisl lacinia diam,
-      in consectetur quam augue luctus velit. Etiam nec nisl dui, ut scelerisque
-      dui. In fringilla, nunc in consectetur feugiat, ipsum mauris dignissim
-      eros, in bibendum ipsum risus quis turpis. Fusce placerat suscipit
-      placerat. Pellentesque elementum fermentum mi, vitae mollis mauris
-      laoreet ut. Donec varius lobortis vehicula. Donec id elementum mauris.
-      Duis id nulla a est volutpat semper. Donec vitae porta est. Proin velit
-      mi, facilisis a placerat ac, adipiscing sed nibh. Sed eu sapien est. Sed
-      aliquam leo quis eros varius vitae accumsan ligula consectetur.</p>'
-  )
-end
+#10.times do |i|
+#  Opportunity.create!(
+#    :title => names[i % names.length],
+#    :published => true,
+#    :content => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#      Proin ipsum dui, bibendum non dignissim ac, auctor in mauris. Integer
+#      condimentum rutrum mauris et mattis. Nullam suscipit mollis mi vitae
+#      semper. Nam commodo, erat vel bibendum pharetra, velit nisl lacinia diam,
+#      in consectetur quam augue luctus velit. Etiam nec nisl dui, ut scelerisque
+#      dui. In fringilla, nunc in consectetur feugiat, ipsum mauris dignissim
+#      eros, in bibendum ipsum risus quis turpis. Fusce placerat suscipit
+#      placerat. Pellentesque elementum fermentum mi, vitae mollis mauris
+#      laoreet ut. Donec varius lobortis vehicula. Donec id elementum mauris.
+#      Duis id nulla a est volutpat semper. Donec vitae porta est. Proin velit
+#      mi, facilisis a placerat ac, adipiscing sed nibh. Sed eu sapien est. Sed
+#      aliquam leo quis eros varius vitae accumsan ligula consectetur.</p>'
+#  )
+#end
 
-# # Posts
+# Posts
 
-# Post.delete_all
-# Blog.all.each do |blog|
-#  feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
-#  feed.entries.select do |entry|
-#    Post.create_from_feed_entry(entry, blog)
-#  end
+#Post.delete_all
+#Blog.all.each do |blog|
+# feed = Feedzirra::Feed.fetch_and_parse(blog.rss)
+# feed.entries.select do |entry|
+#   Post.create_from_feed_entry(entry, blog)
 # end
+#end

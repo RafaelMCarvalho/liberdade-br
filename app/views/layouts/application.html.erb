@@ -4,6 +4,9 @@
 <head>
   <title>Liberdade.br - <%= yield :page_title %></title>
 
+  <%= auto_discovery_link_tag :atom, feed_url %>
+  <%= auto_discovery_link_tag :rss, feed_url(:format => 'rss') %>
+
   <meta content='http://algorich.com.br' name='author' />
 
   <% unless configuration.keywords.blank? %>
@@ -45,7 +48,7 @@
   <% end %>
 </head>
 
-<body id="<%= yield :page_id %>_page">
+<body id="<%= yield :page_id %>_page" <%= 'class="logged"'.html_safe if current_user %>>
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -57,6 +60,12 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="wrapper">
+
+  <!-- MODERATOR ACTIONS BEGIN -->
+  <div id="moderator_actions">
+    <%= yield :moderator_actions %>
+  </div>
+  <!-- MODERATOR ACTIONS END -->
 
   <!-- HEADER BEGIN -->
   <div id="header_wrapper">
@@ -111,6 +120,7 @@
               <div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="<%= configuration.site_url %>" addthis:title="<%= configuration.site_title %>">
                 <a class="addthis_button_facebook"></a>
                 <a class="addthis_button_twitter"></a>
+                <a class="addthis_button_google_plusone_share"></a>
                 <a class="addthis_button_email"></a>
                 <a class="addthis_button_compact"></a>
                 <a class="addthis_counter addthis_bubble_style"></a>
@@ -122,39 +132,20 @@
         </div>
       </li>
 
-      <li class="donate_item">
-        <%= link_to '<strong><span>Faça uma doação</span></strong>'.html_safe, 'javascript:void(0);' %>
+      <% donate_page = Page.get_page(:donate) %>
+      <% if donate_page and donate_page.published %>
+        <li class="donate_item">
+          <% if configuration.donation_goal and configuration.donation_collected %>
+            <%= link_to "<strong><span>#{donate_page.title}</span></strong>".html_safe,
+              'javascript:void(0);' %>
 
-        <style type="text/css">
-          ul#main_navigation .navigation_box .progress_bar .bar span {
-            width: <%= (configuration.donation_collected * 200 / configuration.donation_goal).to_i %>px
-          }
-        </style>
-
-        <div class="navigation_box_wrapper">
-          <div class="navigation_box">
-            <div class="content">
-              <p><%= configuration.donation_text %></p>
-
-              <hr />
-
-              <div class="progress_bar">
-                <p class="bar"><span></span></p>
-                <p class="goal">
-                  <span><%= number_to_currency(configuration.donation_goal) %></span>
-                </p>
-                <p class="collected"><span><%= number_to_currency(configuration.donation_collected) %></span></p>
-              </div>
-
-              <hr />
-
-              <p class="buttom">
-                <a href="<%= configuration.donation_link %>">Faça uma doação</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </li>
+            <%= render :partial => 'layouts/donate_box' %>
+          <% else %>
+            <%= link_to "<strong><span#{donate_page.title}</span></strong>".html_safe,
+              donate_path %>
+          <% end %>
+        </li>
+      <% end %>
 
       <% contact_page = Page.get_page(:contact) %>
       <% if contact_page and contact_page.published? %>
@@ -177,7 +168,7 @@
             </li>
           <% end %>
           <li class="rss_item">
-            <%= link_to 'RSS', '#' %>
+            <%= link_to 'RSS', feed_url %>
           </li>
         </ul>
       </li>
@@ -193,12 +184,11 @@
     <!-- FOOTER BEGIN -->
     <div id="footer_wrapper">
       <div id="footer">
-        <div id="footer_info">
-          <p>Esta obra é licenciada sob uma licença
-            <a href="http://creativecommons.org/licenses/by/3.0/br/" targeft="_blank">
-              Creative Commons Atribuição 3.0 Brasil</a>.
-          </p>
-        </div>
+        <% if configuration.footer %>
+          <div id="footer_info">
+            <%= configuration.footer.html_safe %>
+          </div>
+        <% end %>
 
         <ul id="footer_sections">
           <li id="partners_list">
@@ -217,7 +207,7 @@
 
               <ul>
                 <% sponsors.each do |s| %>
-                  <li>
+                  <li><span>
                     <% if s.link %>
                       <a href="<%= s.link %>" target="_blank">
                         <% if s.image.exists? %>
@@ -234,8 +224,11 @@
                       <% end %>
                     <% end %>
                   <% end %>
-                </li>
+                </span></li>
               </ul>
+
+              <p class="next">Próximo</p>
+              <p class="previous">Anterior</p>
             </li>
           <% end %>
 
@@ -251,6 +244,12 @@
             </li>
           <% end %>
         </ul>
+
+        <!-- <p id="algorich">
+          <a class="alg_logo alg_logo_wb" href="http://www.algorich.com.br/" target="_blank">
+          <img src="http://media.algorich.com.br/web_algorich_logo_hor.png" alt="Algorich" width="121" height="28"><br />
+          Desenvolvido pela Algorich
+        </a></p> -->
       </div>
     </div>
     <!-- FOOTER END -->

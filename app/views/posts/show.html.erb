@@ -13,6 +13,25 @@
 
 <%= content_for :page_id do 'post' end %>
 
+<% if current_user %>
+  <%= content_for :moderator_actions do %>
+    <div class="rates">
+      <p class="approval" style="width: <%= @post.approval_rate.to_i %>%"><%= @post.approval_rate.to_i %>%</p>
+      <p class="reproval" style="width: <%= @post.reproval_rate.to_i %>%"><%= @post.reproval_rate.to_i %>%</p>
+    </div>
+
+    <ul class="actions">
+      <li class="buttom"><%= link_to 'Aprovar', approve_post_path(@post, current_user),
+        :method => :post, :class => ('active' if @voted_approve), :id => 'approve_post' %></li>
+
+      <li class="buttom"><%= link_to 'Reprovar', reprove_post_path(@post, current_user),
+        :method => :post, :class => ('active' if @voted_approve == false), :id => 'reprove_post' %></li>
+
+      <li class="buttom"><%= link_to 'Voltar para administração', '/admin/post' %></li>
+    </ul>
+  <% end %>
+<% end %>
+
 <%= content_for :content do %>
   <!-- CONTENT BEGIN -->
   <div id="content_wrapper">
@@ -27,7 +46,7 @@
           <% if @post.blog %>
             <li><%= link_to @post.blog.name, posts_blog_path(@post.blog) %></li>
           <% end %>
-          <li><span><%= @post.title %></span></li>
+          <li><span><%= truncate(@post.title, :length => 80) %></span></li>
         </ul>
 
         <hr />
@@ -38,15 +57,23 @@
           <p class="info">
             Publicado originalmente em:
             <% if @post.blog %>
-              <%= link_to @post.blog.name, @post.blog.link, :target => '_blank' %> |
+              <%= link_to @post.blog.name, @post.blog.link, :target => '_blank',
+                :class => 'blog_name' %> |
             <% end %>
             <%= @post.published_at.strftime('%d de %B de %Y') %>.
+
+            <% unless (authors = @post.authors).empty? %>
+              <br />
+              Por <%= (authors.collect { |a| link_to(a.name, posts_author_path(a)) }).
+                to_sentence.html_safe %>.
+            <% end %>
           </p>
 
           <!-- AddThis Button BEGIN -->
           <div class="addthis_toolbox addthis_default_style " addthis:url="<%= request.url %>" addthis:title="<%= @post.title %>">
             <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
             <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
             <a class="addthis_counter addthis_pill_style"></a>
           </div>
           <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
@@ -67,18 +94,26 @@
         </div>
 
         <% unless @post.categories.empty? %>
-          <p class="post_categories">
-            <%= (@post.categories.collect { |c| link_to(c.name, posts_category_path(c)) }).
-              to_sentence.html_safe %>
-          </p>
+          <div class="post_categories">
+            <h3>Categorias</h3>
+
+            <p><%= (@post.categories.collect { |c| link_to(c.name, posts_category_path(c)) }).
+              to_sentence.html_safe %></p>
+          </div>
         <% end %>
 
+        <hr />
+
+        <div class="fb-comments" data-href="<%= request.url %>" data-num-posts="2" data-width="530"></div>
       </div>
 
       <div id="sidebar">
-        <%= render :partial => 'post_sidebar', :locals => { :post => @post } %>
+        <%= render :partial => 'widgets/advertising' %>
+        <%= render :partial => 'widgets/facebook_likebox' %>
+        <%= render :partial => 'widgets/twitter' %>
+        <%= render :partial => 'widgets/posts' %>
+        <%= render :partial => 'widgets/blog', :locals => { :blog => @post.blog } %>
       </div>
-      <div class="fb-comments" data-href="<%= request.url %>" data-num-posts="2" data-width="530"></div>
     </div>
   </div>
   <!-- CONTENT END -->

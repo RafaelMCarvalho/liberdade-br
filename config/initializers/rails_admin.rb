@@ -7,276 +7,83 @@ RailsAdmin.config do |config|
   config.authorize_with :cancan
   config.compact_show_view = false
 
-# POSTS ========================================================================
-  config.model Author do
-    navigation_label 'Postagens'
-
-    list do
-      field :name
-    end
-
-    edit do
-      field :name
-      field(:description) { ckeditor true }
-    end
-  end
-
-  config.model Blog do
-    navigation_label 'Postagens'
-
-    list do
-      field :image
-      field :name
-      field :link do
-        formatted_value do
-          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
-        end
-      end
-    end
-
-    edit do
-      field :name
-      field :link
-      field :rss
-      field(:description) { ckeditor true }
-      field :image
-    end
-
-    show do
-      field :image
-      field :name
-      field :link
-      field :rss
-      field :description do
-        pretty_value do
-          value.html_safe
-        end
-      end
-    end
-  end
-
-  config.model Category do
-    navigation_label 'Postagens'
-
-    list { field :name }
-    edit { field :name }
-  end
-
-  config.model Post do
-    navigation_label 'Postagens'
-
-    list do
-      field :title
-      field :blog
-      field :evaluations_count do
-        pretty_value do
-          "#{value}/#{User.count}"
-        end
-      end
-      field :reproval_rate do
-        pretty_value do
-          "#{value}%"
-        end
-      end
-      field :approval_rate do
-        pretty_value do
-          "#{value}%"
-        end
-      end
-      field :categories
-      field :authors
-      field :published_at
-    end
-
-    edit do
-      field :title
-      field :blog
-      field(:content) { ckeditor true }
-      field :published_at
-      field :authors
-      field :categories
-    end
-
-    show do
-      field :title
-      field :content do
-        pretty_value do
-          value.html_safe
-        end
-      end
-      field :published_at
-      field :blog do
-        pretty_value do
-          if value
-            "<a href='#{value.link}' title='#{value.name}' target='_blank'>#{value.name}</a>".html_safe
-          end
-        end
-      end
-      field :authors
-      field :categories
-    end
-  end
-
-# CONTENTS =====================================================================
-
-  config.model Banner do
-    navigation_label 'Conteúdos'
-
-    list do
-      field :image
-      field :title
-      field :link do
-        formatted_value do
-          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
-        end
-      end
-      field :published
-    end
-
-    edit do
-      field :title
-      field :link
-      field :open_in_new_tab
-      field :published
-      field :image
-    end
-  end
-
-  config.model Event do
-    navigation_label 'Conteúdos'
-
-    list do
-      field :image
-      field :date
-      field :name
-      field :link do
-        formatted_value do
-          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
-        end
-      end
-      field :published
-    end
-
-   edit do
-      field :image
-      field :date
-      field :name
-      field :link
-      field :published
-      field :local
-      field(:description) { ckeditor true }
-    end
-  end
-
-  config.model Opportunity do
-    navigation_label 'Conteúdos'
-
-    list do
-      field :title
-      field :published
-    end
-
-    edit do
-      field :title
-      field(:content) { ckeditor true }
-      field :published
-    end
-  end
-
-
-  config.model Page do
-    navigation_label 'Conteúdos'
-
-    list do
-      field :title
-      field :published
-    end
-
-    edit do
-      field :title
-      field(:content) { ckeditor true }
-      field :published
-    end
-  end
-
-  config.model Sponsor do
-    navigation_label 'Conteúdos'
-
-    list do
-      field :image
-      field :name
-      field :link do
-        formatted_value do
-          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
-        end
-      end
-    end
-
-    edit do
-      field :name
-      field :link
-      field :image
-    end
-  end
-
-# MENU =========================================================================
+# GENERAL ======================================================================
 
   config.model Configuration do
+    navigation_label 'Geral'
+    weight 0
+
     edit do
+      group :email do
+        label 'Geral'
+        active false
+
+        field :site_title
+        field :site_url
+        field :email
+
+        field :keywords do
+           help 'Opcional. Separadas por vírgula. Recomendável no máximo 10 palavras chave.'
+        end
+
+        field :description do
+          help 'Opcional. Descrição utilizada pelos buscadores. Recomendável até 160 caracteres.'
+        end
+
+        field :google_analytics
+      end
+
       group :social do
         label 'Redes sociais'
+        active false
+
         field :twitter
         field :facebook
         field :facebook_like_goal
       end
 
       group :donation do
-        label 'Doação'
+        label 'Quadro de doação'
+        active false
+
         field(:donation_text) { ckeditor false }
-        field :donation_link
         field :donation_goal
         field :donation_collected
       end
 
       group :ad do
-        label 'Propaganda'
+        label 'Quandro de propaganda'
+        active false
+
         field :ad_title
-        field :ad_image
         field :ad_url
         field :ad_new_tab
         field :ad_published
+        field :ad_image
       end
 
       group :realization do
         label 'Realização'
+        active false
+
         field :realization_title
-        field :realization_image
         field :realization_url
+        field :realization_image
       end
 
-      group :email do
-        label 'Configurações de email'
-        field :email
-      end
+      group :realization do
+        label 'Rodapé'
+        active false
 
-      group :info_search do
-        label 'Informações para buscadores e redes sociais'
-
-        field :keywords do
-           help 'Separadas por vírgula. Recomendável no máximo 10 palavras chave.'
-        end
-        field :description do
-          help 'Descrição utilizada pelos buscadores. Recomendável até 160 caracteres.'
-        end
-        field :google_analytics
-        field :site_url
-        field :site_title
+        field(:footer) { ckeditor true }
       end
-      field :footer
     end
   end
 
   config.model User do
+    navigation_label 'Geral'
+    weight 1
+
     object_label_method { :email }
 
     list do
@@ -309,17 +116,253 @@ RailsAdmin.config do |config|
         help 'Confirme a senha caso deseje mudar a senha atual'
       end
     end
+  end
+
+# POSTS ========================================================================
+
+  config.model Post do
+    navigation_label 'Postagens'
+    weight 2
+
+    list do
+      sort_by :published_at
+      sort_reverse true
+      field :title
+      field :blog
+      field :evaluations_count
+      field :evaluations_pretty do
+        column_width 150;
+        pretty_value do
+          approval = bindings[:object].approval_rate.round(1)
+          reproval = bindings[:object].reproval_rate.round(1)
+          if approval == 0 and reproval == 0
+            html = "<span class=\"label\" style=\"width: 100%;\">Sem avaliações</span>".html_safe
+          else
+            html = "
+            <div class=\"progress\" style=\"margin: 0;\" title=\"Não avaliaram\">
+              <div class=\"bar bar-success\" style=\"width: #{approval.to_i}%;overflow: hidden;\" title=\"Aprovação\">#{approval}%</div>
+              <div class=\"bar bar-danger\" style=\"width: #{reproval.to_i}%;overflow: hidden;\" title=\"Reprovação\">#{reproval}%</div>
+              <div style=\"text-align: center;overflow: hidden;\">#{(100.0 - approval - reproval).round(1)}%</div>
+            </div>".html_safe
+          end
+          html
+        end
+      end
+      field :published do
+        label 'Status'
+        pretty_value do
+          if bindings[:object].published_by_admin?
+            html = "<span class=\"label label-success\">Aprovado pelo adminstrador</span>".html_safe
+          elsif bindings[:object].unpublished_by_admin?
+            html = "<span class=\"label label-important\">Reprovado pelo adminstrador</span>".html_safe
+          elsif bindings[:object].published_by_moderation?
+            if value == true
+              html = "<span class=\"label label-success\">Aprovado</span>".html_safe
+            else
+              html = "<span class=\"label label-important\">Reprovado</span>".html_safe
+            end
+          end
+          html
+        end
+      end
+      field :user_evaluation do
+        label ' '
+        pretty_value do
+          evaluation = PostEvaluation.where('user_id = ? and post_id = ?', bindings[:view].current_user.id, bindings[:object].id).first
+          if evaluation.nil?
+            html = ""
+          elsif evaluation.approve == true
+            html = "<i class=\"icon-thumbs-up\" title=\"Você aprovou\"></i>".html_safe
+          else
+            html = "<i class=\"icon-thumbs-down\" title=\"Você reprovou\"></i>".html_safe
+          end
+          html
+        end
+      end
+      field :published_at
+    end
+
+    edit do
+      field :title
+      field :blog
+      field(:content) { ckeditor true }
+      field :published_at
+      field :authors
+      field :categories
+      field :criterion_for_publication
+    end
 
     show do
-      field :email
-      field :role do
-        label 'Tipo de usuário'
+      field :title
+      field :content do
         pretty_value do
-          value == :coordinator ? 'Coordenador' : 'Moderador'
+          value.html_safe
+        end
+      end
+      field :published_at
+      field :blog do
+        pretty_value do
+          if value
+            "<a href='#{value.link}' title='#{value.name}' target='_blank'>#{value.name}</a>".html_safe
+          end
+        end
+      end
+      field :authors
+      field :categories
+    end
+  end
+
+  config.model Blog do
+    navigation_label 'Postagens'
+    weight 3
+
+    list do
+      field :name
+      field :link do
+        formatted_value do
+          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
         end
       end
     end
+
+    edit do
+      field :name
+      field :link
+      field :rss
+      field(:description) { ckeditor true }
+      field :image
+    end
   end
+
+  config.model Author do
+    navigation_label 'Postagens'
+    weight 4
+
+    list do
+      field :name
+    end
+
+    edit do
+      field :name
+    end
+  end
+
+
+  config.model Category do
+    navigation_label 'Postagens'
+    weight 5
+
+    list { field :name }
+    edit { field :name }
+  end
+
+
+# CONTENTS =====================================================================
+
+  config.model Banner do
+    navigation_label 'Conteúdos'
+    weight 6
+
+    list do
+      field :image do
+        thumb_method :thumb
+      end
+      field :title
+      field :link do
+        formatted_value do
+          "<a href='#{value}' target='_blank'>#{value}</a>".html_safe
+        end
+      end
+      field :published
+    end
+
+    edit do
+      field :title
+      field :link
+      field :open_in_new_tab
+      field :published
+      field :image do
+        thumb_method :thumb
+      end
+    end
+  end
+
+  config.model Page do
+    navigation_label 'Conteúdos'
+    weight 7
+
+    list do
+      field :title
+      field :published
+    end
+
+    edit do
+      field :title
+      field(:content) { ckeditor true }
+      field :published
+    end
+  end
+
+  config.model Event do
+    navigation_label 'Conteúdos'
+    weight 8
+
+    list do
+      field :date
+      field :end_date
+      field :name
+      field :published
+    end
+
+   edit do
+      field :name
+      field :date
+      field :end_date
+      field :local
+      field :link
+      field :published
+      field(:description) { ckeditor true }
+      field :image do
+        thumb_method :event_list_image
+      end
+    end
+  end
+
+  config.model Opportunity do
+    navigation_label 'Conteúdos'
+    weight 9
+
+    list do
+      field :title
+      field :published
+    end
+
+    edit do
+      field :title
+      field :published
+      field(:content) { ckeditor true }
+    end
+  end
+
+  config.model Sponsor do
+    navigation_label 'Conteúdos'
+    weight 10
+
+    list do
+      field :image
+      field :name
+    end
+
+    edit do
+      field :name
+      field :link
+      field :image do
+        thumb_method :small
+      end
+    end
+  end
+
+# MENU =========================================================================
 
   # CKeditor models (begin)
   config.model Ckeditor::Asset do
@@ -330,7 +373,7 @@ RailsAdmin.config do |config|
     label 'Imagem'
     label_plural 'Imagens'
     navigation_label 'Arquivos'
-    weight 1
+    weight 11
 
     edit do
       field(:data) { label 'Imagem' }
@@ -346,7 +389,7 @@ RailsAdmin.config do |config|
   config.model Ckeditor::AttachmentFile do
     label 'Arquivo'
     navigation_label 'Arquivos'
-    weight 1
+    weight 12
 
     edit do
       field(:data) { label 'Arquivo' }

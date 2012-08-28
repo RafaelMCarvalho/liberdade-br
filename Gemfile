@@ -17,6 +17,8 @@ gem 'whenever', '0.7.3', :require => false
 gem 'capistrano'
 gem 'ransack', '0.7.0'
 gem 'kaminari', '0.13.0'
+gem "tinymce-rails", '~> 3.5.6' # should be at global gems, no at assets group
+gem "tinymce-rails-langs", '~> 0.1'
 
 group :development, :test do
     gem 'database_cleaner', '0.7.1'
@@ -37,4 +39,3 @@ end
 
 gem 'rails3-generators', '0.17.4', :group => :development
 gem 'slim-rails', '1.0.3', :group => :development # provide slim generators
-

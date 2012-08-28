@@ -11,7 +11,7 @@ feature 'Manupulate configurations' do
 
   context 'edit' do
     scenario 'successfully' do
-      fill_in 'E-mail', :with => 'email@qualquer.com'
+      fill_in 'E-mail para contato', :with => 'email@qualquer.com'
       fill_in 'Facebook', :with => 'qualquer.com'
       fill_in 'Twitter', :with => 'qualquer.com'
       fill_in 'Palavras-chave', :with => 'project, base'
@@ -20,14 +20,13 @@ feature 'Manupulate configurations' do
       fill_in 'URL do site', :with => 'http://foo.com'
       fill_in 'Título do site', :with => 'Liberdade.br'
       fill_in 'Texto', :with => 'Footer'
-      fill_in 'Link', :with => 'http://foo.com'
       fill_in 'Objetivo (R$)', :with => '1000.00'
       fill_in 'Angariado (R$)', :with => '600.00'
       # Ad
       fill_in 'Título', :with => 'Ad'
       attach_file 'Imagem', IMAGE
       fill_in 'URL', :with => 'http://ad.com'
-      check 'Publicada'
+      check 'Publicado'
       check 'Abrir em nova aba'
       click_button 'Salvar'
       page.should have_content 'Configuração atualizado(a) com sucesso.'
@@ -41,7 +40,7 @@ feature 'Manupulate configurations' do
       scenario 'invalid email' do
         fill_in 'E-mail', :with => 'email@qualquer'
         click_button 'Salvar'
-        page.should have_content 'E-mail não é válido.'
+        page.should have_content 'E-mail para contato não é válido.'
       end
 
      scenario 'invalid ad url' do
@@ -53,7 +52,7 @@ feature 'Manupulate configurations' do
       scenario 'empty fields' do
         fill_in 'E-mail', :with => ''
         click_button 'Salvar'
-        page.should have_content 'E-mail não pode ser vazio.'
+        page.should have_content 'E-mail para contato não pode ser vazio.'
       end
     end
   end
@@ -68,4 +67,3 @@ feature 'Manupulate configurations' do
     }.should raise_error CanCan::AccessDenied
   end
 end
-

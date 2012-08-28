@@ -18,7 +18,7 @@ feature 'manage posts' do
       fill_in 'Categorias', :with => 'foo, bar'
       fill_in 'Nomes dos autores', :with => 'Foo author, Bar author'
       click_button 'Enviar'
-      page.should have_content 'Post enviado com sucesso. Ele será avaliado pelos moderadores antes de ser exibido no site.'
+      page.should have_content 'Post enviado com sucesso. Ele será avaliado pelos moderadores antes de ser publicado no site.'
       post = Post.last
       author1 = Author.find_by_name('Foo author')
       author2 = Author.find_by_name('Bar author')

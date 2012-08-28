@@ -3,10 +3,38 @@ class PostsController < ApplicationController
 
   before_filter :check_user, :only => [:approve, :reprove]
 
+  def rss
+    @posts = Post.published.order('published_at DESC')
+
+    respond_to do |format|
+       format.rss { render :layout => false }
+    end
+  end
+
+  def feed
+    # this will be the name of the feed displayed on the feed reader
+    @title = "Liberdade.br"
+
+    # the news items
+    @posts = Post.published.order('published_at DESC')
+
+    # this will be our Feed's update timestamp
+    @updated = @posts.first.published_at unless @posts.empty?
+
+    respond_to do |format|
+      format.atom { render :layout => false }
+
+      # we want the RSS feed to redirect permanently to the ATOM feed
+      format.rss { redirect_to feed_path(:format => :atom), :status => :moved_permanently }
+    end
+  end
+
+
   def index
-    @search = Post.where('published = ?', true).order('published_at DESC').search(params[:q])
+    @search = Post.published.order('published_at DESC').search(params[:q])
     @posts = @search.result
     @posts = @posts.uniq.page(params[:page]).per(6)
+    @posts.reload
   end
 
   def new
@@ -24,7 +52,7 @@ class PostsController < ApplicationController
     @categories_input_value = @post.categories.map(&:name).join(', ')
 
     if @post.save
-      flash[:notice] = 'Post enviado com sucesso. Ele será avaliado pelos moderadores antes de ser exibido no site.'
+      flash[:notice] = 'Post enviado com sucesso. Ele será avaliado pelos moderadores antes de ser publicado no site.'
       redirect_to :action => 'new'
     else
       render :action => 'new'
@@ -35,33 +63,37 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
 
-    if !@post.published
-      if current_user
-        flash[:info] = 'Este post não está publicado. Isto é apenas uma pré-visualização.'
-      else
-        raise ActionController::RoutingError.new('Not Found')
-      end
+    if current_user
+      @evaluation = PostEvaluation.where('user_id = ? AND post_id = ?', current_user, @post.id).first
+      @voted_approve = @evaluation.try(:approve)
+    end
+
+    unless @post.able_to_publish? or current_user
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 
   def per_author
+    @search = Post.published.order('published_at DESC').search(params[:q])
     @author = Author.find(params[:id])
-    @posts = @author.published_posts.page(params[:page])
-    @search = @posts.search(params[:q])
+    @posts = @author.published_posts.uniq.page(params[:page]).per(6)
+    @posts.reload
     render :index
   end
 
   def per_blog
+    @search = Post.published.order('published_at DESC').search(params[:q])
     @blog = Blog.find(params[:id])
-    @posts = @blog.published_posts.page(params[:page])
-    @search = @posts.search(params[:q])
+    @posts = @blog.published_posts.uniq.page(params[:page]).per(6)
+    @posts.reload
     render :index
   end
 
   def per_category
+    @search = Post.published.order('published_at DESC').search(params[:q])
     @category = Category.find(params[:id])
-    @posts = @category.published_posts.page(params[:page])
-    @search = @posts.search(params[:q])
+    @posts = @category.published_posts.uniq.page(params[:page]).per(6)
+    @posts.reload
     render :index
   end
 
@@ -74,6 +106,7 @@ class PostsController < ApplicationController
     else
       @evaluation.update_attributes(params)
     end
+    redirect_to post_path(params[:post_id]), :notice => 'Você aprovou o post com sucesso.'
   end
 
   def reprove
@@ -85,6 +118,7 @@ class PostsController < ApplicationController
     else
       @evaluation.update_attributes(params)
     end
+    redirect_to post_path(params[:post_id]), :notice => 'Você reprovou o post com sucesso.'
   end
 
   protected

@@ -20,7 +20,6 @@ class CreateConfigurations < ActiveRecord::Migration
 
       # Donation attributes
       t.text :donation_text
-      t.string :donation_link
       t.float :donation_goal
       t.float :donation_collected
 
@@ -43,4 +42,3 @@ class CreateConfigurations < ActiveRecord::Migration
     drop_table :configurations
   end
 end
-

@@ -18,8 +18,8 @@
           <h3><%= link_to p.title, post_path(p.id) %></h3>
 
           <p class="info">
-            <% "#{p.blog} | " if p.blog %>
-            <%= p.published_at.strftime('publicado %d de %B de %Y') %>.
+            <%= "#{p.blog.name} | " if p.blog %>
+            <%= p.published_at.strftime('publicado em %d de %B de %Y') %>.
           </p>
 
           <% if p.content %>

@@ -1,0 +1,19 @@
+<% if not blog.nil? and not blog.description.blank? %>
+  <div class="sidebar_panel">
+    <div class="sidebar_box">
+      <h3><%= blog.name %></h3>
+
+      <p>
+        <% if blog.image.exists? %>
+          <%= image_tag blog.image.url(:thumb), :alt => blog.name,
+            :size => '150x150', :class => 'image_box' %>
+        <% end %>
+        <%= blog.description.html_safe %>
+      </p>
+
+      <p class="buttom">
+        <%= link_to 'Veja mais posts deste blog', posts_blog_path(blog) %>
+      </p>
+    </div>
+  </div>
+<% end %>

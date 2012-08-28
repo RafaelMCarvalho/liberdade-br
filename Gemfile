@@ -19,7 +19,6 @@ gem 'ransack', '0.7.0'
 gem 'kaminari', '0.13.0'
 gem "tinymce-rails", '~> 3.5.6' # should be at global gems, no at assets group
 gem "tinymce-rails-langs", '~> 0.1'
-gem 'flexible_date', '0.4.2'
 
 group :development, :test do
     gem 'database_cleaner', '0.7.1'

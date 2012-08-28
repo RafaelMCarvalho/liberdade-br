@@ -187,7 +187,6 @@ RailsAdmin.config do |config|
       field :blog
       field(:content) { ckeditor true }
       field :published_at do
-        partial 'flexible_date'
         date_format :default
       end
       field :authors
@@ -317,14 +316,12 @@ RailsAdmin.config do |config|
       field :published
     end
 
-   edit do
+    edit do
       field :name
       field :date do
-        partial 'flexible_date'
         date_format :default
       end
       field :end_date do
-        partial 'flexible_date'
         date_format :default
       end
       field :local

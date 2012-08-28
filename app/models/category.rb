@@ -15,7 +15,8 @@ class Category < ActiveRecord::Base
   end
 
   def published_posts
-    posts.where("published = ?", true)
+    posts.where('published = ? and criterion_for_publication <> ? or criterion_for_publication = ?',
+      true, Post::CRITERION_FOR_PUBLICATION[:always_unpublished], Post::CRITERION_FOR_PUBLICATION[:always_published])
   end
 
   private

@@ -4,6 +4,9 @@
 <head>
   <title>Liberdade.br - <%= yield :page_title %></title>
 
+  <%= auto_discovery_link_tag :atom, feed_url %>
+  <%= auto_discovery_link_tag :rss, feed_url(:format => 'rss') %>
+
   <meta content='http://algorich.com.br' name='author' />
 
   <% unless configuration.keywords.blank? %>
@@ -165,7 +168,7 @@
             </li>
           <% end %>
           <li class="rss_item">
-            <%= link_to 'RSS', '#' %>
+            <%= link_to 'RSS', feed_url %>
           </li>
         </ul>
       </li>

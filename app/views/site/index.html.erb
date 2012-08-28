@@ -15,7 +15,7 @@
       <% end %>
     </style>
 
-    <div id="banner_wrapper">
+    <div id="banner_wrapper" <%= 'class="no_slide"'.html_safe if @banners.length == 1 %>>
       <div id="banner">
 
         <ul class="images">

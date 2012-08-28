@@ -22,10 +22,10 @@
 
     <ul class="actions">
       <li class="buttom"><%= link_to 'Aprovar', approve_post_path(@post, current_user),
-        :method => :post, :class => ('active' if @voted_approve) %></li>
+        :method => :post, :class => ('active' if @voted_approve), :id => 'approve_post' %></li>
 
       <li class="buttom"><%= link_to 'Reprovar', reprove_post_path(@post, current_user),
-        :method => :post, :class => ('active' if @voted_approve == false) %></li>
+        :method => :post, :class => ('active' if @voted_approve == false), :id => 'reprove_post' %></li>
 
       <li class="buttom"><%= link_to 'Voltar para administração', '/admin/post' %></li>
     </ul>

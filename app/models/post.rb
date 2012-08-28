@@ -15,6 +15,8 @@ class Post < ActiveRecord::Base
     :always_unpublished => 2
   }
 
+  flexible_date :published_at, :suffix => 'br'
+
   validates_presence_of :title
   validates_presence_of :authors, :if => lambda { self.blog.nil? }
   validates_presence_of :content, :if => lambda { self.blog.nil? }
@@ -29,7 +31,7 @@ class Post < ActiveRecord::Base
      :author_ids, :categories,:category_ids, :blog_id,
      :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids,
      :approval_rate, :reproval_rate, :hilight, :evaluations_pretty,
-     :user_evaluation, :moderator_conter, :criterion_for_publication
+     :user_evaluation, :moderator_conter, :criterion_for_publication, :published_at_br
 
   def self.create_from_feed_entry(entry, blog)
     if entry.categories.map(&:downcase_with_accents).include?('liberdade.br')

@@ -222,14 +222,16 @@
                     <% if s.link %>
                       <a href="<%= s.link %>" target="_blank">
                         <% if s.image.exists? %>
-                          <%= image_tag s.image.url(:small), :alt => s.name %>
+                          <%= image_tag s.image.url(:small), :alt => s.name,
+                            :size => '315x100' %>
                         <% else %>
                           <%= s.name %>
                         <% end %>
                       </a>
                     <% else %>
                       <% if s.image.exists? %>
-                        <%= image_tag s.image.url(:small), :alt => s.name %>
+                        <%= image_tag s.image.url(:small), :alt => s.name,
+                          :size => '315x100' %>
                       <% else %>
                         <%= s.name %>
                       <% end %>
@@ -238,8 +240,6 @@
                 </span></li>
               </ul>
 
-              <p class="next">Próximo</p>
-              <p class="previous">Anterior</p>
             </li>
           <% end %>
 

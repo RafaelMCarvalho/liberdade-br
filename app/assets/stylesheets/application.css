@@ -1889,7 +1889,7 @@ form.simple_form .actions img {
     background-position: -16px center;
 }
 
-#footer #sponsors_list li, #footer #partners_list li {
+#footer #partners_list li {
     margin: 0 0 10px 32px;
 }
 
@@ -1901,6 +1901,15 @@ form.simple_form .actions img {
 
     font-size: 40px;
     text-align: center;
+}
+
+#footer #sponsors_list li {
+    margin-bottom: 10px;
+}
+
+#footer #sponsors_list li span {
+    width: 350px;
+    height: 100px;
 }
 
 #footer #sponsors_list li a:hover, #footer #partners_list li a:hover {

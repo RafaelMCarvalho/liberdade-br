@@ -196,9 +196,20 @@
 
             <ul>
               <% Blog.all.each do |b| %>
-                <li><%= link_to b.name, posts_blog_path(b) %></li>
+                <li><span>
+                  <a href="<%= b.link %>" target="_blank">
+                    <% if b.image.exists? %>
+                      <%= image_tag b.image.url(:small), :alt => b.name %>
+                    <% else %>
+                      <%= b.name %>
+                    <% end %>
+                  </a>
+                </span></li>
               <% end %>
             </ul>
+
+            <p class="next">Próximo</p>
+            <p class="previous">Anterior</p>
           </li>
 
           <% unless (sponsors = Sponsor.all).empty? %>

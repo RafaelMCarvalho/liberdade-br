@@ -1851,28 +1851,16 @@ form.simple_form .actions img {
     border-bottom: 5px solid #665200;
 }
 
-#footer #partners_list {
+#footer #partners_list, #footer #sponsors_list {
     margin-right: 10px;
     float: left;
-    width: 380px;
+    width: 315px;
 }
 
-#footer #partners_list li {
-    margin: 0 10px 5px 0;
-    float: left;
-    width: 180px;
-
-    font-size: 12px;
-    list-style-type: square;
-    list-style-position: inside;
-}
-
-#footer #sponsors_list {
-    float: left;
-    width: 250px;
-}
-
-#footer #sponsors_list .next, #footer #sponsors_list .previous {
+#footer #sponsors_list .next,
+#footer #sponsors_list .previous,
+#footer #partners_list .next,
+#footer #partners_list .previous {
     margin-top: -200px;
     height: 200px;
     width: 15px;
@@ -1885,16 +1873,26 @@ form.simple_form .actions img {
     background: url("/assets/sponsors_list_controls.png") no-repeat left center;
 }
 
-#footer #sponsors_list .previous {
-    margin-left: 235px;
+#footer #sponsors_list .previous, #footer #partners_list .previous {
+    margin-left: 300px;
     background-position: right center;
 }
 
-#footer #sponsors_list li {
-    margin-bottom: 10px;
+#footer #sponsors_list .next:active,
+#footer #partners_list .next:active {
+    background-position: 1px center;
 }
 
-#footer #sponsors_list li span {
+#footer #sponsors_list .previous:active,
+#footer #partners_list .previous:active {
+    background-position: -16px center;
+}
+
+#footer #sponsors_list li, #footer #partners_list li {
+    margin: 0 0 10px 32px;
+}
+
+#footer #sponsors_list li span, #footer #partners_list li span {
     display: table-cell;
     vertical-align: middle;
     width: 250px;
@@ -1904,7 +1902,12 @@ form.simple_form .actions img {
     text-align: center;
 }
 
-#footer #sponsors_list li img {
+#footer #sponsors_list li a:hover, #footer #partners_list li a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+#footer #sponsors_list li img, #footer #partners_list li img {
     display: block;
 }
 

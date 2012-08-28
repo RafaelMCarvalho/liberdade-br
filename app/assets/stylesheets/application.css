@@ -416,7 +416,7 @@ ul#main_navigation > li > a:hover strong {
     padding-left: 10px;
     display: block;
     position: absolute;
-    width: 180px;
+    width: 190px;
     z-index: 1000;
 
     background: url("/assets/main_navigation_legend_detail.png") no-repeat left center;

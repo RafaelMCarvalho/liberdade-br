@@ -7,7 +7,7 @@ describe SiteController do
   end
 
   it 'contact page' do
-    { :get => '/contact' }.should route_to(:controller => 'site', :action => 'contact')
+    { :get => '/contato' }.should route_to(:controller => 'site', :action => 'contact')
   end
 
   it 'about page' do
@@ -31,7 +31,7 @@ describe SiteController do
   end
 
   it 'send contact message action' do
-    { :post => '/contact' }.should route_to(:controller => 'site', :action => 'send_contact')
+    { :post => '/contato' }.should route_to(:controller => 'site', :action => 'send_contact')
   end
 end
 

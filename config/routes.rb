@@ -9,8 +9,8 @@ LiberdadeBr::Application.routes.draw do
   devise_for :users
 
 #= 2. pages ====================================================================
-  get "/contact" => "site#contact", :as => :contact
-  post "/contact" => "site#send_contact", :as => :send_contact
+  get "/contato" => "site#contact", :as => :contact
+  post "/contato" => "site#send_contact", :as => :send_contact
   get '/about' => 'site#about', :as => :about
   get '/faq' => 'site#faq', :as => :faq
   get '/financers' => 'site#financers', :as => :financers

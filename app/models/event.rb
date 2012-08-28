@@ -17,6 +17,9 @@ class Event < ActiveRecord::Base
 
   attr_accessor :delete_image
 
+  flexible_date :date, :suffix => 'br'
+  flexible_date :end_date, :suffix => 'br'
+
   before_validation { self.image.clear if self.delete_image == '1' }
   before_validation :add_protocol_to_link
 

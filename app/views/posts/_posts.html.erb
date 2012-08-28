@@ -19,7 +19,7 @@
 
           <p class="info">
             <%= "#{p.blog.name} | " if p.blog %>
-            <%= p.published_at.strftime('publicado em %d de %B de %Y') %>.
+            publicado em <%= I18n.l(p.published_at, format: :long) %>.
           </p>
 
           <% if p.content %>

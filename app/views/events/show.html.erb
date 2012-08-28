@@ -32,9 +32,9 @@
 
           <p class="info">
             <strong class="date">
-              <%= @event.date.strftime('%d de %B de %Y') %>
+              <%= localize (@event.date), :format => '%d de %B de %Y' %>
               <% if @event.end_date and @event.date != @event.end_date %>
-                até <%= @event.end_date.strftime('%d de %B de %Y') %>
+                até <%= localize (@event.end_date), :format => '%d de %B de %Y' %>
               <% end %>
             </strong>
             <% if @event.local %>

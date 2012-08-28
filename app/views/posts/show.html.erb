@@ -60,7 +60,7 @@
               <%= link_to @post.blog.name, @post.blog.link, :target => '_blank',
                 :class => 'blog_name' %> |
             <% end %>
-            <%= @post.published_at.strftime('%d de %B de %Y') %>.
+            <%= localize (@post.published_at), :format => '%d de %B de %Y' %>.
 
             <% unless (authors = @post.authors).empty? %>
               <br />

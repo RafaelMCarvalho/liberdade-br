@@ -26,7 +26,7 @@ $(function () {
 
 /* Banner */
 
-var banner_image_sld, banner_info_sld, sponsors_sld;
+var banner_image_sld, banner_info_sld, sponsors_sld, partners_sld;
 
 $(function () {
     banner_image_sld = $("#banner ul.images").bxSlider({
@@ -70,5 +70,23 @@ $(function () {
 $(function () {
     $('#sponsors_list .previous').click(function () {
         sponsors_sld.goToPreviousSlide();
+    });
+});
+
+$(function () {
+    partners_sld = $("#partners_list ul").bxSlider({
+        auto: true, controls: false, pause: 6000, mode: 'fade'
+    });
+});
+
+$(function () {
+    $('#partners_list .next').click(function () {
+        partners_sld.goToNextSlide();
+    });
+});
+
+$(function () {
+    $('#partners_list .previous').click(function () {
+        partners_sld.goToPreviousSlide();
     });
 });

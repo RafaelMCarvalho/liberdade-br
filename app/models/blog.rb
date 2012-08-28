@@ -6,7 +6,7 @@ class Blog < ActiveRecord::Base
     :path => ":rails_root/public/system/blogs/:id/:style/:filename",
     :url => "/system/blogs/:id/:style/:filename",
     :styles => {
-      :small => '250x100#', :thumb => '125x50#'
+      :small => '250x250#', :thumb => '150x150#'
     }
 
   validates_attachment_content_type :image,

@@ -140,10 +140,8 @@ describe Post do
   end
 
   context 'should create a post from a feed entry without category liberdade.br' do
-    # I'm using before(:each) because stub isn't supported on before(:create)
-    # more info on https://github.com/rspec/rspec-mocks/issues/92#issuecomment-3178470
-    before(:each) do
-      @entry = stub(
+    it 'should not have posts, auhors or categories' do
+      entry = stub(
         :title => 'Sobre corporações e leis de responsabilidade limitada',
         :url => 'http://depositode.blogspot.com/2012/06/sobre-corporacoes-e-leis-de.html',
         :content => 'Some text very big'*500,
@@ -151,10 +149,8 @@ describe Post do
         :categories => ['LIBERALISMO', 'RESPONSABILIDADE LIMITADA'], # without liberdade.br category
         :author => 'Richard  , Leonard   '
       )
-      Post.create_from_feed_entry(@entry, (FactoryGirl.create :blog))
-    end
+      Post.create_from_feed_entry(entry, (FactoryGirl.create :blog))
 
-    it 'should not have posts, auhors or categories' do
       Post.all.should have(0).posts
       Author.all.should have(0).author
       Category.all.should have(0).categories
@@ -162,8 +158,6 @@ describe Post do
   end
 
   context 'should create a post from a new post page' do
-    # I'm using before(:each) because stub isn't supported on before(:create)
-    # more info on https://github.com/rspec/rspec-mocks/issues/92#issuecomment-3178470
     before(:each) do
       @params = {
         :title => 'Sobre corporações e leis de responsabilidade limitada',

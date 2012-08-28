@@ -141,4 +141,8 @@ class Post < ActiveRecord::Base
     Post.where('published = ? and criterion_for_publication <> ? or criterion_for_publication = ?',
       true, CRITERION_FOR_PUBLICATION[:always_unpublished], CRITERION_FOR_PUBLICATION[:always_published])
   end
+
+  def able_to_publish?
+    self.published_by_admin? or (self.published_by_moderation? and self.published)
+  end
 end

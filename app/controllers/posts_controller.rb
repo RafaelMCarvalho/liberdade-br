@@ -3,6 +3,33 @@ class PostsController < ApplicationController
 
   before_filter :check_user, :only => [:approve, :reprove]
 
+  def rss
+    @posts = Post.published.order('published_at DESC')
+
+    respond_to do |format|
+       format.rss { render :layout => false }
+    end
+  end
+
+  def feed
+    # this will be the name of the feed displayed on the feed reader
+    @title = "Liberdade.br"
+
+    # the news items
+    @posts = Post.published.order('published_at DESC')
+
+    # this will be our Feed's update timestamp
+    @updated = @posts.first.published_at unless @posts.empty?
+
+    respond_to do |format|
+      format.atom { render :layout => false }
+
+      # we want the RSS feed to redirect permanently to the ATOM feed
+      format.rss { redirect_to feed_path(:format => :atom), :status => :moved_permanently }
+    end
+  end
+
+
   def index
     @search = Post.published.order('published_at DESC').search(params[:q])
     @posts = @search.result
@@ -41,7 +68,7 @@ class PostsController < ApplicationController
       @voted_approve = @evaluation.try(:approve)
     end
 
-    if !@post.published and !current_user
+    unless @post.able_to_publish? or current_user
       raise ActionController::RoutingError.new('Not Found')
     end
   end

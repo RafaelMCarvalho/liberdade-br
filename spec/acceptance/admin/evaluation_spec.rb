@@ -10,47 +10,48 @@ feature 'manage posts' do
 
   context 'evaluate a post', :js => true do
     it 'approve/reprove a post first time' do
-      @post = FactoryGirl.create :post
-      visit "/admin/post/#{@post.id}"
+      @post = FactoryGirl.create :post, :published_at => Date.today
+      visit "/posts/#{@post.id}"
 
-      page.should_not have_xpath("//a[@id='approve_post'][@class='choosen']")
-      page.should_not have_xpath("//a[@id='reprove_post'][@class='choosen']")
+      page.should_not have_xpath("//a[@id='approve_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='reprove_post'][@class='active']")
       PostEvaluation.all.count.should == 0
 
       click_link 'Aprovar'
-      page.should have_xpath("//a[@id='approve_post'][@class='choosen']")
-      page.should_not have_xpath("//a[@id='reprove_post'][@class='choosen']")
+      sleep 2
+      page.should have_xpath("//a[@id='approve_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='reprove_post'][@class='active']")
       @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', @user.id, @post.id).first
       @evaluation.should_not be_nil
       @evaluation.approve.should be_true
 
       click_link 'Reprovar'
-      page.should_not have_xpath("//a[@id='approve_post'][@class='choosen']")
-      page.should have_xpath("//a[@id='reprove_post'][@class='choosen']")
+      page.should_not have_xpath("//a[@id='approve_post'][@class='active']")
+      page.should have_xpath("//a[@id='reprove_post'][@class='active']")
       @evaluation.reload
       @evaluation.approve.should be_false
     end
 
     it 'change evaluation' do
-      @post = FactoryGirl.create :post
+      @post = FactoryGirl.create :post, :published_at => Date.today
       @evaluation = FactoryGirl.create :post_evaluation, :user_id => @user.id,
         :post_id => @post.id, :approve => true
-      visit "/admin/post/#{@post.id}"
+      visit "/posts/#{@post.id}"
 
-      page.should have_xpath("//a[@id='approve_post'][@class='choosen']")
-      page.should_not have_xpath("//a[@id='reprove_post'][@class='choosen']")
+      page.should have_xpath("//a[@id='approve_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='reprove_post'][@class='active']")
       PostEvaluation.all.count.should == 1
       @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', @user.id, @post.id).first
 
       click_link 'Aprovar'
-      page.should have_xpath("//a[@id='approve_post'][@class='choosen']")
-      page.should_not have_xpath("//a[@id='reprove_post'][@class='choosen']")
+      page.should have_xpath("//a[@id='approve_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='reprove_post'][@class='active']")
       @evaluation.reload
       @evaluation.approve.should be_true
 
       click_link 'Reprovar'
-      page.should_not have_xpath("//a[@id='approve_post'][@class='choosen']")
-      page.should have_xpath("//a[@id='reprove_post'][@class='choosen']")
+      page.should_not have_xpath("//a[@id='approve_post'][@class='active']")
+      page.should have_xpath("//a[@id='reprove_post'][@class='active']")
       @evaluation.reload
       @evaluation.approve.should be_false
     end
@@ -58,7 +59,7 @@ feature 'manage posts' do
     context 'cannot evaluate as another user' do
       background do
         @another_user = FactoryGirl.create :user
-        @post = FactoryGirl.create :post
+        @post = FactoryGirl.create :post, :published_at => Date.today
       end
 
       it 'at first time' do

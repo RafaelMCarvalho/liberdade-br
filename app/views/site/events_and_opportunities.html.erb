@@ -32,7 +32,7 @@
                 <div class="date">
                   <p>
                     <span class="day"><%= e.date.strftime('%d') %></span>
-                    <span class="month"><%= e.date.strftime('%b') %></span>
+                    <span class="month"><%= localize e.date, :format => '%b' %></span>
                   </p>
                 </div>
 

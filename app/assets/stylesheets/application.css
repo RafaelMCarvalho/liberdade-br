@@ -845,6 +845,7 @@ ul#main_navigation > li.social_item li.rss_item a {
     margin-top: 10px;
     float: left;
 
+    color: #666;
     font-size: 14px;
 }
 
@@ -877,14 +878,9 @@ ul#main_navigation > li.social_item li.rss_item a {
 }
 
 #content #content_header .addthis_toolbox {
-    margin-right: -20px;
-    padding: 10px 5px 6px 5px;
+    margin-top: 10px;
     float: right;
-    width: 340px;
-
-    border-radius: 5px;
-    background: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    width: 380px;
 }
 
 /* Search form */

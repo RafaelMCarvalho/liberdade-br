@@ -23,6 +23,8 @@ class Post < ActiveRecord::Base
     self.approval_rate_changed? or self.reproval_rate_changed?
   }
 
+  before_create :set_default_published_at, :if => lambda { self.published_at.blank? }
+
   before_validation :set_moderator_counter, :on => :create
 
   attr_accessible :title, :url, :content, :published_at, :blog, :authors,
@@ -144,5 +146,9 @@ class Post < ActiveRecord::Base
 
   def able_to_publish?
     self.published_by_admin? or (self.published_by_moderation? and self.published)
+  end
+
+  def set_default_published_at
+    self.published_at = Date.today
   end
 end

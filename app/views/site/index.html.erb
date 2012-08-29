@@ -33,9 +33,9 @@
                     <h3><%= b.title %></h3>
                   <% else %>
                     <% if b.open_in_new_tab %>
-                      <h3><%= link_to b.title, b.link, :target => '_blanck' %></h3>
+                      <h3><%= link_to b.title, b.link, :target => '_blank' %></h3>
 
-                      <p class="buttom"><%= link_to 'Leia mais', b.link, :target => '_blanck'  %></p>
+                      <p class="buttom"><%= link_to 'Leia mais', b.link, :target => '_blank'  %></p>
                     <% else %>
                       <h3><%= link_to b.title, b.link %></h3>
 

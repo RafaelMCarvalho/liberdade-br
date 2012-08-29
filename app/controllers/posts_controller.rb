@@ -48,6 +48,7 @@ class PostsController < ApplicationController
     @page = Page.where('indicator = ?', Page::PAGES[:send_post]).first
 
     @post = Post.build_from_new_post_page(params[:post])
+    @post.published_at = Date.today
     @authors_input_value = @post.authors.map(&:name).join(', ')
     @categories_input_value = @post.categories.map(&:name).join(', ')
 

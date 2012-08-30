@@ -5,7 +5,10 @@ module ApplicationHelper
   end
 
   def smart_truncate string, length
-    truncate(strip_tags(string), :length => length,
-      :separator => ' ').html_safe
+    unless string.blank?
+      return truncate(strip_tags(string), :length => length,
+        :separator => ' ').html_safe
+
+    return ''
   end
 end

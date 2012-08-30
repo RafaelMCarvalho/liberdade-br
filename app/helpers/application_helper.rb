@@ -8,6 +8,7 @@ module ApplicationHelper
     unless string.blank?
       return truncate(strip_tags(string), :length => length,
         :separator => ' ').html_safe
+    end
 
     return ''
   end

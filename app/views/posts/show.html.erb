@@ -1,11 +1,11 @@
 <%= content_for :og do %>
   <meta property="og:title" content="<%= @post.title %>" />
   <meta property="og:site_name" content="<%= configuration.site_title %>" />
-  <meta property="og:description" content="<%= @post.hilight %>" />
+  <meta property="og:description" content="<%= smart_truncate(@post.content, 150) %>" />
   <meta property="og:url" content="<%= request.url %>" />
   <meta property="og:image" content="<%= configuration.site_url + '/assets/facebook_size_logo.jpg' %>" />
   <% if current_user %>
-    <meta property="fb:app_id" content="508974272450177"/>
+    <meta property="fb:app_id" content="508974272450177" />
   <% end %>
 <% end %>
 

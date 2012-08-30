@@ -17,22 +17,16 @@
     <meta content="<%= configuration.description %>" name="description" />
   <% end %>
 
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <%= favicon_link_tag %>
   <meta content='http://algorich.com.br' name='author' />
 
-  <% if params[:action] == 'post' and params[:controller] == 'site'  %>
+  <% unless yield(:og).blank? %>
     <%= yield :og %>
   <% else %>
-    <% unless configuration.site_title.blank? %>
-      <meta property="og:title" content="<%= configuration.site_title %>" />
-    <% end %>
-    <% unless configuration.description.blank? %>
-      <meta property="og:description" content="<%= configuration.description %>" />
-    <% end %>
-    <% unless configuration.site_url.blank? %>
+    <meta property="og:title" content="<%= configuration.site_title %>" />
+    <meta property="og:description" content="<%= configuration.description %>" />
     <meta property="og:url" content="<%= request.url %>" />
     <meta property="og:image" content="<%= configuration.site_url + '/assets/facebook_size_logo.jpg' %>" />
-    <% end %>
   <% end %>
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

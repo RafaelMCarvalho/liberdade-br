@@ -878,9 +878,14 @@ ul#main_navigation > li.social_item li.rss_item a {
 }
 
 #content #content_header .addthis_toolbox {
-    margin-top: 10px;
+    margin-right: -20px;
+    padding: 10px 5px 6px 5px;
     float: right;
-    width: 380px;
+    width: 340px;
+
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 /* Search form */

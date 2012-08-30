@@ -1,26 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
+  <title>Nos desculpe, mas alguma coisa deu errado (500)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
   <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
+    html {
+      height: 100%;
+
+      background: rgb(255,204,0); /* Old browsers */
+      background: -moz-linear-gradient(top,  rgba(255,204,0,1) 55%, rgba(242,149,0,1) 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(55%,rgba(255,204,0,1)), color-stop(100%,rgba(242,149,0,1))); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top,  rgba(255,204,0,1) 55%,rgba(242,149,0,1) 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top,  rgba(255,204,0,1) 55%,rgba(242,149,0,1) 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top,  rgba(255,204,0,1) 55%,rgba(242,149,0,1) 100%); /* IE10+ */
+      background: linear-gradient(to bottom,  rgba(255,204,0,1) 55%,rgba(242,149,0,1) 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcc00', endColorstr='#f29500',GradientType=0 ); /* IE6-9 */
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+
+    body {
+      margin: 0;
+      padding: 0;
+
+      color: #666;
+      text-align: center;
+      font-family: arial, sans-serif;
+      height: 100%;
+      background: url("/bg.png") no-repeat center;
+    }
+
+    #wrapper {
+      padding-top: 100px;
+    }
+
+    div.dialog {
+      margin: 0 auto;
+      width: 650px;
+      padding: 20px;
+      border: 1px solid #fff;
+      background: #fff;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      padding-top: 200px;
+
+      color: #000;
+      font-size: 25px;
+      font-weight: normal;
+      background: url("/logo.png") no-repeat center top;
+    }
+    p.back a {
+      padding: 10px 20px;
+      cursor: pointer;
+      color: black;
+      font-family: "Pontano Sans", sans-serif;
+      font-size: 14px;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 1px solid #AAA;
+      background: #EEE;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    }
+    p.back a:hover {
+      border: 1px solid #444;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    }
   </style>
 </head>
 
 <body>
-  <!-- This file lives in public/500.html -->
+<div id="wrapper">
+
   <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
-    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
+    <h1>Nos desculpe, mas alguma coisa deu errado.</h1>
+    <p>Fomos notificados sobre este erro e vamos verificar em breve.</p>
+
+    <p class="back">
+      <a href="javascript:history.go(-1);">Voltar</a>
+    </p>
   </div>
+
+</div>
 </body>
 </html>

@@ -37,7 +37,9 @@ class Post < ActiveRecord::Base
     if entry.categories.map(&:downcase_with_accents).include?('liberdade.br')
       categories = []
       entry.categories.each do |name|
-        categories << Category.get_or_create_by_name(name)
+        unless name.downcase_with_accents == 'liberdade.br'
+          categories << Category.get_or_create_by_name(name)
+        end
       end
 
       authors = []

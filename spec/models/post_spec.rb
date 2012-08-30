@@ -122,11 +122,12 @@ describe Post do
       @post.published_at.should == Date.parse(@entry.published.to_s)
     end
 
-    it 'with the rigth categories (creating the nonexistent ones)' do
+    it 'with the rigth categories (creating the nonexistent ones and dont create liberdade.br category)' do
       Category.create(:name => 'liberalismo')
       categories = Category.all
-      categories.should have(3).categories
-      categories.collect(&:name).should include('liberalismo', 'responsabilidade limitada', 'liberdade.br')
+      categories.should have(2).categories
+      categories.collect(&:name).should include('liberalismo', 'responsabilidade limitada')
+      categories.collect(&:name).should_not include('liberdade.br')
       @post.categories.should include(*categories)
     end
 
@@ -139,7 +140,7 @@ describe Post do
     end
   end
 
-  context 'should create a post from a feed entry without category liberdade.br' do
+  context 'should not create a post from a feed entry without category liberdade.br' do
     it 'should not have posts, auhors or categories' do
       entry = stub(
         :title => 'Sobre corporações e leis de responsabilidade limitada',

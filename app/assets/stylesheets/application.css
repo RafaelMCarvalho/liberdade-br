@@ -1009,9 +1009,9 @@ ul#main_navigation > li.social_item li.rss_item a {
     margin-bottom: 5px;
 
     color: #444;
-    font-family: Georgia, Times, serif;
-    font-size: 14px;
-    font-style: italic;
+/*    font-family: Georgia, Times, serif;*/
+    font-size: 12px;
+/*    font-style: italic;*/
 }
 
 #content ul.posts li .post_info .links {
@@ -1231,9 +1231,9 @@ ul#main_navigation > li.social_item li.rss_item a {
     display: block;
 
     color: #444;
-    font-family: Georgia, Times, serif;
+/*    font-family: Georgia, Times, serif;*/
     font-size: 14px;
-    font-style: italic;
+/*    font-style: italic;*/
     text-decoration: none;
 }
 
@@ -1401,9 +1401,9 @@ ul.events_list li .event_content .resume {
     margin-top: 10px;
 
     color: #444;
-    font-family: Georgia, Times, serif;
-    font-size: 14px;
-    font-style: italic;
+/*    font-family: Georgia, Times, serif;*/
+    font-size: 12px;
+/*    font-style: italic;*/
 }
 
 ul.events_list li .event_content .more {
@@ -1452,9 +1452,9 @@ ul.opportunities_list li .resume {
     margin-top: 10px;
 
     color: #444;
-    font-family: Georgia, Times, serif;
-    font-size: 14px;
-    font-style: italic;
+/*    font-family: Georgia, Times, serif;*/
+    font-size: 12px;
+/*    font-style: italic;*/
 }
 
 ul.opportunities_list li .more {
@@ -1589,13 +1589,12 @@ ul.opportunities_list li .more a:hover {
 .post {
     margin-top: -20px;
 
-    text-align: justify;
+/*    text-align: justify;*/
 }
 
 .post * {
     color: #222;
-    font-family: Georgia, Times, serif;
-    font-size: 16px;
+    font-size: 13px;
 }
 
 #sidebar .post * {

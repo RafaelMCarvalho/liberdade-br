@@ -99,10 +99,14 @@ describe Post do
     end
   end
 
-  context 'should create a post from a feed entry' do
+  context 'should create a post from a feed entry that includes at least one of configuration categories' do
     # I'm using before(:each) because stub isn't supported on before(:create)
     # more info on https://github.com/rspec/rspec-mocks/issues/92#issuecomment-3178470
     before(:each) do
+      Category.delete_all
+      Post.delete_all
+      category = FactoryGirl.create :category, name: 'liberalismo'
+      configurarion = FactoryGirl.create :configuration, categories: [category]
       @entry = stub(
         :title => 'Sobre corporações e leis de responsabilidade limitada',
         :url => 'http://depositode.blogspot.com/2012/06/sobre-corporacoes-e-leis-de.html',
@@ -122,12 +126,10 @@ describe Post do
       @post.published_at.should == Date.parse(@entry.published.to_s)
     end
 
-    it 'with the rigth categories (creating the nonexistent ones and dont create liberdade.br category)' do
-      Category.create(:name => 'liberalismo')
+    it 'with the rigth categories (creating the nonexistent ones)' do
       categories = Category.all
-      categories.should have(2).categories
-      categories.collect(&:name).should include('liberalismo', 'responsabilidade limitada')
-      categories.collect(&:name).should_not include('liberdade.br')
+      categories.should have(3).categories
+      categories.collect(&:name).should include('liberalismo', 'responsabilidade limitada', 'liberdade.br')
       @post.categories.should include(*categories)
     end
 
@@ -140,22 +142,42 @@ describe Post do
     end
   end
 
-  context 'should not create a post from a feed entry without category liberdade.br' do
-    it 'should not have posts, auhors or categories' do
-      entry = stub(
-        :title => 'Sobre corporações e leis de responsabilidade limitada',
-        :url => 'http://depositode.blogspot.com/2012/06/sobre-corporacoes-e-leis-de.html',
-        :content => 'Some text very big'*500,
-        :published => Time.parse('Jul 25 13:25:00 -0300 2012'),
-        :categories => ['LIBERALISMO', 'RESPONSABILIDADE LIMITADA'], # without liberdade.br category
-        :author => 'Richard  , Leonard   '
-      )
-      Post.create_from_feed_entry(entry, (FactoryGirl.create :blog))
+  it 'should not create a post from a feed entry that doesnt includes at least one of configuration categories' do
+    Category.delete_all
+    Post.delete_all
+    category = FactoryGirl.create :category, name: 'foo'
+    configuration = FactoryGirl.create :configuration, categories: [category]
 
-      Post.all.should have(0).posts
-      Author.all.should have(0).author
-      Category.all.should have(0).categories
-    end
+    entry = stub(
+      :title => 'Sobre corporações e leis de responsabilidade limitada',
+      :url => 'http://depositode.blogspot.com/2012/06/sobre-corporacoes-e-leis-de.html',
+      :content => 'Some text very big'*500,
+      :published => Time.parse('Jul 25 13:25:00 -0300 2012'),
+      :categories => ['LIBERALISMO', 'RESPONSABILIDADE LIMITADA'], # without foo category
+      :author => 'Richard  , Leonard   '
+    )
+    Post.create_from_feed_entry(entry, (FactoryGirl.create :blog))
+
+    Post.all.should have(0).posts
+  end
+
+  it 'should create a post from a feed entry that includes any category when configuration categories is empty' do
+    Category.delete_all
+    Post.delete_all
+    configurarion = FactoryGirl.create :configuration, categories: [] # blank categories list
+    entry = stub(
+      :title => 'Sobre corporações e leis de responsabilidade limitada',
+      :url => 'http://depositode.blogspot.com/2012/06/sobre-corporacoes-e-leis-de.html',
+      :content => 'Some text very big'*500,
+      :published => Time.parse('Jul 25 13:25:00 -0300 2012'),
+      :categories => ['zigzagfoocategory'], # non selected category
+      :author => 'Richard  , Leonard   '
+    )
+    Post.create_from_feed_entry(entry, (FactoryGirl.create :blog))
+
+    Post.all.should have(1).posts
+    Author.all.should have(2).authors
+    Category.all.should have(1).category
   end
 
   context 'should create a post from a new post page' do

@@ -34,12 +34,13 @@ class Post < ActiveRecord::Base
      :user_evaluation, :moderator_conter, :criterion_for_publication
 
   def self.create_from_feed_entry(entry, blog)
-    if entry.categories.map(&:downcase_with_accents).include?('liberdade.br')
+    categories_to_match = Configuration.last.categories.map(&:name)
+    entry_categories = entry.categories.map(&:downcase_with_accents)
+
+    if (entry_categories & categories_to_match).any? or categories_to_match.empty?
       categories = []
       entry.categories.each do |name|
-        unless name.downcase_with_accents == 'liberdade.br'
-          categories << Category.get_or_create_by_name(name)
-        end
+        categories << Category.get_or_create_by_name(name)
       end
 
       authors = []

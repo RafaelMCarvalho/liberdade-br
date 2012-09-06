@@ -77,6 +77,15 @@ RailsAdmin.config do |config|
 
         field(:footer) { ckeditor true }
       end
+
+      group :categories do
+        label 'Categorias para importar posts'
+        active false
+
+        field :categories do
+          help "À esquerda, as categorias cadastradas no sistema. À direita, as categorias que deseja importar os posts.<br />Deixe em branco para importar todos os posts dos blogs cadastrados.".html_safe
+        end
+      end
     end
   end
 

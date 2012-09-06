@@ -25,6 +25,7 @@ pt-BR:
       configuration:
         email: "E-mail para contato"
         keywords: "Palavras-chave"
+        categories: 'Categorias'
         description: "Descrição"
         google_analytics: 'Google Analytics'
         footer: 'Rodapé'

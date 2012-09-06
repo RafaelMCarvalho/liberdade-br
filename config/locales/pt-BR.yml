@@ -72,6 +72,7 @@ pt-BR:
         role: 'Permissão'
         remember_me: 'Lembrar'
       banner:
+        description: 'Descrição'
         title: "Título"
         link: "Link"
         open_in_new_tab: "Abrir em uma nova aba"

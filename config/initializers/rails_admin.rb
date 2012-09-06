@@ -289,6 +289,7 @@ RailsAdmin.config do |config|
 
     edit do
       field :title
+      field :description
       field :link
       field :open_in_new_tab
       field :published

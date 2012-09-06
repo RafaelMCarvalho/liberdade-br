@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Banner < ActiveRecord::Base
-  attr_accessible :title, :link, :open_in_new_tab, :image, :published
+  attr_accessible :title, :link, :open_in_new_tab, :image, :published, :description
 
   has_attached_file :image,
     :path => ':rails_root/public/system/banners/:id/:style/:filename',

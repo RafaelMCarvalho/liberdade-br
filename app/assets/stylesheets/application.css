@@ -683,16 +683,23 @@ ul#main_navigation > li.social_item li.rss_item a {
     height: 300px;
 }
 
-#banner .infos ul li h3 {
+#banner .infos ul li h3, #banner .infos ul li h4 {
     margin-bottom: 20px;
 }
 
-#banner .infos ul li h3 a {
+#banner .infos ul li h3 a, #banner .infos ul li h3 {
     color: #fff;
     font-size: 32px;
     font-weight: bold;
     text-decoration: none;
     text-transform: uppercase;
+    text-shadow: 0 2px 0 #000;
+}
+
+#banner .infos ul li h4 {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
     text-shadow: 0 2px 0 #000;
 }
 

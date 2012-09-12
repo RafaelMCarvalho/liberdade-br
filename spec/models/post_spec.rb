@@ -105,8 +105,8 @@ describe Post do
     before(:each) do
       Category.delete_all
       Post.delete_all
-      category = FactoryGirl.create :category, name: 'liberalismo'
-      configurarion = FactoryGirl.create :configuration, categories: [category]
+      category = FactoryGirl.create :category, :name => 'liberalismo'
+      configurarion = FactoryGirl.create :configuration, :categories => [category]
       @entry = stub(
         :title => 'Sobre corporações e leis de responsabilidade limitada',
         :url => 'http://depositode.blogspot.com/2012/06/sobre-corporacoes-e-leis-de.html',
@@ -145,8 +145,8 @@ describe Post do
   it 'should not create a post from a feed entry that doesnt includes at least one of configuration categories' do
     Category.delete_all
     Post.delete_all
-    category = FactoryGirl.create :category, name: 'foo'
-    configuration = FactoryGirl.create :configuration, categories: [category]
+    category = FactoryGirl.create :category, :name => 'foo'
+    configuration = FactoryGirl.create :configuration, :categories => [category]
 
     entry = stub(
       :title => 'Sobre corporações e leis de responsabilidade limitada',
@@ -164,7 +164,7 @@ describe Post do
   it 'should create a post from a feed entry that includes any category when configuration categories is empty' do
     Category.delete_all
     Post.delete_all
-    configurarion = FactoryGirl.create :configuration, categories: [] # blank categories list
+    configurarion = FactoryGirl.create :configuration, :categories => [] # blank categories list
     entry = stub(
       :title => 'Sobre corporações e leis de responsabilidade limitada',
       :url => 'http://depositode.blogspot.com/2012/06/sobre-corporacoes-e-leis-de.html',

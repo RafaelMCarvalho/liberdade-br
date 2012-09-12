@@ -28,7 +28,7 @@ class Post < ActiveRecord::Base
   before_validation :set_moderator_counter, :on => :create
 
   attr_accessible :title, :url, :content, :published_at, :blog, :authors,
-     :author_ids, :categories,:category_ids, :blog_id,
+     :author_ids, :categories,:category_ids, :blog_id, :approved_at,
      :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids,
      :approval_rate, :reproval_rate, :hilight, :evaluations_pretty,
      :user_evaluation, :moderator_conter, :criterion_for_publication
@@ -91,6 +91,7 @@ class Post < ActiveRecord::Base
   def check_rates_to_publish
     if self.approval_rate >= 20.0 and self.reproval_rate < 50.0
       self.published = true
+      self.approved_at = Date.today if self.approved_at.blank?
     else
       self.published = false
     end

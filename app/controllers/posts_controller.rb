@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_filter :check_user, :only => [:approve, :reprove]
 
   def rss
-    @posts = Post.published.order('published_at DESC')
+    @posts = Post.published.order('approved_at DESC')
 
     respond_to do |format|
        format.rss { render :layout => false }
@@ -16,10 +16,10 @@ class PostsController < ApplicationController
     @title = "Liberdade.br"
 
     # the news items
-    @posts = Post.published.order('published_at DESC')
+    @posts = Post.published.order('approved_at DESC')
 
     # this will be our Feed's update timestamp
-    @updated = @posts.first.published_at unless @posts.empty?
+    @updated = @posts.first.approved_at unless @posts.empty?
 
     respond_to do |format|
       format.atom { render :layout => false }
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
 
   def index
-    @search = Post.published.order('published_at DESC').search(params[:q])
+    @search = Post.published.order('approved_at DESC').search(params[:q])
     @posts = @search.result
     @posts = @posts.uniq.page(params[:page]).per(6)
     @posts.reload
@@ -74,7 +74,7 @@ class PostsController < ApplicationController
   end
 
   def per_author
-    @search = Post.published.order('published_at DESC').search(params[:q])
+    @search = Post.published.order('approved_at DESC').search(params[:q])
     @author = Author.find(params[:id])
     @posts = @author.published_posts.uniq.page(params[:page]).per(6)
     @posts.reload
@@ -82,7 +82,7 @@ class PostsController < ApplicationController
   end
 
   def per_blog
-    @search = Post.published.order('published_at DESC').search(params[:q])
+    @search = Post.published.order('approved_at DESC').search(params[:q])
     @blog = Blog.find(params[:id])
     @posts = @blog.published_posts.uniq.page(params[:page]).per(6)
     @posts.reload
@@ -90,7 +90,7 @@ class PostsController < ApplicationController
   end
 
   def per_category
-    @search = Post.published.order('published_at DESC').search(params[:q])
+    @search = Post.published.order('approved_at DESC').search(params[:q])
     @category = Category.find(params[:id])
     @posts = @category.published_posts.uniq.page(params[:page]).per(6)
     @posts.reload

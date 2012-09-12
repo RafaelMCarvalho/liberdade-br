@@ -19,7 +19,7 @@
 
           <p class="info">
             <%= "#{p.blog.name} | " if p.blog %>
-            <%= localize (p.published_at), :format => 'publicado em %d de %B de %Y' %>.
+            <%= localize (p.approved_at), :format => 'publicado em %d de %B de %Y' %>.
           </p>
 
           <% if p.content %>

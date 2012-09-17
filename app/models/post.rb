@@ -24,6 +24,7 @@ class Post < ActiveRecord::Base
   }
 
   before_create :set_default_published_at, :if => lambda { self.published_at.blank? }
+  before_save :set_default_approved_at, :if => lambda { self.approved_at.blank? and published_by_admin? }
 
   before_validation :set_moderator_counter, :on => :create
 
@@ -154,5 +155,9 @@ class Post < ActiveRecord::Base
 
   def set_default_published_at
     self.published_at = Date.today
+  end
+
+  def set_default_approved_at
+    self.approved_at = Date.today
   end
 end

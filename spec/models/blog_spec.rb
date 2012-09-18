@@ -40,7 +40,7 @@ describe Blog do
       @past_entry2 = stub(:published => Time.now - 3.days)
     end
 
-    it 'save the published today ones' do
+    it 'save the published ones after created_at date from blog if it has no posts in liberdade.br yet' do
       pending 'Hugo vai fazer'
       # stub_entries
       # Blog.should_receive(:all).and_return([@blog])
@@ -52,7 +52,7 @@ describe Blog do
       # Blog.get_new_posts
     end
 
-    it 'do nothing if it has no one published today' do
+    it 'save all the published ones after the last post caught' do
       pending 'Hugo vai fazer'
       # stub_entries
       # Blog.should_receive(:all).and_return([@blog])

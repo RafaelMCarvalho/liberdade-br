@@ -59,4 +59,10 @@ LiberdadeBr::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[LiberdadeBr] ",
+    :sender_address => %{"Notifier" <bot@liberdade.cc>},
+    :exception_recipients => %w{algorich-dev@googlegroups.com}
 end

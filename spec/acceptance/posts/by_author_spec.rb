@@ -7,8 +7,8 @@ feature 'show only published posts by author' do
   end
 
   it 'through a show post' do
-    @post = FactoryGirl.create :post, :published => true, :published_at => Date.today
-    @other_post = FactoryGirl.create :post, :published => true, :published_at => Date.today
+    @post = FactoryGirl.create :post, :published => true, :published_at => Date.today, :approved_at => Date.today
+    @other_post = FactoryGirl.create :post, :published => true, :published_at => Date.today, :approved_at => Date.today
     @unpublished_post = FactoryGirl.create :post, :published => false, :title => 'My unpublished post'
     @author = FactoryGirl.create :author, :posts => [@post, @other_post], :name => 'derp'
     visit post_path(@post)

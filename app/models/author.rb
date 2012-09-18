@@ -4,7 +4,7 @@ class Author < ActiveRecord::Base
   has_many :posts, :through => :author_posts
 
 
-  attr_accessible :description, :name, :posts, :post_ids
+  attr_accessible :name, :posts, :post_ids
 
   validates :name, :presence => true, :uniqueness => true
 

@@ -23,16 +23,22 @@ class Post < ActiveRecord::Base
     self.approval_rate_changed? or self.reproval_rate_changed?
   }
 
+  before_create :set_default_published_at, :if => lambda { self.published_at.blank? }
+  before_save :set_default_approved_at, :if => lambda { self.approved_at.blank? and published_by_admin? }
+
   before_validation :set_moderator_counter, :on => :create
 
   attr_accessible :title, :url, :content, :published_at, :blog, :authors,
-     :author_ids, :categories,:category_ids, :blog_id,
+     :author_ids, :categories,:category_ids, :blog_id, :approved_at,
      :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids,
      :approval_rate, :reproval_rate, :hilight, :evaluations_pretty,
      :user_evaluation, :moderator_conter, :criterion_for_publication
 
   def self.create_from_feed_entry(entry, blog)
-    if entry.categories.map(&:downcase_with_accents).include?('liberdade.br')
+    categories_to_match = Configuration.last.categories.map(&:name)
+    entry_categories = entry.categories.map(&:downcase_with_accents)
+
+    if (entry_categories & categories_to_match).any? or categories_to_match.empty?
       categories = []
       entry.categories.each do |name|
         categories << Category.get_or_create_by_name(name)
@@ -86,6 +92,7 @@ class Post < ActiveRecord::Base
   def check_rates_to_publish
     if self.approval_rate >= 20.0 and self.reproval_rate < 50.0
       self.published = true
+      self.approved_at = Date.today if self.approved_at.blank?
     else
       self.published = false
     end
@@ -144,5 +151,13 @@ class Post < ActiveRecord::Base
 
   def able_to_publish?
     self.published_by_admin? or (self.published_by_moderation? and self.published)
+  end
+
+  def set_default_published_at
+    self.published_at = Date.today
+  end
+
+  def set_default_approved_at
+    self.approved_at = Date.today
   end
 end

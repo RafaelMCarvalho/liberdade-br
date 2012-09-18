@@ -1,11 +1,11 @@
 <%= content_for :og do %>
   <meta property="og:title" content="<%= @post.title %>" />
   <meta property="og:site_name" content="<%= configuration.site_title %>" />
-  <meta property="og:description" content="<%= @post.hilight %>" />
+  <meta property="og:description" content="<%= smart_truncate(@post.content, 150) %>" />
   <meta property="og:url" content="<%= request.url %>" />
   <meta property="og:image" content="<%= configuration.site_url + '/assets/facebook_size_logo.jpg' %>" />
   <% if current_user %>
-    <meta property="fb:app_id" content="508974272450177"/>
+    <meta property="fb:app_id" content="508974272450177" />
   <% end %>
 <% end %>
 
@@ -60,7 +60,7 @@
               <%= link_to @post.blog.name, @post.blog.link, :target => '_blank',
                 :class => 'blog_name' %> |
             <% end %>
-            <%= @post.published_at.strftime('%d de %B de %Y') %>.
+            <%= localize (@post.published_at), :format => '%d de %B de %Y' %>.
 
             <% unless (authors = @post.authors).empty? %>
               <br />
@@ -73,7 +73,6 @@
           <div class="addthis_toolbox addthis_default_style " addthis:url="<%= request.url %>" addthis:title="<%= @post.title %>">
             <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
             <a class="addthis_button_tweet"></a>
-            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
             <a class="addthis_counter addthis_pill_style"></a>
           </div>
           <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>

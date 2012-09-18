@@ -1,7 +1,7 @@
 <%= content_for :og do %>
   <meta property="og:title" content="<%= @event.name %>" />
   <meta property="og:site_name" content="<%= configuration.site_title %>" />
-  <meta property="og:description" content="<%= smart_truncate(@event.description, 200) %>" />
+  <meta property="og:description" content="<%= smart_truncate(@event.description, 150) %>" />
   <meta property="og:url" content="<%= request.url %>" />
   <meta property="og:image" content="<%= configuration.site_url + '/assets/facebook_size_logo.jpg' %>" />
 <% end %>
@@ -32,9 +32,9 @@
 
           <p class="info">
             <strong class="date">
-              <%= @event.date.strftime('%d de %B de %Y') %>
+              <%= localize (@event.date), :format => '%d de %B de %Y' %>
               <% if @event.end_date and @event.date != @event.end_date %>
-                até <%= @event.end_date.strftime('%d de %B de %Y') %>
+                até <%= localize (@event.end_date), :format => '%d de %B de %Y' %>
               <% end %>
             </strong>
             <% if @event.local %>
@@ -46,7 +46,6 @@
           <div class="addthis_toolbox addthis_default_style " addthis:url="<%= request.url %>" addthis:title="<%= @event.name %>">
             <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
             <a class="addthis_button_tweet"></a>
-            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
             <a class="addthis_counter addthis_pill_style"></a>
           </div>
           <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>

@@ -1,10 +1,12 @@
 # -*- encoding : utf-8 -*-
 class Configuration < ActiveRecord::Base
+  has_many :categories
+
   attr_accessible :email, :keywords, :description, :google_analytics, :facebook,
     :twitter, :footer, :donation_text, :donation_goal,
     :donation_collected, :site_title, :site_url, :facebook_like_goal,
     :ad_url, :ad_image, :ad_new_tab, :ad_published, :ad_title, :realization_url,
-    :realization_image, :realization_title
+    :realization_image, :realization_title, :category_ids, :categories
 
   attr_accessor :delete_ad_image, :delete_realization_image
 

@@ -25,6 +25,7 @@ pt-BR:
       configuration:
         email: "E-mail para contato"
         keywords: "Palavras-chave"
+        categories: 'Categorias'
         description: "Descrição"
         google_analytics: 'Google Analytics'
         footer: 'Rodapé'
@@ -71,6 +72,7 @@ pt-BR:
         role: 'Permissão'
         remember_me: 'Lembrar'
       banner:
+        description: 'Descrição'
         title: "Título"
         link: "Link"
         open_in_new_tab: "Abrir em uma nova aba"

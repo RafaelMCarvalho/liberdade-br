@@ -124,7 +124,7 @@ describe Post do
       @post.title.should == @entry.title
       @post.url.should == @entry.url
       @post.content.should == @entry.content
-      @post.published_at.should == Date.parse(@entry.published.to_s)
+      @post.published_at.should == @entry.published.to_s
     end
 
     it 'with the rigth categories (creating the nonexistent ones)' do

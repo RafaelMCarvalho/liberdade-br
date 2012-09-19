@@ -39,8 +39,8 @@ class Blog < ActiveRecord::Base
   end
 
   def self.get_new_posts
-    date = Date.today.strftime('%d/%m/%Y')
     all.each do |blog|
+      date = blog.posts.any? ? blog.posts.order(:published_at).last.published_at : blog.created_at
       Feedzirra::Feed.fetch_and_parse(
         blog.rss,
         :on_success => lambda { |url, feed| Blog.create_posts(feed, date, blog) }
@@ -50,7 +50,7 @@ class Blog < ActiveRecord::Base
 
   def self.create_posts(feed, date, blog)
     feed.entries.select do |entry|
-      if entry.published.strftime('%d/%m/%Y') == date
+      if entry.published > date.getutc
         Post.create_from_feed_entry(entry, blog)
       end
     end

@@ -229,4 +229,23 @@ describe Post do
     Post.published.should include(post1, post3, post4)
     Post.published.should_not include(post2, post5, post6)
   end
+
+  it 'should return similar published posts (that share at least one category)' do
+    category1 = FactoryGirl.create :category, :name => 'Category1'
+    category2 = FactoryGirl.create :category, :name => 'Category2'
+    category3 = FactoryGirl.create :category, :name => 'Category3'
+    post1 = FactoryGirl.create :post, :categories => [category1], :criterion_for_publication => Post::CRITERION_FOR_PUBLICATION[:always_published], :published => true
+    post2 = FactoryGirl.create :post, :categories => [category1, category2, category3], :criterion_for_publication => Post::CRITERION_FOR_PUBLICATION[:always_published], :published => true
+    post3 = FactoryGirl.create :post, :categories => [category3], :criterion_for_publication => Post::CRITERION_FOR_PUBLICATION[:always_published], :published => true
+
+    post4 = FactoryGirl.create :post, :categories => [category1, category2, category3], :criterion_for_publication => Post::CRITERION_FOR_PUBLICATION[:always_unpublished], :published => false
+
+    post1.similar.should include(post2)
+    post2.similar.should include(post1, post3)
+    post3.similar.should include(post2)
+
+    post1.similar.should_not include(post1, post3, post4)
+    post2.similar.should_not include(post2, post4)
+    post3.similar.should_not include(post3, post1, post4)
+  end
 end

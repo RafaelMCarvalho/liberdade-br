@@ -160,4 +160,8 @@ class Post < ActiveRecord::Base
   def set_default_approved_at
     self.approved_at = Date.today
   end
+
+  def similar
+    Post.published.select { |p| (p.categories & self.categories).any? and p != self }
+  end
 end

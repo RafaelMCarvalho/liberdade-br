@@ -2,6 +2,7 @@
 class PostsController < ApplicationController
 
   before_filter :check_user, :only => [:approve, :reprove]
+  before_filter :set_return_to_admin_url, :if => lambda { current_user }, :only => [:show]
 
   def rss
     @posts = Post.published.order('approved_at DESC')
@@ -126,6 +127,15 @@ class PostsController < ApplicationController
   def check_user
     if current_user.id.to_s != params[:user_id]
       render :nothing => true and return
+    end
+  end
+
+  def set_return_to_admin_url
+    previous_url = request.referrer
+    admin_post_path = '/admin/post'
+
+    if previous_url and previous_url.match(admin_post_path)
+      session[:return_to_admin_url] = previous_url
     end
   end
 end

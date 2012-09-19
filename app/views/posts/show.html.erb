@@ -27,7 +27,7 @@
       <li class="buttom"><%= link_to 'Reprovar', reprove_post_path(@post, current_user),
         :method => :post, :class => ('active' if @voted_approve == false), :id => 'reprove_post' %></li>
 
-      <li class="buttom"><%= link_to 'Voltar para administração', '/admin/post' %></li>
+      <li class="buttom"><%= link_to 'Voltar para administração', session[:return_to_admin_url] || '/admin/post' %></li>
     </ul>
   <% end %>
 <% end %>

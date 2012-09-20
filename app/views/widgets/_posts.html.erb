@@ -1,10 +1,10 @@
 <%
-  posts = Post.published.order('approved_at DESC').limit(5)
+  posts = @post.similar[0..4]
 %>
 
 <% unless posts.empty? %>
   <div class="sidebar_panel">
-    <h3><%= link_to 'Posts em destaque', posts_path %></h3>
+    <h3><%= link_to 'Posts relacionados', posts_path %></h3>
 
     <ul>
       <% posts.each do |p| %>

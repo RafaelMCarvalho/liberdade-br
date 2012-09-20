@@ -162,6 +162,6 @@ class Post < ActiveRecord::Base
   end
 
   def similar
-    Post.published.select { |p| (p.categories & self.categories).any? and p != self }
+    Post.published.order('published_at DESC').select { |p| (p.categories & self.categories).any? and p != self }
   end
 end

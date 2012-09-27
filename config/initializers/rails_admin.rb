@@ -124,6 +124,10 @@ RailsAdmin.config do |config|
         label 'Confirme a senha'
         help 'Confirme a senha caso deseje mudar a senha atual'
       end
+      field :role, :enum do
+        help ''
+        partial 'user_role'
+      end
     end
   end
 

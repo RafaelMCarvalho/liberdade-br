@@ -4,9 +4,11 @@
   fb_page = ::Configuration.first.facebook
   unless fb_page.blank? || Rails.env.test?
     id = fb_page.split('/').last
-    @fb_likes = JSON.parse(
-      Net::HTTP.get_response(URI("http://graph.facebook.com/?id=#{id}")).
-        body)['likes']
+    @fb_likes = {}
+    fb_request = Net::HTTP.get_response(URI("http://graph.facebook.com/?id=#{id}"))
+    if fb_request.message == 'OK'
+      @fb_likes = JSON.parse(fb_request.body)['likes']
+    end
   end
 %>
 

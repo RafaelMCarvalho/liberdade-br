@@ -32,7 +32,8 @@ class Post < ActiveRecord::Base
      :author_ids, :categories,:category_ids, :blog_id, :approved_at,
      :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids,
      :approval_rate, :reproval_rate, :hilight, :evaluations_pretty,
-     :user_evaluation, :moderator_conter, :criterion_for_publication
+     :user_evaluation, :moderator_conter, :criterion_for_publication,
+     :last_evaluation_date
 
   def self.create_from_feed_entry(entry, blog)
     categories_to_match = Configuration.last.categories.map(&:name)
@@ -95,6 +96,7 @@ class Post < ActiveRecord::Base
       self.approved_at = Date.today if self.approved_at.blank?
     else
       self.published = false
+      self.approved_at = nil
     end
   end
 
@@ -105,7 +107,8 @@ class Post < ActiveRecord::Base
     users = self.moderator_counter
     self.update_attributes(
       :approval_rate => (approvals.to_f/users.to_f*100).round(1),
-      :reproval_rate => (reprovals.to_f/users.to_f*100).round(1)
+      :reproval_rate => (reprovals.to_f/users.to_f*100).round(1),
+      :last_evaluation_date => DateTime.now
     )
   end
 

@@ -193,6 +193,7 @@ RailsAdmin.config do |config|
         end
       end
       field :published_at
+      field :last_evaluation_date
     end
 
     edit do

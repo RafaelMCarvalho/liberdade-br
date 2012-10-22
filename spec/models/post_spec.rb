@@ -54,18 +54,21 @@ describe Post do
     it 'when some associated evaluation changes' do
       @post_evaluation.update_attributes(:approve => false)
       I18n.l(@post.reload.last_evaluation_date).should == I18n.l(DateTime.now)
+      I18n.l(@user.last_evaluation_date) == I18n.l(DateTime.now)
     end
 
     it 'when some associated evaluation is created' do
       FactoryGirl.create :post_evaluation, :user => @user2,
         :post => @post, :approve => true
       I18n.l(@post.reload.last_evaluation_date).should == I18n.l(DateTime.now)
+      I18n.l(@user.last_evaluation_date) == I18n.l(DateTime.now)
     end
 
     it 'when some user is created and evaluate the post' do
       user = FactoryGirl.create :user
       FactoryGirl.create :post_evaluation, :post => @post, :user => user
       I18n.l(@post.reload.last_evaluation_date).should == I18n.l(DateTime.now)
+      I18n.l(@user.last_evaluation_date) == I18n.l(DateTime.now)
     end
 
     after(:each) do

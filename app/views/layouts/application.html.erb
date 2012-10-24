@@ -192,13 +192,7 @@
             <ul>
               <% Blog.all.each do |b| %>
                 <li><span>
-                  <a href="<%= b.link %>" target="_blank">
-                    <% if b.image.exists? %>
-                      <%= image_tag b.image.url(:small), :alt => b.name %>
-                    <% else %>
-                      <%= b.name %>
-                    <% end %>
-                  </a>
+                  <a href="<%= b.link %>" target="_blank"><%= b.name %></a>
                 </span></li>
               <% end %>
             </ul>

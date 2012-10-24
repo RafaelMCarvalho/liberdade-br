@@ -97,6 +97,7 @@ RailsAdmin.config do |config|
 
     list do
       field :email
+      field :last_evaluation_date
     end
 
     create do
@@ -193,6 +194,7 @@ RailsAdmin.config do |config|
         end
       end
       field :published_at
+      field :last_evaluation_date
     end
 
     edit do

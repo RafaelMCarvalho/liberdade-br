@@ -64,6 +64,7 @@ pt-BR:
         reproval_rate: 'Reprovação'
         evaluations_count: 'Avaliações'
         evaluations_pretty: 'Taxas de avaliação'
+        last_evaluation_date: 'Data do último voto'
       user:
         email: "E-mail"
         password: "Senha"
@@ -71,6 +72,7 @@ pt-BR:
         current_password: 'Senha atual'
         role: 'Permissão'
         remember_me: 'Lembrar'
+        last_evaluation_date: 'Data do último voto'
       banner:
         description: 'Descrição'
         title: "Título"

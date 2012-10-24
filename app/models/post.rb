@@ -46,7 +46,10 @@ class Post < ActiveRecord::Base
       end
 
       authors = []
-      entry.author.split(',').each do |name|
+
+      if entry.author.nil?
+        authors << Author.get_or_create_by_name(blog.name)
+      else
         authors << Author.get_or_create_by_name(name.strip)
       end
 

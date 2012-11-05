@@ -1,4 +1,5 @@
 <%= content_for :og do %>
+  <meta property="og:type" content="article" />
   <meta property="og:title" content="<%= @event.name %>" />
   <meta property="og:site_name" content="<%= configuration.site_title %>" />
   <meta property="og:description" content="<%= smart_truncate(@event.description, 150) %>" />

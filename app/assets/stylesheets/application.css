@@ -116,7 +116,7 @@ input[type="submit"]::-moz-focus-inner {
 }
 
 .pagination > span {
-    padding: 5px 15px;
+    padding: 5px 13px;
     display: block;
     float: left;
 
@@ -157,8 +157,8 @@ input[type="submit"]::-moz-focus-inner {
 }
 
 .pagination > span a {
-    margin: -5px -15px;
-    padding: 5px 15px;
+    margin: -5px -13px;
+    padding: 5px 13px;
     display: block;
 
     color: #000;
@@ -796,6 +796,10 @@ ul#main_navigation > li.social_item li.rss_item a {
 #content #main_content {
     width: 530px;
     float: left;
+}
+
+#content #main_content .post {
+    line-height: 150%;
 }
 
 #content #main_content > hr, #content #sidebar > hr {

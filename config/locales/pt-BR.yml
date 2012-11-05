@@ -140,6 +140,9 @@ pt-BR:
     pagination:
       first: "Primeira"
       last: "Última"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."
 
   admin:
     home:

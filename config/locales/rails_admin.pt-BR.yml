@@ -3,8 +3,8 @@ pt-BR:
     name: Início
   views:
     pagination:
-      previous: "&laquo; Anterior"
-      next: "Próximo &raquo;"
+      previous: "&laquo;"
+      next: "&raquo;"
       truncate: "…"
   admin:
     misc:

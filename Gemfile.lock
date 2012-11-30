@@ -223,6 +223,7 @@ GEM
       polyamorous (~> 0.5.0)
     rdoc (3.12)
       json (~> 1.4)
+    recaptcha (0.3.4)
     remotipart (1.0.2)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
@@ -318,6 +319,7 @@ DEPENDENCIES
   rails3-generators (= 0.17.4)
   rails_admin (= 0.0.5)
   ransack (= 0.7.0)
+  recaptcha
   rspec-rails (= 2.10.1)
   simple_form (= 2.0.2)
   slim (= 1.2.2)

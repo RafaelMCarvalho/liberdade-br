@@ -21,6 +21,7 @@ gem "tinymce-rails", '~> 3.5.6' # should be at global gems, no at assets group
 gem "tinymce-rails-langs", '~> 0.1'
 gem 'brazilian-rails'
 gem 'exception_notification'
+gem 'recaptcha', :require => 'recaptcha/rails'
 
 group :development, :test do
     gem 'database_cleaner', '0.7.1'

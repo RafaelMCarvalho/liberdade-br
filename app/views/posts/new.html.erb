@@ -48,6 +48,10 @@
             <%= f.input :categories, :label => 'Categorias',
               :hint => 'Separadas por vírgula',
               :input_html => { :value => @categories_input_value } %>
+            <%= recaptcha_tags :display => {:theme => 'red' , :tabindex => '8' } %>
+            <% if @recaptcha_error.present? %>
+              <div class="input"><span class="error"><%= @recaptcha_error %></span></div>
+            <% end %>
           </div>
           <div class="actions">
             <p class="buttom"><%= f.button :submit, 'Enviar' %></p>

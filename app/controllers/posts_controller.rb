@@ -45,6 +45,7 @@ class PostsController < ApplicationController
     raise ActionController::RoutingError.new('Not Found') unless @page.published
   end
 
+
   def send_post
     @page = Page.where('indicator = ?', Page::PAGES[:send_post]).first
 
@@ -52,13 +53,18 @@ class PostsController < ApplicationController
     @authors_input_value = @post.authors.map(&:name).join(', ')
     @categories_input_value = @post.categories.map(&:name).join(', ')
 
-    if @post.save
-      flash[:notice] = 'Post enviado com sucesso. Ele será avaliado pelos moderadores antes de ser publicado no site.'
-      redirect_to :action => 'new'
+    if verify_recaptcha(:model => @post, :message => 'Você digitou palavas erradas no reCAPTCHA.')
+      if @post.save
+        flash[:notice] = 'Post enviado com sucesso. Ele será avaliado pelos moderadores antes de ser publicado no site.'
+        redirect_to :action => 'new'
+      else
+        render :action => 'new'
+      end
     else
+      @post.valid?
+      @recaptcha_error = 'Você digitou palavras incorretas. Tente novamente.'
       render :action => 'new'
     end
-
   end
 
   def show

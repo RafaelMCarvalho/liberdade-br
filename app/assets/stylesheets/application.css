@@ -1593,6 +1593,10 @@ ul.opportunities_list li .more a:hover {
     padding-top: 50px
 }
 
+#recaptcha_widget_div {
+    margin-left: 127px;
+}
+
 /*
 ** Post
 */

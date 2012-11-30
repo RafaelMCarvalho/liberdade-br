@@ -30,9 +30,15 @@ class SiteController < ApplicationController
     @contact = Page.where('indicator = ?', Page::PAGES[:contact]).first
     @contact_form = Contact.new(params[:contact])
 
-    if @contact_form.save
-      redirect_to(contact_path, :notice => 'Mensagem enviada com sucesso.')
+    if verify_recaptcha(:model => @contact_form, :message => 'Você digitou palavas erradas no reCAPTCHA.')
+      if @contact_form.save
+        redirect_to(contact_path, :notice => 'Mensagem enviada com sucesso.')
+      else
+        render :action => :contact
+      end
     else
+      @contact_form.valid?
+      @recaptcha_error = 'Você digitou palavras incorretas. Tente novamente.'
       render :action => :contact
     end
   end

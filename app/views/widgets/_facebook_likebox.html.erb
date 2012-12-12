@@ -1,24 +1,12 @@
-<%
-  require 'net/http'
+<% if configuration.facebook_like_goal and configuration.facebook %>
+  <% fb_id = configuration.facebook.split('/').last %>
 
-  fb_page = ::Configuration.first.facebook
-  unless fb_page.blank? || Rails.env.test?
-    id = fb_page.split('/').last
-    @fb_likes = nil
-    fb_request = Net::HTTP.get_response(URI("http://graph.facebook.com/?id=#{id}"))
-    if fb_request.message == 'OK'
-      @fb_likes = JSON.parse(fb_request.body)['likes']
-    end
-  end
-%>
-
-<% if configuration.facebook_like_goal and configuration.facebook and @fb_likes and @fb_likes < configuration.facebook_like_goal %>
   <div class="sidebar_box_wrapper" id="facebook_box">
     <div class="sidebar_box">
       <h3>Ajude-nos a conseguir <%= configuration.facebook_like_goal %> fãs no Facebook</h3>
 
-      <div class="facebook_progress_bar">
-        <p><span><%= @fb_likes %></span></p>
+      <div class="facebook_progress_bar" data-id="<%= fb_id %>" data-goal="<%= configuration.facebook_like_goal %>">
+        <p><span>Carregando...</span></p>
       </div>
 
       <div class="facebook_like_iframe">
@@ -26,10 +14,4 @@
       </div>
     </div>
   </div>
-
-  <style type="text/css">
-    #facebook_box .facebook_progress_bar p {
-      width: <%= (@fb_likes * 308 / configuration.facebook_like_goal).to_i %>px
-    }
-  </style>
 <% end %>

@@ -75,3 +75,23 @@ $(function () {
         partners_sld.goToPreviousSlide();
     });
 });
+
+/* Facebook Like box */
+
+$(function () {
+    var progress_bar = $('#facebook_box .facebook_progress_bar');
+    if(progress_bar.length != 0) {
+        var id = progress_bar.data('id');
+        var goal = progress_bar.data('goal');
+
+        $.getJSON('http://graph.facebook.com/' + id, function(data) {
+            var likes = data.likes;
+            var progress_width = progress_bar.width();
+            if(likes < goal)
+                progress_width = Math.round(likes * progress_bar.width() / goal);
+
+            progress_bar.find('p').css('width', progress_width);
+            progress_bar.find('span').text(likes);
+        });
+    }
+});

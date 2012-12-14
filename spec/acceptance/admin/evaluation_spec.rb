@@ -9,51 +9,72 @@ feature 'manage posts' do
   end
 
   context 'evaluate a post', :js => true do
-    it 'approve/reprove a post first time' do
+    it 'approve/reprove/abstention a post first time' do
       @post = FactoryGirl.create :post, :published_at => Date.today
       visit "/posts/#{@post.id}"
 
       page.should_not have_xpath("//a[@id='approve_post'][@class='active']")
       page.should_not have_xpath("//a[@id='reprove_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='abstention_post'][@class='active']")
       PostEvaluation.all.count.should == 0
 
       click_link 'Aprovar'
-      sleep 2
       page.should have_xpath("//a[@id='approve_post'][@class='active']")
       page.should_not have_xpath("//a[@id='reprove_post'][@class='active']")
-      @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', @user.id, @post.id).first
+      page.should_not have_xpath("//a[@id='abstention_post'][@class='active']")
+      @evaluation = PostEvaluation.where('user_id = ? and post_id = ?',
+        @user.id, @post.id).first
       @evaluation.should_not be_nil
-      @evaluation.approve.should be_true
+      @evaluation.approve.should == PostEvaluation::OPTIONS[:approve]
 
       click_link 'Reprovar'
-      page.should_not have_xpath("//a[@id='approve_post'][@class='active']")
       page.should have_xpath("//a[@id='reprove_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='approve_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='abstention_post'][@class='active']")
       @evaluation.reload
-      @evaluation.approve.should be_false
+      @evaluation.approve.should == PostEvaluation::OPTIONS[:reprove]
+
+      click_link 'Abster-se'
+      page.should have_xpath("//a[@id='abstention_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='approve_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='reprove_post'][@class='active']")
+      @evaluation.reload
+      @evaluation.approve.should == PostEvaluation::OPTIONS[:abstention]
     end
 
     it 'change evaluation' do
       @post = FactoryGirl.create :post, :published_at => Date.today
       @evaluation = FactoryGirl.create :post_evaluation, :user_id => @user.id,
-        :post_id => @post.id, :approve => true
+        :post_id => @post.id, :approve => PostEvaluation::OPTIONS[:approve]
       visit "/posts/#{@post.id}"
 
       page.should have_xpath("//a[@id='approve_post'][@class='active']")
       page.should_not have_xpath("//a[@id='reprove_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='abstention_post'][@class='active']")
       PostEvaluation.all.count.should == 1
-      @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', @user.id, @post.id).first
+      @evaluation = PostEvaluation.where('user_id = ? and post_id = ?',
+        @user.id, @post.id).first
 
       click_link 'Aprovar'
       page.should have_xpath("//a[@id='approve_post'][@class='active']")
       page.should_not have_xpath("//a[@id='reprove_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='abstention_post'][@class='active']")
       @evaluation.reload
-      @evaluation.approve.should be_true
+      @evaluation.approve.should == PostEvaluation::OPTIONS[:approve]
 
       click_link 'Reprovar'
-      page.should_not have_xpath("//a[@id='approve_post'][@class='active']")
       page.should have_xpath("//a[@id='reprove_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='approve_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='abstention_post'][@class='active']")
       @evaluation.reload
-      @evaluation.approve.should be_false
+      @evaluation.approve.should == PostEvaluation::OPTIONS[:reprove]
+
+      click_link 'Abster-se'
+      page.should have_xpath("//a[@id='abstention_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='reprove_post'][@class='active']")
+      page.should_not have_xpath("//a[@id='approve_post'][@class='active']")
+      @evaluation.reload
+      @evaluation.approve.should == PostEvaluation::OPTIONS[:abstention]
     end
 
     context 'cannot evaluate as another user' do
@@ -67,20 +88,25 @@ feature 'manage posts' do
         PostEvaluation.all.count.should == 0
         visit "/admin/post/#{@post.id}/reprove/#{@another_user.id}"
         PostEvaluation.all.count.should == 0
+        visit "/admin/post/#{@post.id}/abstention/#{@another_user.id}"
+        PostEvaluation.all.count.should == 0
       end
 
       it 'while updating' do
         @evaluation = FactoryGirl.create :post_evaluation, :user_id => @another_user.id,
-          :post_id => @post.id, :approve => true
+          :post_id => @post.id, :approve => PostEvaluation::OPTIONS[:approve]
 
         visit "/admin/post/#{@post.id}/reprove/#{@another_user.id}"
-        @evaluation.reload.approve.should be_true
+        @evaluation.reload.approve.should == PostEvaluation::OPTIONS[:approve]
 
         # Set approve value to false
-        @evaluation.update_attributes(:approve => false)
-
+        @evaluation.update_attributes(:approve => PostEvaluation::OPTIONS[:reprove])
         visit "/admin/post/#{@post.id}/approve/#{@another_user.id}"
-        @evaluation.reload.approve.should be_false
+        @evaluation.reload.approve.should == PostEvaluation::OPTIONS[:reprove]
+
+        @evaluation.update_attributes(:approve => PostEvaluation::OPTIONS[:abstention])
+        visit "/admin/post/#{@post.id}/approve/#{@another_user.id}"
+        @evaluation.reload.approve.should == PostEvaluation::OPTIONS[:abstention]
       end
     end
   end

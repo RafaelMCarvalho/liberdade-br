@@ -149,21 +149,27 @@ RailsAdmin.config do |config|
         pretty_value do
           approval = bindings[:object].approval_rate.round(1)
           reproval = bindings[:object].reproval_rate.round(1)
-          if approval == 0 and reproval == 0
+          abstention = bindings[:object].abstention_rate.round(1)
+
+          if approval == 0 and reproval == 0 and abstention == 0
             html = "<span class=\"label\" style=\"width: 100%;\">Sem avaliações</span>".html_safe
           else
             html = "
             <div class=\"progress\" style=\"margin: 0;\" title=\"Não avaliaram\">
               <div class=\"bar bar-success\" style=\"width: #{approval.to_i}%;overflow: hidden;\" title=\"Aprovação\">#{approval}%</div>
               <div class=\"bar bar-danger\" style=\"width: #{reproval.to_i}%;overflow: hidden;\" title=\"Reprovação\">#{reproval}%</div>
-              <div style=\"text-align: center;overflow: hidden;\">#{(100.0 - approval - reproval).round(1)}%</div>
+              <div class=\"bar\" style=\"width: #{abstention.to_i}%;overflow: hidden;\" title=\"Abstenções\">#{abstention}%</div>
+              <div style=\"text-align: center;overflow: hidden;\">#{(100.0 - approval - reproval - abstention).round(1)}%</div>
             </div>".html_safe
           end
+
           html
         end
       end
+
       field :published do
         label 'Status'
+
         pretty_value do
           if bindings[:object].published_by_admin?
             html = "<span class=\"label label-success\">Aprovado pelo adminstrador</span>".html_safe
@@ -173,23 +179,35 @@ RailsAdmin.config do |config|
             if value == true
               html = "<span class=\"label label-success\">Aprovado</span>".html_safe
             else
-              html = "<span class=\"label label-important\">Recusado</span>".html_safe
+              if bindings[:object].reproval_rate > 50.0
+                html = "<span class=\"label label-important\">Recusado</span>".html_safe
+              else
+                html = "<span class=\"label\">Aguardando</span>".html_safe
+              end
             end
           end
+
           html
         end
       end
+
       field :user_evaluation do
-        label ' '
+        label 'Minha avaliação'
+
         pretty_value do
-          evaluation = PostEvaluation.where('user_id = ? and post_id = ?', bindings[:view].current_user.id, bindings[:object].id).first
+          evaluation = PostEvaluation.where('user_id = ? and post_id = ?',
+            bindings[:view].current_user.id, bindings[:object].id).first
+
           if evaluation.nil?
             html = ""
-          elsif evaluation.approve == true
-            html = "<i class=\"icon-thumbs-up\" title=\"Você aprovou\"></i>".html_safe
-          else
-            html = "<i class=\"icon-thumbs-down\" title=\"Você reprovou\"></i>".html_safe
+          elsif evaluation.approve == PostEvaluation::OPTIONS[:approve]
+            html = "<span class=\"label label-success\">Aprovar</span>".html_safe
+          elsif evaluation.approve == PostEvaluation::OPTIONS[:reprove]
+            html = "<span class=\"label label-important\">Recusar</span>".html_safe
+          elsif evaluation.approve == PostEvaluation::OPTIONS[:abstention]
+            html = "<span class=\"label\">Abster-se</span>".html_safe
           end
+
           html
         end
       end

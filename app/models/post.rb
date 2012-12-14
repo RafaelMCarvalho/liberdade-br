@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :content, :if => lambda { self.blog.nil? }
 
   after_validation :check_rates_to_publish, :if => lambda {
-    self.approval_rate_changed? or self.reproval_rate_changed?
+    self.approval_rate_changed? or self.reproval_rate_changed? or self.abstention_rate_changed?
   }
 
   before_create :set_default_published_at, :if => lambda { self.published_at.blank? }
@@ -33,7 +33,7 @@ class Post < ActiveRecord::Base
      :evaluations, :evaluation_ids, :post_evaluations, :post_evaluation_ids,
      :approval_rate, :reproval_rate, :hilight, :evaluations_pretty,
      :user_evaluation, :moderator_conter, :criterion_for_publication,
-     :last_evaluation_date
+     :last_evaluation_date, :abstention_rate
 
   def self.create_from_feed_entry(entry, blog)
     categories_to_match = Configuration.last.categories.map(&:name)
@@ -107,12 +107,20 @@ class Post < ActiveRecord::Base
 
   def update_evaluation_rates
     self.update_moderator_counter
-    approvals = self.post_evaluations.where('approve = ?', true).count
-    reprovals = self.post_evaluations.where('approve = ?', false).count
+    approvals = self.post_evaluations.
+      where('approve = ?', PostEvaluation::OPTIONS[:approve]).count
+
+    reprovals = self.post_evaluations.
+      where('approve = ?', PostEvaluation::OPTIONS[:reprove]).count
+
+    abstentions = self.post_evaluations.
+      where('approve = ?', PostEvaluation::OPTIONS[:abstention]).count
+
     users = self.moderator_counter
     self.update_attributes(
       :approval_rate => (approvals.to_f/users.to_f*100).round(1),
       :reproval_rate => (reprovals.to_f/users.to_f*100).round(1),
+      :abstention_rate => (abstentions.to_f/users.to_f*100).round(1),
       :last_evaluation_date => DateTime.now
     )
   end
@@ -121,7 +129,7 @@ class Post < ActiveRecord::Base
   end
 
   def evaluations_pretty
-    "Aprovação: #{self.approval_rate}% / Reprovação: #{self.reproval_rate}%"
+    "Aprovação: #{self.approval_rate}% / Reprovação: #{self.reproval_rate}% / Abstenções: #{self.abstention_rate}%"
   end
 
   def set_moderator_counter

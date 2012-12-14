@@ -18,6 +18,7 @@ LiberdadeBr::Application.routes.draw do
 #= 3. Post evaluation routes ===================================================
   post "/admin/post/:post_id/approve/:user_id" => "posts#approve", :as => :approve_post
   post "/admin/post/:post_id/reprove/:user_id" => "posts#reprove", :as => :reprove_post
+  post "/admin/post/:post_id/abstention/:user_id" => "posts#abstention", :as => :abstention_post
 
 #= 4. Author ===================================================================
   get '/posts/author/:id' => 'posts#per_author', :as => :posts_author

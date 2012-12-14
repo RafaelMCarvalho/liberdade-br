@@ -81,10 +81,10 @@
 
         <%= render :partial => 'posts/posts', :locals => { :posts => @posts } %>
 
-        <% unless @posts.empty? %>
+        <% unless @posts.length < 6 %>
           <hr />
 
-          <p class="buttom"><%= link_to 'Mais postagens', posts_path %></a></p>
+          <p class="buttom"><%= link_to 'Mais postagens', posts_path(:page => 2) %></a></p>
         <% end %>
       </div>
 

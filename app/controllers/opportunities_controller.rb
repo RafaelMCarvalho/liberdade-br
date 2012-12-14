@@ -3,7 +3,7 @@
 class OpportunitiesController < ApplicationController
   def index
     @opportunities = Opportunity.where('published = ?', true).
-      page(params[:page]).per(6)
+      order('created_at DESC').page(params[:page]).per(6)
   end
 
   def show

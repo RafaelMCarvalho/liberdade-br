@@ -38,8 +38,11 @@
                 até <%= localize (@event.end_date), :format => '%d de %B de %Y' %>
               <% end %>
             </strong>
-            <% if @event.local %>
+            <% unless @event.local.blank? %>
               <br /><span class="local"><%= @event.local %></span>
+            <% end %>
+            <% unless @event.link.blank? %>
+              <br /><%= link_to @event.link, @event.link, :target => '_blank' %>
             <% end %>
           </p>
 

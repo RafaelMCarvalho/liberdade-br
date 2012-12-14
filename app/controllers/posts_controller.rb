@@ -53,9 +53,13 @@ class PostsController < ApplicationController
     @authors_input_value = @post.authors.map(&:name).join(', ')
     @categories_input_value = @post.categories.map(&:name).join(', ')
 
-    if verify_recaptcha(:model => @post, :message => 'Você digitou palavas erradas no reCAPTCHA.')
+    if verify_recaptcha(:model => @post,
+      :message => 'Você digitou palavas erradas no reCAPTCHA.')
+
       if @post.save
-        flash[:notice] = 'Post enviado com sucesso. Ele será avaliado pelos moderadores antes de ser publicado no site.'
+        flash[:notice] = 'Post enviado com sucesso. Ele será avaliado
+          pelos moderadores antes de ser publicado no site.'
+
         redirect_to :action => 'new'
       else
         render :action => 'new'
@@ -71,7 +75,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if current_user
-      @evaluation = PostEvaluation.where('user_id = ? AND post_id = ?', current_user, @post.id).first
+      @evaluation = PostEvaluation.where('user_id = ? AND post_id = ?',
+        current_user, @post.id).first
       @voted_approve = @evaluation.try(:approve)
     end
 
@@ -105,27 +110,51 @@ class PostsController < ApplicationController
   end
 
   def approve
-    params[:approve] = true
-    @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', params[:user_id], params[:post_id]).first
+    params[:approve] = PostEvaluation::OPTIONS[:approve]
+    @evaluation = PostEvaluation.where('user_id = ? and post_id = ?',
+      params[:user_id], params[:post_id]).first
+
     if @evaluation.nil?
       @evaluation = PostEvaluation.new(params)
       @evaluation.save
     else
       @evaluation.update_attributes(params)
     end
-    redirect_to post_path(params[:post_id]), :notice => 'Você aprovou o post com sucesso.'
+
+    redirect_to post_path(params[:post_id]),
+      :notice => 'Seu voto foi computado com sucesso.'
   end
 
   def reprove
-    params[:approve] = false
-    @evaluation = PostEvaluation.where('user_id = ? and post_id = ?', params[:user_id], params[:post_id]).first
+    params[:approve] = PostEvaluation::OPTIONS[:reprove]
+    @evaluation = PostEvaluation.where('user_id = ? and post_id = ?',
+      params[:user_id], params[:post_id]).first
+
     if @evaluation.nil?
       @evaluation = PostEvaluation.new(params)
       @evaluation.save
     else
       @evaluation.update_attributes(params)
     end
-    redirect_to post_path(params[:post_id]), :notice => 'Você reprovou o post com sucesso.'
+
+    redirect_to post_path(params[:post_id]),
+      :notice => 'Seu voto foi computado com sucesso.'
+  end
+
+  def abstention
+    params[:approve] = PostEvaluation::OPTIONS[:abstention]
+    @evaluation = PostEvaluation.where('user_id = ? and post_id = ?',
+        params[:user_id], params[:post_id]).first
+
+    if @evaluation.nil?
+      @evaluation = PostEvaluation.new(params)
+      @evaluation.save
+    else
+      @evaluation.update_attributes(params)
+    end
+
+    redirect_to post_path(params[:post_id]),
+      :notice => 'Seu voto foi computado com sucesso.'
   end
 
   protected

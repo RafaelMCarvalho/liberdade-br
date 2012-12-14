@@ -16,14 +16,30 @@
     <div class="rates">
       <p class="approval" style="width: <%= @post.approval_rate.to_i %>%"><%= @post.approval_rate.to_i %>%</p>
       <p class="reproval" style="width: <%= @post.reproval_rate.to_i %>%"><%= @post.reproval_rate.to_i %>%</p>
+      <p class="abstention" style="width: <%= @post.abstention_rate.to_i %>%"><%= @post.abstention_rate.to_i %>%</p>
     </div>
 
     <ul class="actions">
-      <li class="buttom"><%= link_to 'Aprovar', approve_post_path(@post, current_user),
-        :method => :post, :class => ('active' if @voted_approve), :id => 'approve_post' %></li>
+      <li class="buttom">
+        <%= link_to 'Aprovar', approve_post_path(@post, current_user),
+          :method => :post,
+          :class => ('active' if @voted_approve == PostEvaluation::OPTIONS[:approve]),
+          :id => 'approve_post' %>
+      </li>
 
-      <li class="buttom"><%= link_to 'Reprovar', reprove_post_path(@post, current_user),
-        :method => :post, :class => ('active' if @voted_approve == false), :id => 'reprove_post' %></li>
+      <li class="buttom">
+        <%= link_to 'Reprovar', reprove_post_path(@post, current_user),
+        :method => :post,
+        :class => ('active' if @voted_approve == PostEvaluation::OPTIONS[:reprove]),
+        :id => 'reprove_post' %>
+      </li>
+
+      <li class="buttom">
+        <%= link_to 'Abster-se', abstention_post_path(@post, current_user),
+        :method => :post,
+        :class => ('active' if @voted_approve == PostEvaluation::OPTIONS[:abstention]),
+        :id => 'abstention_post' %>
+      </li>
 
       <li class="buttom"><%= link_to 'Voltar para administração', session[:return_to_admin_url] || '/admin/post' %></li>
     </ul>

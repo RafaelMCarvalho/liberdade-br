@@ -3,6 +3,8 @@ class PostEvaluation < ActiveRecord::Base
   belongs_to :user
   belongs_to :post
 
+  OPTIONS = { :reprove => 0, :approve => 1, :abstention => 2 }
+
   attr_accessible :user, :post, :user_id, :post_id, :approve
 
   after_save :call_to_update_evaluation_rates, :set_user_last_evaluation_date

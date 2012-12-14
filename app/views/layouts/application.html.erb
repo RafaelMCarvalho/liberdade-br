@@ -7,7 +7,8 @@
   <%= auto_discovery_link_tag :atom, feed_url %>
   <%= auto_discovery_link_tag :rss, feed_url(:format => 'rss') %>
 
-  <meta content='http://algorich.com.br' name='author' />
+  <meta content="http://algorich.com.br" name="author" />
+  <meta http-equiv="X-UA-Compatible" content="IE=9" />
 
   <% unless configuration.keywords.blank? %>
     <meta content="<%= configuration.keywords %>" name="keywords" />

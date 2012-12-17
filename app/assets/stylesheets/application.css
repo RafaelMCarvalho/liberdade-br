@@ -875,7 +875,7 @@ ul#main_navigation > li.social_item li.rss_item a {
 #content #content_header .info > a {
     padding-left: 23px;
 
-    background: url("/assets/link_icon.png") no-repeat left center;
+    background: url("/assets/link.png") no-repeat left center;
 }
 
 #content #content_header .info .local {

@@ -9,6 +9,7 @@
 
   <meta content="http://algorich.com.br" name="author" />
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <% unless configuration.keywords.blank? %>
     <meta content="<%= configuration.keywords %>" name="keywords" />
@@ -46,6 +47,11 @@
   <style type="text/css">
     #index_page #header_wrapper {
       background: transparent !important;
+      background-image: none !important;
+    }
+
+    #content_shadow, #content_gradiente {
+        display: none;
     }
   </style>
   <![endif]-->

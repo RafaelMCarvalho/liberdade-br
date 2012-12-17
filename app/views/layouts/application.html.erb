@@ -41,6 +41,15 @@
       <%= configuration.google_analytics.html_safe %>
     </script>
   <% end %>
+
+  <!--[if IE 6]>
+  <style type="text/css">
+    #index_page #header_wrapper {
+      background: transparent !important;
+    }
+  </style>
+  <![endif]-->
+
 </head>
 
 <body id="<%= yield :page_id %>_page" <%= 'class="logged"'.html_safe if current_user %>>

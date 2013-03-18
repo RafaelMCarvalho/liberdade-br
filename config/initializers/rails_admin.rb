@@ -179,7 +179,7 @@ RailsAdmin.config do |config|
             if value == true
               html = "<span class=\"label label-success\">Aprovado</span>".html_safe
             else
-              if bindings[:object].reproval_rate > 50.0
+              if bindings[:object].reproval_rate > 20.0
                 html = "<span class=\"label label-important\">Recusado</span>".html_safe
               else
                 html = "<span class=\"label\">Aguardando</span>".html_safe

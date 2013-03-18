@@ -20,10 +20,10 @@ describe Post do
   end
 
   context 'should be published and set approved_at' do
-    it 'when approval rate is greater than or equals to 20% and reproval rate lower than 50%' do
+    it 'when approval rate is greater than or equals to 20% and reproval rate lower than 20%' do
       post = FactoryGirl.create :post, :published => false
       post.approval_rate = 20.0
-      post.reproval_rate = 49.9
+      post.reproval_rate = 19.9
       post.save
       post.reload.published.should be_true
       post.approved_at.should == Date.today
@@ -31,9 +31,9 @@ describe Post do
   end
 
   context 'should be unpublished' do
-    it 'when reproval rate is greater than or equals to 50%' do
+    it 'when reproval rate is greater than or equals to 20%' do
       post = FactoryGirl.create :post, :published => true
-      post.reproval_rate = 50.0
+      post.reproval_rate = 20.0
       post.save
       post.reload.published.should be_false
     end

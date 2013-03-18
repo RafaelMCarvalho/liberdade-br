@@ -58,7 +58,7 @@ class Post < ActiveRecord::Base
       Post.create!(
         :title => entry.title,
         :url => entry.url,
-        :content => entry.content,
+        :content => entry.content.blank? ? entry.summary : entry.content,
         :published_at => entry.published,
         :categories => categories,
         :authors => authors,

@@ -3,7 +3,7 @@
 class SiteController < ApplicationController
 
   def index
-    @banners = Banner.where('published = ?', true).order('updated_at DESC')
+    @banners = Banner.where('published = ?', true).order('updated_at ASC')
     @search = Post.published.order('approved_at DESC').
       search(params[:q])
     @posts = @search.result

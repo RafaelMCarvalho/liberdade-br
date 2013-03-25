@@ -10,7 +10,7 @@
     <style>
       <% @banners.each_with_index do |b, i| %>
         #banner_<%= i %> {
-          background-image: url("<%= b.image.url %>") no-repeat center;
+          background: url("<%= b.image.url %>") no-repeat center;
         }
       <% end %>
     </style>

@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     @title = "Liberdade.br"
 
     # the news items
-    @posts = Post.published.order('approved_at DESC')
+    @posts = Post.published.order('approved_at DESC').limit(10)
 
     # this will be our Feed's update timestamp
     @updated = @posts.first.approved_at unless @posts.empty?
